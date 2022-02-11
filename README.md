@@ -1,1 +1,1 @@
-### Hi there, I'm [brotatotes](https://brotatotes.com)!
+### Hi, I'm [brotatotes](https://brotatotes.com)!
