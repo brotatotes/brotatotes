@@ -1,27 +1,27 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- SEO & Open Graph -->
+    <meta name="description" content="Personal website of Eric Hao — Christian, software engineer in Durham, NC">
+    <meta property="og:title" content="brotatotes">
+    <meta property="og:description" content="Personal website of Eric Hao — Christian, software engineer in Durham, NC">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://brotatotes.com/">
 
     <!-- favicon -->
     <link rel="icon" type="image/x-icon" href="resources/favicon.ico">
 
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <!-- Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <!-- Google Fonts: Quicksand -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400&display=swap" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
-    <!-- Bootstrap icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-
-    <!-- Fontawesome icons -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
     <!-- style.css -->
     <link href="style.css" rel="stylesheet"/>
@@ -33,47 +33,46 @@
     <div>
 
       <!-- center -->
-      <div class="position-absolute top-50 start-50 translate-middle">
-        <h1 class="fw-light font-awesome">
+      <div class="position-absolute top-50 start-50 translate-middle text-center">
+        <h1 class="fw-light fade-in">
           brotatotes
         </h1>
+        <p class="tagline fade-in fade-delay-1">
+          Christian · software engineer · Durham, NC
+        </p>
       </div>
 
       <!-- bottom center -->
-      <div id="links" class="position-absolute bottom-0 start-50 translate-middle-x">
-        <!-- first row -->
-        <div align="center">
+      <div id="links" class="position-absolute bottom-0 start-50 translate-middle-x fade-in fade-delay-2">
+        <div class="icon-row">
           <!-- Resume -->
-          <a href="resources/resume.pdf" target="_blank" data-toggle="tooltip" data-placement="top" title="resume"><i class="bi bi-file-earmark-person-fill"></i></a>
+          <a href="resources/resume.pdf" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="resume" aria-label="Resume PDF"><i class="bi bi-file-earmark-person-fill"></i></a>
 
           <!-- GitHub -->
-          <a href="https://github.com/brotatotes" target="_blank" data-toggle="tooltip" data-placement="top" title="github"><i class="bi bi-github"></i></a>
+          <a href="https://github.com/brotatotes" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="github" aria-label="GitHub profile"><i class="bi bi-github"></i></a>
 
           <!-- LinkedIn -->
-          <a href="https://www.linkedin.com/in/erichao2018/" target="_blank" data-toggle="tooltip" data-placement="top" title="linkedin"><i class="bi bi-linkedin"></i></a>
+          <a href="https://www.linkedin.com/in/erichao2018/" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="linkedin" aria-label="LinkedIn profile"><i class="bi bi-linkedin"></i></a>
         </div>
-
-        <!-- second row -->
-        <div align="center">
+        <div class="icon-row">
           <!-- Spotify -->
-          <a href="https://open.spotify.com/artist/3OKPfWSO9P15iCRTznKnZo" target="_blank" data-toggle="tooltip" data-placement="top" title="spotify"><i class="bi bi-spotify"></i></a>
+          <a href="https://open.spotify.com/artist/3OKPfWSO9P15iCRTznKnZo" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="spotify" aria-label="Spotify artist page"><i class="bi bi-spotify"></i></a>
 
-          <!-- Soundcloud -->
-          <a href="https://soundcloud.com/brotatotes" target="_blank" data-toggle="tooltip" data-placement="top" title="soundcloud"><i class="fa fa-soundcloud"></i></a>
+          <!-- SoundCloud -->
+          <a href="https://soundcloud.com/brotatotes" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="soundcloud" aria-label="SoundCloud profile"><svg class="soundcloud-icon" xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 24 24"><path d="M23.999 14.165c-.052 1.796-1.612 3.169-3.4 3.169h-8.18a.68.68 0 0 1-.675-.683V7.862a.747.747 0 0 1 .452-.724s.75-.513 2.333-.513a5.364 5.364 0 0 1 2.763.755 5.433 5.433 0 0 1 2.57 3.54c.282-.08.574-.121.868-.12.884 0 1.73.358 2.347.992s.948 1.49.922 2.373ZM10.721 8.421c.247 2.98.427 5.697 0 8.672a.264.264 0 0 1-.53 0c-.395-2.946-.22-5.718 0-8.672a.264.264 0 0 1 .53 0ZM9.072 9.448c.285 2.659.37 4.986-.006 7.655a.277.277 0 0 1-.55 0c-.331-2.63-.256-5.02 0-7.655a.277.277 0 0 1 .556 0Zm-1.663-.257c.27 2.726.39 5.171 0 7.904a.266.266 0 0 1-.532 0c-.38-2.69-.257-5.21 0-7.904a.266.266 0 0 1 .532 0Zm-1.647.77a26.108 26.108 0 0 1-.008 7.147.272.272 0 0 1-.542 0 27.955 27.955 0 0 1 0-7.147.275.275 0 0 1 .55 0Zm-1.67 1.769c.421 1.865.228 3.5-.029 5.388a.257.257 0 0 1-.514 0c-.21-1.858-.398-3.549 0-5.389a.272.272 0 0 1 .543 0Zm-1.655-.273c.388 1.897.26 3.508-.01 5.412-.026.28-.514.283-.54 0-.244-1.878-.347-3.54-.01-5.412a.283.283 0 0 1 .56 0Zm-1.668.911c.4 1.268.257 2.292-.026 3.572a.257.257 0 0 1-.514 0c-.241-1.262-.354-2.312-.023-3.572a.283.283 0 0 1 .563 0Z"/></svg></a>
 
           <!-- YouTube -->
-          <a href="https://www.youtube.com/channel/UCf2b1PQXe81sbAj1CLSIKGg/videos" target="_blank" data-toggle="tooltip" data-placement="top" title="youtube"><i class="bi bi-youtube"></i></a>
+          <a href="https://www.youtube.com/channel/UCf2b1PQXe81sbAj1CLSIKGg/videos" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="youtube" aria-label="YouTube channel"><i class="bi bi-youtube"></i></a>
         </div>
       </div>
     </div>
 
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <script>
-      // Enable all tooltips (text that appears while hovering over links)
-      $(function () {
-        $('[data-toggle="tooltip"]').tooltip({
-          trigger: 'hover'
-        })
-      })
+      document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(function (el) {
+        new bootstrap.Tooltip(el, { trigger: 'hover' });
+      });
     </script>
   </body>
 </html>
