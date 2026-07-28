@@ -6,7 +6,9 @@ const number = document.querySelector('#active-number');
 const region = document.querySelector('#active-region');
 const status = document.querySelector('#route-status');
 const themeButtons = [...document.querySelectorAll('.theme-button')];
+const themeColorMeta = document.querySelector('meta[name="theme-color"]');
 const systemDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+const themeColors = { atlas: '#f2ecdf', dark: '#0d1117' };
 
 function resolvedTheme(theme) {
   return theme === 'system' ? (systemDarkMode.matches ? 'dark' : 'atlas') : theme;
@@ -15,6 +17,7 @@ function resolvedTheme(theme) {
 function setTheme(theme) {
   const appearance = resolvedTheme(theme);
   document.body.dataset.theme = appearance === 'atlas' ? '' : appearance;
+  if (themeColorMeta) themeColorMeta.setAttribute('content', themeColors[appearance] || themeColors.atlas);
   themeButtons.forEach((button) => {
     const selected = button.dataset.theme === theme;
     button.classList.toggle('active', selected);
