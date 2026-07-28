@@ -175,7 +175,7 @@ nav a {
 .journey {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 58%) minmax(22rem, 42%);
+  grid-template-columns: minmax(0, 51%) minmax(28rem, 49%);
   background: var(--paper-deep);
   border-top: 1px solid var(--rule);
 }
@@ -252,19 +252,19 @@ nav a {
 }
 .route-status { color: var(--ink); }
 
-.chapters { padding: 0 clamp(1.5rem, 5vw, 5rem); }
+.chapters { padding: 0 clamp(1.5rem, 3.6vw, 4rem); }
 .chapter {
   min-height: 100svh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 8svh 0;
+  padding: 9svh 0;
   opacity: .3;
   transform: translateY(1.5rem);
   transition: opacity .6s ease, transform .6s ease;
 }
 .chapter.active { opacity: 1; transform: none; }
-.chapter-head { max-width: 34rem; }
+.chapter-head { max-width: 42rem; }
 .chapter-number { color: var(--muted); font-size: .65rem; }
 .chapter h2 {
   margin: .8rem 0 1.5rem;
@@ -274,35 +274,48 @@ nav a {
   letter-spacing: -.055em;
 }
 .chapter .summary {
-  max-width: 32rem;
+  max-width: 40rem;
   margin: 0;
   font-size: clamp(1.2rem, 2vw, 1.55rem);
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
 /* Visual storyboard */
-.storyboard { margin-top: clamp(2.2rem, 4vw, 3.4rem); }
+.storyboard {
+  margin-top: clamp(2.6rem, 4.5vw, 4rem);
+  padding-top: clamp(2.4rem, 4vw, 3.6rem);
+  border-top: 1px solid var(--rule);
+}
 .moments-label {
-  margin: 0 0 1.6rem;
+  margin: 0 0 clamp(1.7rem, 2.6vw, 2.2rem);
   color: var(--muted);
   font-size: .62rem;
 }
 .tiles {
   display: flex;
   flex-direction: column;
-  gap: clamp(1rem, 1.6vw, 1.4rem);
+  gap: clamp(1.3rem, 2vw, 1.9rem);
 }
 .tile {
   margin: 0;
   display: grid;
-  grid-template-columns: clamp(7rem, 12vw, 9.5rem) 1fr;
+  grid-template-columns: clamp(6.5rem, 9vw, 8.5rem) minmax(0, 1fr);
   border: 1px solid var(--rule);
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
   background: color-mix(in srgb, var(--paper) 55%, transparent);
   opacity: 0;
   transform: translateY(1rem);
   transition: opacity .6s ease, transform .6s ease, border-color .4s ease, box-shadow .4s ease;
+}
+/* Alternate the art side so the moments read as a rhythm, not a stack. */
+.tile:nth-child(even) {
+  grid-template-columns: minmax(0, 1fr) clamp(6.5rem, 9vw, 8.5rem);
+}
+.tile:nth-child(even) .tile-art {
+  order: 2;
+  border-right: 0;
+  border-left: 1px solid var(--rule);
 }
 .chapter.active .tile { opacity: 1; transform: none; }
 .chapter.active .tile:nth-child(1) { transition-delay: .1s; }
@@ -311,7 +324,7 @@ nav a {
 .tile:hover { border-color: color-mix(in srgb, var(--rust) 55%, var(--rule)); box-shadow: 0 12px 30px rgba(38,50,41,.09); }
 .tile-art {
   position: relative;
-  min-height: clamp(6rem, 9vw, 7.5rem);
+  min-height: clamp(7rem, 10vw, 8.75rem);
   display: grid;
   place-items: center;
   background:
@@ -339,7 +352,7 @@ nav a {
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-.tile-copy { padding: 1.05rem 1.3rem 1.15rem; display: flex; flex-direction: column; gap: .38rem; align-self: center; }
+.tile-copy { padding: clamp(1.2rem, 1.8vw, 1.6rem) clamp(1.4rem, 2vw, 1.9rem); display: flex; flex-direction: column; gap: .48rem; align-self: center; }
 .tile-stage {
   margin: 0;
   color: var(--muted);
@@ -354,17 +367,17 @@ nav a {
   line-height: 1.08;
   letter-spacing: -.02em;
 }
-.tile-line { margin: 0; font-size: clamp(.98rem, 1.2vw, 1.08rem); line-height: 1.45; color: color-mix(in srgb, var(--ink) 86%, var(--muted)); }
+.tile-line { margin: 0; max-width: 42ch; font-size: clamp(.98rem, 1.2vw, 1.1rem); line-height: 1.5; color: color-mix(in srgb, var(--ink) 86%, var(--muted)); }
 
 /* Media / artifact zone */
 .media-zone {
-  margin-top: clamp(1rem, 1.6vw, 1.5rem);
+  margin-top: clamp(1.5rem, 2.4vw, 2.2rem);
   display: flex;
   align-items: center;
-  gap: 1.25rem;
-  padding: 1.1rem 1.25rem;
+  gap: clamp(1.25rem, 2.2vw, 1.9rem);
+  padding: clamp(1.4rem, 2.4vw, 2rem) clamp(1.5rem, 2.4vw, 2rem);
   border: 1px dashed color-mix(in srgb, var(--sage-line) 80%, transparent);
-  border-radius: 10px;
+  border-radius: 12px;
   background:
     repeating-linear-gradient(45deg, color-mix(in srgb, var(--sage) 30%, transparent) 0 8px, transparent 8px 16px);
   opacity: 0;
@@ -374,11 +387,11 @@ nav a {
 .chapter.active .media-zone { opacity: 1; transform: none; }
 .media-slot {
   flex: none;
-  width: clamp(3.2rem, 6vw, 4.4rem);
-  height: clamp(3.2rem, 6vw, 4.4rem);
+  width: clamp(3.6rem, 6.5vw, 5rem);
+  height: clamp(3.6rem, 6.5vw, 5rem);
   display: grid;
   place-items: center;
-  border-radius: 8px;
+  border-radius: 10px;
   background: color-mix(in srgb, var(--paper) 75%, transparent);
   border: 1px solid var(--rule);
 }
@@ -401,11 +414,11 @@ nav a {
 
 /* Dominant closing card for each chapter */
 .carried {
-  margin: clamp(1.6rem, 3vw, 2.6rem) 0 0;
-  padding: clamp(1.6rem, 3vw, 2.6rem) clamp(1.6rem, 3.5vw, 3rem);
+  margin: clamp(2.4rem, 4vw, 3.4rem) 0 0;
+  padding: clamp(1.8rem, 3.2vw, 2.8rem) clamp(1.8rem, 3.5vw, 3.2rem);
   border: 1px solid color-mix(in srgb, var(--rust) 35%, var(--rule));
   border-left: 5px solid var(--rust);
-  border-radius: 12px;
+  border-radius: 14px;
   background: linear-gradient(135deg, color-mix(in srgb, var(--rust) 12%, transparent), color-mix(in srgb, var(--rust) 4%, transparent));
   opacity: 0;
   transform: translateY(.9rem);
@@ -423,9 +436,9 @@ nav a {
   margin: 0;
   font-size: clamp(1.5rem, 2.6vw, 2.3rem);
   font-weight: 300;
-  line-height: 1.2;
+  line-height: 1.22;
   letter-spacing: -.02em;
-  max-width: 30ch;
+  max-width: 34ch;
 }
 
 .epilogue {
@@ -597,13 +610,23 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
     justify-content: flex-start;
   }
   .chapter h2 { font-size: clamp(2.6rem, 12vw, 4rem); }
-  .tile { grid-template-columns: 4.5rem 1fr; }
+  .storyboard {
+    margin-top: 2rem;
+    padding-top: 2rem;
+  }
+  .tile,
+  .tile:nth-child(even) { grid-template-columns: 4.75rem minmax(0, 1fr); }
+  .tile:nth-child(even) .tile-art {
+    order: 0;
+    border-right: 1px solid var(--rule);
+    border-left: 0;
+  }
   .tile-art { min-height: 5rem; }
   .tile-index { display: none; }
   .tile-symbol { width: 2rem; height: 2rem; }
-  .storyboard { margin-top: 1.8rem; }
+  .tile-line { max-width: none; }
   .media-zone { flex-direction: row; }
-  .carried { margin-top: 1.8rem; }
+  .carried { margin-top: 1.9rem; }
   .carried-line { font-size: clamp(1.4rem, 6vw, 1.9rem); }
   .epilogue { padding: 5rem 1.5rem 4rem; }
   .epilogue-grid { grid-template-columns: 1fr; margin-top: 3rem; padding-top: 2.2rem; gap: 3rem; }
