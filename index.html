@@ -1,78 +1,152 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Eric Hao — a life in places">
+  <meta name="theme-color" content="#f2ecdf">
+  <link rel="icon" type="image/x-icon" href="resources/favicon.ico">
+  <title>brotatotes — a life in places</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Newsreader:opsz,wght@6..72,300;6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="atlas.css">
+  <script src="atlas.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#journey">Skip to the journey</a>
+  <div class="grain" aria-hidden="true"></div>
 
-    <!-- SEO & Open Graph -->
-    <meta name="description" content="Personal website of Eric Hao — Christian, software engineer in Durham, NC">
-    <meta property="og:title" content="brotatotes">
-    <meta property="og:description" content="Personal website of Eric Hao — Christian, software engineer in Durham, NC">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://brotatotes.com/">
+  <header class="site-header">
+    <a class="wordmark" href="#top">brotatotes</a>
+    <nav aria-label="Primary navigation">
+      <a href="#journey">places</a>
+      <a href="resources/resume.pdf">résumé</a>
+      <a href="https://github.com/brotatotes">github</a>
+    </nav>
+  </header>
 
-    <!-- favicon -->
-    <link rel="icon" type="image/x-icon" href="resources/favicon.ico">
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="cursor-light" aria-hidden="true"></div>
+      <p class="kicker">A life in places · five chapters</p>
+      <h1 id="hero-title">The places<br>that made me.</h1>
+      <p class="intro">A personal atlas of the communities, questions, work, and people that have shaped my life.</p>
+      <a class="begin" href="#journey">
+        Follow the route
+        <span aria-hidden="true">↓</span>
+      </a>
+      <p class="placeholder-note">Prototype copy · final stories will be written later</p>
+    </section>
 
-    <!-- Google Fonts: Quicksand -->
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400&display=swap" rel="stylesheet">
+    <section class="journey" id="journey" aria-label="A life in five places">
+      <div class="atlas-stage">
+        <div class="atlas-heading">
+          <p class="kicker">The living atlas</p>
+          <p class="progress"><span id="active-number">01</span> / 05</p>
+        </div>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <div class="map-wrap" aria-hidden="true">
+          <svg class="map" viewBox="0 0 960 620" role="img" aria-label="Map of the United States showing a route from Arizona to Illinois, Washington, Ohio, and North Carolina">
+            <defs>
+              <filter id="paper-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#2d382f" flood-opacity=".08"/>
+              </filter>
+            </defs>
+            <path class="land" d="M112 158 L170 122 L247 110 L305 77 L373 89 L417 112 L492 106 L557 122 L626 104 L701 121 L770 111 L842 143 L866 182 L845 219 L869 258 L834 294 L806 341 L766 359 L733 405 L692 407 L654 448 L607 475 L554 464 L517 421 L478 411 L435 388 L392 401 L355 378 L302 373 L265 337 L225 324 L203 284 L169 267 L151 229 L119 208 Z"/>
 
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+            <g class="route-lines">
+              <path class="route route-1" pathLength="1" d="M230 360 C315 315 410 252 528 246"/>
+              <path class="route route-2" pathLength="1" d="M528 246 C432 160 295 112 164 151"/>
+              <path class="route route-3" pathLength="1" d="M164 151 C350 132 590 188 675 232"/>
+              <path class="route route-4" pathLength="1" d="M675 232 C725 273 743 326 748 361"/>
+            </g>
 
-    <!-- style.css -->
-    <link href="style.css" rel="stylesheet"/>
+            <g class="places">
+              <g class="place place-1 active" transform="translate(230 360)">
+                <circle class="pulse" r="22"/><circle class="dot" r="7"/>
+                <text x="-18" y="-20">Fountain Hills</text>
+              </g>
+              <g class="place place-2" transform="translate(528 246)">
+                <circle class="pulse" r="22"/><circle class="dot" r="7"/>
+                <text x="14" y="-15">Evanston</text>
+              </g>
+              <g class="place place-3" transform="translate(164 151)">
+                <circle class="pulse" r="22"/><circle class="dot" r="7"/>
+                <text x="14" y="-14">Seattle</text>
+              </g>
+              <g class="place place-4" transform="translate(675 232)">
+                <circle class="pulse" r="22"/><circle class="dot" r="7"/>
+                <text x="14" y="-14">Cleveland Heights</text>
+              </g>
+              <g class="place place-5" transform="translate(748 361)">
+                <circle class="pulse" r="22"/><circle class="dot" r="7"/>
+                <text x="14" y="22">Durham</text>
+              </g>
+            </g>
+          </svg>
+        </div>
 
-    <title>brotatotes</title>
-  </head>
-  <body>
-
-    <div>
-
-      <!-- center -->
-      <div class="position-absolute top-50 start-50 translate-middle text-center">
-        <h1 class="fw-light fade-in">
-          brotatotes
-        </h1>
-        <p class="tagline fade-in fade-delay-1">
-          Christian · software engineer · Durham, NC
-        </p>
+        <div class="atlas-caption" aria-live="polite">
+          <span id="active-region">Arizona</span>
+          <span class="route-status" id="route-status">Growing up</span>
+        </div>
       </div>
 
-      <!-- bottom center -->
-      <div id="links" class="position-absolute bottom-0 start-50 translate-middle-x fade-in fade-delay-2">
-        <div class="icon-row">
-          <!-- Resume -->
-          <a href="resources/resume.pdf" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="resume" aria-label="Resume PDF"><i class="bi bi-file-earmark-person-fill"></i></a>
+      <div class="chapters">
+        <article class="chapter active" data-index="1" data-region="Arizona" data-status="Growing up">
+          <p class="chapter-number">01 · Arizona</p>
+          <h2>Fountain Hills</h2>
+          <p>This is placeholder text for the people, communities, and experiences that made this place a beginning.</p>
+          <p class="detail">High school in Scottsdale will be part of this chapter.</p>
+        </article>
 
-          <!-- GitHub -->
-          <a href="https://github.com/brotatotes" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="github" aria-label="GitHub profile"><i class="bi bi-github"></i></a>
+        <article class="chapter" data-index="2" data-region="Illinois" data-status="College">
+          <p class="chapter-number">02 · Illinois</p>
+          <h2>Evanston</h2>
+          <p>This is placeholder text for a season of study, friendships, and discovering new directions.</p>
+          <p class="detail">Northwestern University</p>
+        </article>
 
-          <!-- LinkedIn -->
-          <a href="https://www.linkedin.com/in/erichao2018/" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="linkedin" aria-label="LinkedIn profile"><i class="bi bi-linkedin"></i></a>
-        </div>
-        <div class="icon-row">
-          <!-- Spotify -->
-          <a href="https://open.spotify.com/artist/3OKPfWSO9P15iCRTznKnZo" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="spotify" aria-label="Spotify artist page"><i class="bi bi-spotify"></i></a>
+        <article class="chapter" data-index="3" data-region="Washington" data-status="A new coast">
+          <p class="chapter-number">03 · Washington</p>
+          <h2>Seattle</h2>
+          <p>This is placeholder text for building a life in the Pacific Northwest and learning what meaningful work could look like.</p>
+          <p class="detail">Community, work, and life beyond both</p>
+        </article>
 
-          <!-- SoundCloud -->
-          <a href="https://soundcloud.com/brotatotes" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="soundcloud" aria-label="SoundCloud profile"><svg class="soundcloud-icon" xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor" viewBox="0 0 24 24"><path d="M23.999 14.165c-.052 1.796-1.612 3.169-3.4 3.169h-8.18a.68.68 0 0 1-.675-.683V7.862a.747.747 0 0 1 .452-.724s.75-.513 2.333-.513a5.364 5.364 0 0 1 2.763.755 5.433 5.433 0 0 1 2.57 3.54c.282-.08.574-.121.868-.12.884 0 1.73.358 2.347.992s.948 1.49.922 2.373ZM10.721 8.421c.247 2.98.427 5.697 0 8.672a.264.264 0 0 1-.53 0c-.395-2.946-.22-5.718 0-8.672a.264.264 0 0 1 .53 0ZM9.072 9.448c.285 2.659.37 4.986-.006 7.655a.277.277 0 0 1-.55 0c-.331-2.63-.256-5.02 0-7.655a.277.277 0 0 1 .556 0Zm-1.663-.257c.27 2.726.39 5.171 0 7.904a.266.266 0 0 1-.532 0c-.38-2.69-.257-5.21 0-7.904a.266.266 0 0 1 .532 0Zm-1.647.77a26.108 26.108 0 0 1-.008 7.147.272.272 0 0 1-.542 0 27.955 27.955 0 0 1 0-7.147.275.275 0 0 1 .55 0Zm-1.67 1.769c.421 1.865.228 3.5-.029 5.388a.257.257 0 0 1-.514 0c-.21-1.858-.398-3.549 0-5.389a.272.272 0 0 1 .543 0Zm-1.655-.273c.388 1.897.26 3.508-.01 5.412-.026.28-.514.283-.54 0-.244-1.878-.347-3.54-.01-5.412a.283.283 0 0 1 .56 0Zm-1.668.911c.4 1.268.257 2.292-.026 3.572a.257.257 0 0 1-.514 0c-.241-1.262-.354-2.312-.023-3.572a.283.283 0 0 1 .563 0Z"/></svg></a>
+        <article class="chapter" data-index="4" data-region="Ohio" data-status="A season back east">
+          <p class="chapter-number">04 · Ohio</p>
+          <h2>Cleveland Heights</h2>
+          <p>This is placeholder text for returning east, making things, and investing in people and community.</p>
+          <p class="detail">The final story will not be organized around a résumé.</p>
+        </article>
 
-          <!-- YouTube -->
-          <a href="https://www.youtube.com/channel/UCf2b1PQXe81sbAj1CLSIKGg/videos" target="_blank" data-bs-toggle="tooltip" data-bs-placement="top" title="youtube" aria-label="YouTube channel"><i class="bi bi-youtube"></i></a>
-        </div>
+        <article class="chapter" data-index="5" data-region="North Carolina" data-status="The present chapter">
+          <p class="chapter-number">05 · North Carolina</p>
+          <h2>Durham</h2>
+          <p>This is placeholder text for the present chapter, where earlier threads continue and new ones begin.</p>
+          <p class="detail">Still being written</p>
+        </article>
       </div>
-    </div>
+    </section>
 
-    <!-- Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <script>
-      document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(function (el) {
-        new bootstrap.Tooltip(el, { trigger: 'hover' });
-      });
-    </script>
-  </body>
+    <section class="closing">
+      <p class="kicker">The route continues</p>
+      <h2>More than a timeline.</h2>
+      <p>The final site can weave work, faith, music, relationships, and things made into the places where they actually happened.</p>
+      <div class="closing-links">
+        <a href="resources/resume.pdf">Résumé</a>
+        <a href="https://github.com/brotatotes">GitHub</a>
+        <a href="https://www.linkedin.com/in/erichao2018/">LinkedIn</a>
+        <a href="https://open.spotify.com/artist/3OKPfWSO9P15iCRTznKnZo">Music</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>Eric Hao</span>
+    <span>Durham, North Carolina</span>
+  </footer>
+</body>
 </html>
