@@ -1,7 +1,7 @@
 const root = document.documentElement;
 const chapters = [...document.querySelectorAll('.chapter')];
-const places = [...document.querySelectorAll('.place')];
-const routes = [...document.querySelectorAll('.route')];
+const places = [...document.querySelectorAll('.places .place')];
+const routes = [...document.querySelectorAll('.route-lines .route')];
 const number = document.querySelector('#active-number');
 const region = document.querySelector('#active-region');
 const status = document.querySelector('#route-status');
@@ -55,7 +55,11 @@ function activateChapter(chapter) {
     place.classList.toggle('visited', step < index);
   });
   routes.forEach((route, routeIndex) => {
-    route.classList.toggle('drawn', routeIndex < index - 1);
+    if (route.classList.contains('route-onward')) {
+      route.classList.toggle('drawn', index >= chapters.length);
+    } else {
+      route.classList.toggle('drawn', routeIndex < index - 1);
+    }
   });
   number.textContent = String(index).padStart(2, '0');
   region.textContent = chapter.dataset.region;
