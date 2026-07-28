@@ -17,6 +17,44 @@
   <a class="skip-link" href="#journey">Skip to the journey</a>
   <div class="grain" aria-hidden="true"></div>
 
+  <svg class="symbol-sprite" aria-hidden="true" focusable="false" width="0" height="0">
+    <defs>
+      <symbol id="sym-sprout" viewBox="0 0 32 32">
+        <path d="M16 29 V15 M16 15 C16 9 11 6 5 6 C5 12 10 15 16 15 Z M16 18 C16 13 20 10 27 10 C27 15 22 18 16 18 Z"/>
+      </symbol>
+      <symbol id="sym-mountain" viewBox="0 0 32 32">
+        <path d="M3 26 L13 9 L19 18 L22 14 L29 26 Z M13 9 L16 14"/>
+      </symbol>
+      <symbol id="sym-signpost" viewBox="0 0 32 32">
+        <path d="M16 6 V28 M9 10 H24 L27 13 L24 16 H9 Z M9 18 H21 L18 21 L21 24 H9 Z"/>
+      </symbol>
+      <symbol id="sym-book" viewBox="0 0 32 32">
+        <path d="M16 8 C12 5 7 5 4 6 V25 C7 24 12 24 16 27 C20 24 25 24 28 25 V6 C25 5 20 5 16 8 Z M16 8 V27"/>
+      </symbol>
+      <symbol id="sym-build" viewBox="0 0 32 32">
+        <path d="M20 4 L28 12 L23 17 L15 9 Z M15 9 L5 19 L8 22 L18 12 M8 22 L4 28"/>
+      </symbol>
+      <symbol id="sym-people" viewBox="0 0 32 32">
+        <circle cx="11" cy="11" r="4"/><circle cx="22" cy="13" r="3"/><path d="M4 27 C4 20 18 20 18 27 M18 22 C20 18 28 19 28 27"/>
+      </symbol>
+      <symbol id="sym-wave" viewBox="0 0 32 32">
+        <path d="M3 12 C7 8 11 8 15 12 C19 16 23 16 27 12 M3 20 C7 16 11 16 15 20 C19 24 23 24 27 20"/>
+      </symbol>
+      <symbol id="sym-gear" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="5"/><path d="M16 3 V8 M16 24 V29 M3 16 H8 M24 16 H29 M7 7 L11 11 M21 21 L25 25 M25 7 L21 11 M11 21 L7 25"/>
+      </symbol>
+      <symbol id="sym-path" viewBox="0 0 32 32">
+        <path d="M12 29 C12 22 20 20 20 13 C20 7 15 5 12 7 M20 13 L17 10 M20 13 L23 10"/><circle cx="12" cy="29" r="1.5"/>
+      </symbol>
+      <symbol id="sym-home" viewBox="0 0 32 32">
+        <path d="M5 15 L16 5 L27 15 M8 13 V27 H24 V13 M14 27 V19 H18 V27"/>
+      </symbol>
+      <symbol id="sym-compass" viewBox="0 0 32 32">
+        <circle cx="16" cy="16" r="12"/><path d="M16 16 L21 11 L18 18 L11 21 Z"/>
+      </symbol>
+    </defs>
+  </svg>
+
   <header class="site-header">
     <a class="wordmark" href="#top">brotatotes</a>
     <div class="theme-picker" aria-label="Choose a visual direction">
@@ -66,7 +104,6 @@
                 <path class="route route-2" pathLength="1" d="M558 138 Q 360 45 141 52"/>
                 <path class="route route-3" pathLength="1" d="M141 52 Q 375 158 632 147"/>
                 <path class="route route-4" pathLength="1" d="M632 147 Q 638 194 664 233"/>
-                <path class="route route-onward" pathLength="1" d="M664 233 C 720 300 800 372 916 428"/>
             </g>
 
             <g class="places">
@@ -102,190 +139,330 @@
 
       <div class="chapters">
         <article class="chapter active" data-index="1" data-region="Arizona" data-status="Growing up">
-          <p class="chapter-number">01 · Arizona</p>
-          <h2>Fountain Hills</h2>
-          <p class="summary">Fountain Hills is where I grew up and learned to take responsibility early. Those years shaped my work ethic and taught me to care for the people around me.</p>
+          <header class="chapter-head">
+            <p class="chapter-number">01 · Arizona</p>
+            <h2>Fountain Hills</h2>
+            <p class="summary">Fountain Hills is where I grew up and learned to take responsibility early. Those years shaped my work ethic and taught me to care for the people around me.</p>
+          </header>
 
-          <div class="moments">
+          <div class="storyboard">
             <p class="moments-label">Defining moments</p>
-            <ol class="moment-list">
-              <li class="moment">
-                <p class="moment-title">Placeholder moment · early years</p>
-                <p class="moment-meta">Childhood · 20XX</p>
-                <p class="moment-body">Placeholder copy for a formative moment from growing up here — a responsibility taken on, a habit formed, a person who mattered.</p>
-              </li>
-              <li class="moment">
-                <p class="moment-title">Placeholder moment · finding footing</p>
-                <p class="moment-meta">School years · 20XX</p>
-                <p class="moment-body">Placeholder copy describing a challenge met and what it revealed. Any achievement will appear here as evidence inside the story, not as a trophy.</p>
-              </li>
-              <li class="moment">
-                <p class="moment-title">Placeholder moment · leaving home</p>
-                <p class="moment-meta">Before college · 20XX</p>
-                <p class="moment-body">Placeholder copy about the turning point that pointed toward what came next.</p>
-              </li>
-            </ol>
+            <div class="tiles">
+              <figure class="tile">
+                <div class="tile-art" aria-hidden="true">
+                  <span class="tile-index">01</span>
+                  <svg class="tile-symbol"><use href="#sym-sprout"/></svg>
+                </div>
+                <figcaption class="tile-copy">
+                  <p class="tile-stage">Childhood</p>
+                  <h3 class="tile-title">Early years</h3>
+                  <p class="tile-line">A responsibility taken on young, and a habit of showing up.</p>
+                </figcaption>
+              </figure>
+              <figure class="tile">
+                <div class="tile-art" aria-hidden="true">
+                  <span class="tile-index">02</span>
+                  <svg class="tile-symbol"><use href="#sym-mountain"/></svg>
+                </div>
+                <figcaption class="tile-copy">
+                  <p class="tile-stage">School years</p>
+                  <h3 class="tile-title">Finding footing</h3>
+                  <p class="tile-line">A challenge met that quietly revealed what I was capable of.</p>
+                </figcaption>
+              </figure>
+              <figure class="tile">
+                <div class="tile-art" aria-hidden="true">
+                  <span class="tile-index">03</span>
+                  <svg class="tile-symbol"><use href="#sym-signpost"/></svg>
+                </div>
+                <figcaption class="tile-copy">
+                  <p class="tile-stage">Before college</p>
+                  <h3 class="tile-title">Leaving home</h3>
+                  <p class="tile-line">The turning point that pointed toward what came next.</p>
+                </figcaption>
+              </figure>
+            </div>
+
+            <div class="media-zone" aria-label="Media and artifacts, coming soon">
+              <div class="media-slot" aria-hidden="true">
+                <svg class="media-glyph"><use href="#sym-home"/></svg>
+              </div>
+              <p class="media-note">A photo, project, or artifact from this chapter will live here.</p>
+            </div>
           </div>
 
           <blockquote class="carried">
             <p class="carried-label">What I carried forward</p>
-            <p>Placeholder takeaway that ties these moments together — the throughline this place left with me.</p>
+            <p class="carried-line">The throughline this place left with me — placeholder for the reflection that ties these moments together.</p>
           </blockquote>
         </article>
 
         <article class="chapter" data-index="2" data-region="Illinois" data-status="College">
-          <p class="chapter-number">02 · Illinois</p>
-          <h2>Evanston</h2>
-          <p class="summary">Evanston is where I learned by building. Projects, skills, and relationships taught me that anything worthwhile takes patience, care, and iteration.</p>
+          <header class="chapter-head">
+            <p class="chapter-number">02 · Illinois</p>
+            <h2>Evanston</h2>
+            <p class="summary">Evanston is where I learned by building. Projects, skills, and relationships taught me that anything worthwhile takes patience, care, and iteration.</p>
+          </header>
 
-          <div class="moments">
+          <div class="storyboard">
             <p class="moments-label">Defining moments</p>
-            <ol class="moment-list">
-              <li class="moment">
-                <p class="moment-title">Placeholder moment · Northwestern</p>
-                <p class="moment-meta">University · 20XX</p>
-                <p class="moment-body">Placeholder copy about learning to turn curiosity into finished work.</p>
-              </li>
-              <li class="moment">
-                <p class="moment-title">Placeholder moment · building something real</p>
-                <p class="moment-meta">During college · 20XX</p>
-                <p class="moment-body">Placeholder copy about discovering how patience and iteration can make an ambitious idea real. Links to the work will live here as quiet evidence.</p>
-              </li>
-              <li class="moment">
-                <p class="moment-title">Placeholder moment · lasting relationships</p>
-                <p class="moment-meta">Through the years · 20XX</p>
-                <p class="moment-body">Placeholder copy about collaborators and friendships that continued beyond college.</p>
-              </li>
-            </ol>
+            <div class="tiles">
+              <figure class="tile">
+                <div class="tile-art" aria-hidden="true">
+                  <span class="tile-index">01</span>
+                  <svg class="tile-symbol"><use href="#sym-book"/></svg>
+                </div>
+                <figcaption class="tile-copy">
+                  <p class="tile-stage">University</p>
+                  <h3 class="tile-title">Northwestern</h3>
+                  <p class="tile-line">Learning to turn curiosity into finished, shippable work.</p>
+                </figcaption>
+              </figure>
+              <figure class="tile">
+                <div class="tile-art" aria-hidden="true">
+                  <span class="tile-index">02</span>
+                  <svg class="tile-symbol"><use href="#sym-build"/></svg>
+                </div>
+                <figcaption class="tile-copy">
+                  <p class="tile-stage">During college</p>
+                  <h3 class="tile-title">Building something real</h3>
+                  <p class="tile-line">Discovering how patience and iteration can make an ambitious idea real.</p>
+                </figcaption>
+              </figure>
+              <figure class="tile">
+                <div class="tile-art" aria-hidden="true">
+                  <span class="tile-index">03</span>
+                  <svg class="tile-symbol"><use href="#sym-people"/></svg>
+                </div>
+                <figcaption class="tile-copy">
+                  <p class="tile-stage">Through the years</p>
+                  <h3 class="tile-title">Lasting relationships</h3>
+                  <p class="tile-line">Collaborators and friendships that continued well beyond campus.</p>
+                </figcaption>
+              </figure>
+            </div>
+
+            <div class="media-zone" aria-label="Media and artifacts, coming soon">
+              <div class="media-slot" aria-hidden="true">
+                <svg class="media-glyph"><use href="#sym-build"/></svg>
+              </div>
+              <p class="media-note">A project screenshot or artifact from this chapter will live here.</p>
+            </div>
           </div>
 
           <blockquote class="carried">
             <p class="carried-label">What I carried forward</p>
-            <p>Placeholder takeaway: anything worthwhile takes patience, care, and iteration.</p>
+            <p class="carried-line">Anything worthwhile takes patience, care, and iteration.</p>
           </blockquote>
         </article>
 
         <article class="chapter" data-index="3" data-region="Washington" data-status="A new coast">
-          <p class="chapter-number">03 · Washington</p>
-          <h2>Seattle</h2>
-          <p class="summary">Placeholder summary sentence for building a life on a new coast and learning what meaningful work could look like.</p>
+          <header class="chapter-head">
+            <p class="chapter-number">03 · Washington</p>
+            <h2>Seattle</h2>
+            <p class="summary">Placeholder summary sentence for building a life on a new coast and learning what meaningful work could look like.</p>
+          </header>
 
-          <div class="moments">
+          <div class="storyboard">
             <p class="moments-label">Defining moments</p>
-            <ol class="moment-list">
-              <li class="moment">
-                <p class="moment-title">Placeholder moment · a new coast</p>
-                <p class="moment-meta">Arriving · 20XX</p>
-                <p class="moment-body">Placeholder copy about starting over somewhere unfamiliar and what that asked of me.</p>
-              </li>
-              <li class="moment">
-                <p class="moment-title">Placeholder moment · the work</p>
-                <p class="moment-meta">Career · 20XX</p>
-                <p class="moment-body">Placeholder copy about the craft, the team, and the standard the work demanded.</p>
-              </li>
-              <li class="moment">
-                <p class="moment-title">Placeholder moment · a life beyond work</p>
-                <p class="moment-meta">Community · 20XX</p>
-                <p class="moment-body">Placeholder copy about the people, faith, and rhythms that gave the years meaning.</p>
-              </li>
-            </ol>
+            <div class="tiles">
+              <figure class="tile">
+                <div class="tile-art" aria-hidden="true">
+                  <span class="tile-index">01</span>
+                  <svg class="tile-symbol"><use href="#sym-wave"/></svg>
+                </div>
+                <figcaption class="tile-copy">
+                  <p class="tile-stage">Arriving</p>
+                  <h3 class="tile-title">A new coast</h3>
+                  <p class="tile-line">Starting over somewhere unfamiliar, and what that asked of me.</p>
+                </figcaption>
+              </figure>
+              <figure class="tile">
+                <div class="tile-art" aria-hidden="true">
+                  <span class="tile-index">02</span>
+                  <svg class="tile-symbol"><use href="#sym-gear"/></svg>
+                </div>
+                <figcaption class="tile-copy">
+                  <p class="tile-stage">Career</p>
+                  <h3 class="tile-title">The work</h3>
+                  <p class="tile-line">The craft, the team, and the standard the work demanded.</p>
+                </figcaption>
+              </figure>
+              <figure class="tile">
+                <div class="tile-art" aria-hidden="true">
+                  <span class="tile-index">03</span>
+                  <svg class="tile-symbol"><use href="#sym-people"/></svg>
+                </div>
+                <figcaption class="tile-copy">
+                  <p class="tile-stage">Community</p>
+                  <h3 class="tile-title">A life beyond work</h3>
+                  <p class="tile-line">The people, faith, and rhythms that gave the years meaning.</p>
+                </figcaption>
+              </figure>
+            </div>
+
+            <div class="media-zone" aria-label="Media and artifacts, coming soon">
+              <div class="media-slot" aria-hidden="true">
+                <svg class="media-glyph"><use href="#sym-wave"/></svg>
+              </div>
+              <p class="media-note">A photo or artifact from this chapter will live here.</p>
+            </div>
           </div>
 
           <blockquote class="carried">
             <p class="carried-label">What I carried forward</p>
-            <p>Placeholder takeaway from the Pacific Northwest.</p>
+            <p class="carried-line">Placeholder takeaway from the Pacific Northwest.</p>
           </blockquote>
         </article>
 
         <article class="chapter" data-index="4" data-region="Ohio" data-status="A season back east">
-          <p class="chapter-number">04 · Ohio</p>
-          <h2>Cleveland Heights</h2>
-          <p class="summary">Placeholder summary sentence for a season back east — making things and investing in people and community.</p>
+          <header class="chapter-head">
+            <p class="chapter-number">04 · Ohio</p>
+            <h2>Cleveland Heights</h2>
+            <p class="summary">Placeholder summary sentence for a season back east — making things and investing in people and community.</p>
+          </header>
 
-          <div class="moments">
+          <div class="storyboard">
             <p class="moments-label">Defining moments</p>
-            <ol class="moment-list">
-              <li class="moment">
-                <p class="moment-title">Placeholder moment · returning east</p>
-                <p class="moment-meta">The move · 20XX</p>
-                <p class="moment-body">Placeholder copy about why this chapter began and what it made room for.</p>
-              </li>
-              <li class="moment">
-                <p class="moment-title">Placeholder moment · making things</p>
-                <p class="moment-meta">Projects · 20XX</p>
-                <p class="moment-body">Placeholder copy about the things built here, shown as evidence rather than a résumé line.</p>
-              </li>
-              <li class="moment">
-                <p class="moment-title">Placeholder moment · community</p>
-                <p class="moment-meta">Belonging · 20XX</p>
-                <p class="moment-body">Placeholder copy about the people invested in and the neighborhood that gave back.</p>
-              </li>
-            </ol>
+            <div class="tiles">
+              <figure class="tile">
+                <div class="tile-art" aria-hidden="true">
+                  <span class="tile-index">01</span>
+                  <svg class="tile-symbol"><use href="#sym-compass"/></svg>
+                </div>
+                <figcaption class="tile-copy">
+                  <p class="tile-stage">The move</p>
+                  <h3 class="tile-title">Returning east</h3>
+                  <p class="tile-line">Why this chapter began, and what it made room for.</p>
+                </figcaption>
+              </figure>
+              <figure class="tile">
+                <div class="tile-art" aria-hidden="true">
+                  <span class="tile-index">02</span>
+                  <svg class="tile-symbol"><use href="#sym-build"/></svg>
+                </div>
+                <figcaption class="tile-copy">
+                  <p class="tile-stage">Projects</p>
+                  <h3 class="tile-title">Making things</h3>
+                  <p class="tile-line">The things built here, shown as evidence rather than a résumé line.</p>
+                </figcaption>
+              </figure>
+              <figure class="tile">
+                <div class="tile-art" aria-hidden="true">
+                  <span class="tile-index">03</span>
+                  <svg class="tile-symbol"><use href="#sym-people"/></svg>
+                </div>
+                <figcaption class="tile-copy">
+                  <p class="tile-stage">Belonging</p>
+                  <h3 class="tile-title">Community</h3>
+                  <p class="tile-line">The people I invested in and the neighborhood that gave back.</p>
+                </figcaption>
+              </figure>
+            </div>
+
+            <div class="media-zone" aria-label="Media and artifacts, coming soon">
+              <div class="media-slot" aria-hidden="true">
+                <svg class="media-glyph"><use href="#sym-people"/></svg>
+              </div>
+              <p class="media-note">A photo or artifact from this chapter will live here.</p>
+            </div>
           </div>
 
           <blockquote class="carried">
             <p class="carried-label">What I carried forward</p>
-            <p>Placeholder takeaway from the season back east.</p>
+            <p class="carried-line">Placeholder takeaway from the season back east.</p>
           </blockquote>
         </article>
 
         <article class="chapter" data-index="5" data-region="North Carolina" data-status="The present chapter">
-          <p class="chapter-number">05 · North Carolina</p>
-          <h2>Durham</h2>
-          <p class="summary">Placeholder summary sentence for the present chapter, where earlier threads continue and new ones begin.</p>
+          <header class="chapter-head">
+            <p class="chapter-number">05 · North Carolina</p>
+            <h2>Durham</h2>
+            <p class="summary">Placeholder summary sentence for the present chapter, where earlier threads continue and new ones begin.</p>
+          </header>
 
-          <div class="moments">
+          <div class="storyboard">
             <p class="moments-label">Defining moments</p>
-            <ol class="moment-list">
-              <li class="moment">
-                <p class="moment-title">Placeholder moment · arriving here</p>
-                <p class="moment-meta">Recently · 20XX</p>
-                <p class="moment-body">Placeholder copy about what drew this chapter here and what it is becoming.</p>
-              </li>
-              <li class="moment">
-                <p class="moment-title">Placeholder moment · what I'm building</p>
-                <p class="moment-meta">Now · present</p>
-                <p class="moment-body">Placeholder copy about current work and practice, still unfolding as evidence rather than conclusion.</p>
-              </li>
-            </ol>
+            <div class="tiles">
+              <figure class="tile">
+                <div class="tile-art" aria-hidden="true">
+                  <span class="tile-index">01</span>
+                  <svg class="tile-symbol"><use href="#sym-compass"/></svg>
+                </div>
+                <figcaption class="tile-copy">
+                  <p class="tile-stage">Recently</p>
+                  <h3 class="tile-title">Arriving here</h3>
+                  <p class="tile-line">What drew this chapter here, and what it is becoming.</p>
+                </figcaption>
+              </figure>
+              <figure class="tile">
+                <div class="tile-art" aria-hidden="true">
+                  <span class="tile-index">02</span>
+                  <svg class="tile-symbol"><use href="#sym-path"/></svg>
+                </div>
+                <figcaption class="tile-copy">
+                  <p class="tile-stage">Now</p>
+                  <h3 class="tile-title">What I'm building</h3>
+                  <p class="tile-line">Current work and practice, still unfolding as evidence rather than conclusion.</p>
+                </figcaption>
+              </figure>
+            </div>
+
+            <div class="media-zone" aria-label="Media and artifacts, coming soon">
+              <div class="media-slot" aria-hidden="true">
+                <svg class="media-glyph"><use href="#sym-path"/></svg>
+              </div>
+              <p class="media-note">A photo, project, or artifact from this chapter will live here.</p>
+            </div>
           </div>
 
           <blockquote class="carried">
             <p class="carried-label">What I carried forward</p>
-            <p>Placeholder takeaway — still being written.</p>
+            <p class="carried-line">Placeholder takeaway — still being written.</p>
           </blockquote>
         </article>
       </div>
     </section>
 
     <section class="epilogue" aria-labelledby="epilogue-title">
-      <div class="epilogue-route" aria-hidden="true">
-        <svg viewBox="0 0 960 220" preserveAspectRatio="xMidYMid slice" role="presentation">
-          <path class="route route-continue drawn" pathLength="1" d="M120 -30 C 300 90 500 150 720 168 C 840 178 940 205 1040 250"/>
-          <g class="place epilogue-dot">
-            <circle class="pulse" r="20"/><circle class="dot" r="7"/>
-          </g>
-        </svg>
-      </div>
-
       <div class="epilogue-inner">
-        <p class="kicker">The route continues</p>
-        <h2 id="epilogue-title">Every place left something with me.</h2>
-        <p class="synthesis">A willingness to take responsibility, the patience to keep building, and a deeper understanding that meaningful work is ultimately about people. Durham is the current chapter, not the conclusion.</p>
-
-        <div class="still-moving">
-          <p class="kicker">The story is still moving</p>
-          <h3>Where I am now</h3>
-          <p>Placeholder copy for a short, present-tense note about what I'm building, practicing, and investing in today — the threads from these five places still being pulled forward.</p>
+        <div class="closing-card">
+          <p class="kicker">The journey so far</p>
+          <h2 id="epilogue-title">Every place left something with me.</h2>
+          <p class="synthesis">A willingness to take responsibility, the patience to keep building, and a deeper understanding that meaningful work is ultimately about people. Durham is the current chapter, not the conclusion — the road ahead stays open.</p>
         </div>
 
-        <div class="know-further">
-          <p class="kicker">Ways to know me further</p>
-          <div class="closing-links">
-            <a href="resources/resume.pdf">Résumé</a>
-            <a href="https://github.com/brotatotes">GitHub</a>
-            <a href="https://www.linkedin.com/in/erichao2018/">LinkedIn</a>
-            <a href="https://open.spotify.com/artist/3OKPfWSO9P15iCRTznKnZo">Music</a>
+        <div class="epilogue-grid">
+          <div class="still-moving">
+            <p class="kicker">Where I am now</p>
+            <h3>The story is still moving.</h3>
+            <p>Placeholder copy for a short, present-tense note about what I'm building, practicing, and investing in today — the threads from these five places, still being pulled forward.</p>
+          </div>
+
+          <div class="know-further">
+            <p class="kicker">Ways to know me further</p>
+            <div class="link-cards">
+              <a class="link-card" href="resources/resume.pdf">
+                <svg class="link-glyph" aria-hidden="true"><use href="#sym-book"/></svg>
+                <span class="link-title">Résumé</span>
+                <span class="link-sub">The working history</span>
+              </a>
+              <a class="link-card" href="https://github.com/brotatotes">
+                <svg class="link-glyph" aria-hidden="true"><use href="#sym-build"/></svg>
+                <span class="link-title">GitHub</span>
+                <span class="link-sub">Things I've built</span>
+              </a>
+              <a class="link-card" href="https://www.linkedin.com/in/erichao2018/">
+                <svg class="link-glyph" aria-hidden="true"><use href="#sym-people"/></svg>
+                <span class="link-title">LinkedIn</span>
+                <span class="link-sub">Where to connect</span>
+              </a>
+              <a class="link-card" href="https://open.spotify.com/artist/3OKPfWSO9P15iCRTznKnZo">
+                <svg class="link-glyph" aria-hidden="true"><use href="#sym-wave"/></svg>
+                <span class="link-title">Music</span>
+                <span class="link-sub">Another way I make things</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>

@@ -55,11 +55,7 @@ function activateChapter(chapter) {
     place.classList.toggle('visited', step < index);
   });
   routes.forEach((route, routeIndex) => {
-    if (route.classList.contains('route-onward')) {
-      route.classList.toggle('drawn', index >= chapters.length);
-    } else {
-      route.classList.toggle('drawn', routeIndex < index - 1);
-    }
+    route.classList.toggle('drawn', routeIndex < index - 1);
   });
   number.textContent = String(index).padStart(2, '0');
   region.textContent = chapter.dataset.region;
