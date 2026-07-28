@@ -1,0 +1,4 @@
+# Local review/verification artifacts (not part of the site)
+review.py
+inspect_crops.py
+screenshots/
