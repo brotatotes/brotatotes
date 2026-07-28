@@ -5,6 +5,38 @@ const routes = [...document.querySelectorAll('.route')];
 const number = document.querySelector('#active-number');
 const region = document.querySelector('#active-region');
 const status = document.querySelector('#route-status');
+const themeButtons = [...document.querySelectorAll('.theme-button')];
+const systemDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+
+function resolvedTheme(theme) {
+  return theme === 'system' ? (systemDarkMode.matches ? 'dark' : 'atlas') : theme;
+}
+
+function setTheme(theme) {
+  const appearance = resolvedTheme(theme);
+  document.body.dataset.theme = appearance === 'atlas' ? '' : appearance;
+  themeButtons.forEach((button) => {
+    const selected = button.dataset.theme === theme;
+    button.classList.toggle('active', selected);
+    button.setAttribute('aria-pressed', String(selected));
+  });
+  try { localStorage.setItem('atlas-theme', theme); } catch (error) { /* storage is optional */ }
+}
+
+themeButtons.forEach((button) => {
+  button.addEventListener('click', () => setTheme(button.dataset.theme));
+});
+
+systemDarkMode.addEventListener('change', () => {
+  const selected = document.querySelector('.theme-button.active')?.dataset.theme;
+  if (selected === 'system') setTheme('system');
+});
+
+const linkedTheme = new URLSearchParams(window.location.search).get('theme');
+let savedTheme = linkedTheme || 'system';
+try { savedTheme = linkedTheme || localStorage.getItem('atlas-theme') || 'system'; } catch (error) { /* storage is optional */ }
+if (savedTheme === 'nocturne') savedTheme = 'dark';
+setTheme(['system', 'atlas', 'dark'].includes(savedTheme) ? savedTheme : 'system');
 
 window.addEventListener('pointermove', (event) => {
   root.style.setProperty('--mouse-x', `${event.clientX}px`);
