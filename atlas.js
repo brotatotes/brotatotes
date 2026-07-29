@@ -84,6 +84,25 @@ document.querySelectorAll('.constellation-block').forEach((block) => {
   const tray = block.querySelector('.tray-detail');
   if (!stars.length || !tray) return;
 
+  // Inject a large decorative watermark of each tile's own icon so the
+  // highlight cards read as graphic panels rather than mostly text.
+  // Purely decorative + JS-only, so the no-JS fallback is unaffected.
+  stars.forEach((star) => {
+    const use = star.querySelector('.star-icon svg use');
+    const href = use && (use.getAttribute('href') || use.getAttribute('xlink:href'));
+    if (!href) return;
+    const ns = 'http://www.w3.org/2000/svg';
+    const svg = document.createElementNS(ns, 'svg');
+    svg.setAttribute('viewBox', '0 0 32 32');
+    svg.setAttribute('class', 'star-watermark');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    const u = document.createElementNS(ns, 'use');
+    u.setAttribute('href', href);
+    svg.appendChild(u);
+    star.insertBefore(svg, star.firstChild);
+  });
+
   let selected = stars.find((s) => s.classList.contains('is-selected')) || stars[0];
 
   const showDetail = (star) => { tray.textContent = star.dataset.detail || ''; };
