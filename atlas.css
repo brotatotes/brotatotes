@@ -267,7 +267,7 @@ nav a {
 .chapter-head { max-width: 42rem; }
 .chapter-number { color: var(--muted); font-size: .65rem; }
 .chapter h2 {
-  margin: .8rem 0 1.5rem;
+  margin: .8rem 0 0;
   font-size: clamp(2.8rem, 5.4vw, 5.6rem);
   font-weight: 300;
   line-height: .92;
@@ -282,14 +282,9 @@ nav a {
 
 /* Icon constellation */
 .constellation-block {
-  margin-top: clamp(2.6rem, 4.5vw, 4rem);
-  padding-top: clamp(2.4rem, 4vw, 3.6rem);
+  margin-top: clamp(1.8rem, 3vw, 2.8rem);
+  padding-top: clamp(1.8rem, 3vw, 2.8rem);
   border-top: 1px solid var(--rule);
-}
-.moments-label {
-  margin: 0 0 clamp(1.5rem, 2.4vw, 2rem);
-  color: var(--muted);
-  font-size: .62rem;
 }
 .constellation {
   display: grid;
