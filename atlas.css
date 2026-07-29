@@ -303,7 +303,7 @@ nav a {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: .55rem;
   margin: 0;
   padding: clamp(.9rem, 1.35vw, 1.25rem);
@@ -334,13 +334,22 @@ nav a {
 .star--sm, .star--wide, .star--tall, .star--lg, .star--row {
   grid-row: span 1;
 }
-.chapter[data-index="1"] .star,
 .chapter[data-index="2"] .star,
 .chapter[data-index="3"] .star,
 .chapter[data-index="4"] .star { grid-column: span 2; }
-.chapter[data-index="1"] .star:nth-last-child(-n+2),
 .chapter[data-index="2"] .star:nth-last-child(-n+2),
 .chapter[data-index="5"] .star { grid-column: span 3; }
+
+/* Fountain Hills uses card width to reflect content density while each row
+   still closes cleanly across the six-column grid. */
+.chapter[data-index="1"] .star:nth-child(1),
+.chapter[data-index="1"] .star:nth-child(2),
+.chapter[data-index="1"] .star:nth-child(7),
+.chapter[data-index="1"] .star:nth-child(8) { grid-column: span 3; }
+.chapter[data-index="1"] .star:nth-child(3),
+.chapter[data-index="1"] .star:nth-child(6) { grid-column: span 2; }
+.chapter[data-index="1"] .star:nth-child(4),
+.chapter[data-index="1"] .star:nth-child(5) { grid-column: span 4; }
 /* Full-width banner tile: lay icon + label horizontally so the wide
    space reads as an intentional band rather than a hollow tile. */
 .star--row {
@@ -620,7 +629,7 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
     grid-row: span 1;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: .55rem;
   }
   .star-watermark { opacity: .1; }
