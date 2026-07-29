@@ -294,7 +294,7 @@ nav a {
 .constellation {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-auto-rows: minmax(clamp(5rem, 6.4vw, 6.4rem), auto);
+  grid-auto-rows: minmax(clamp(8rem, 10vw, 9.5rem), auto);
   grid-auto-flow: dense;
   gap: clamp(.6rem, 1vw, 1rem);
 }
@@ -313,7 +313,6 @@ nav a {
   color: var(--ink);
   font-family: inherit;
   text-align: left;
-  cursor: pointer;
   overflow: hidden;
   opacity: 0;
   transform: translateY(.8rem) scale(.98);
@@ -330,12 +329,18 @@ nav a {
 .chapter.active .star:nth-child(8) { transition-delay: .48s; }
 .chapter.active .star:nth-child(9) { transition-delay: .54s; }
 .chapter.active .star:nth-child(10) { transition-delay: .60s; }
-/* Asymmetric mosaic spans */
-.star--sm { grid-column: span 2; grid-row: span 1; }
-.star--wide { grid-column: span 3; grid-row: span 1; }
-.star--tall { grid-column: span 2; grid-row: span 2; }
-.star--lg { grid-column: span 3; grid-row: span 2; }
-.star--row { grid-column: span 6; grid-row: span 1; }
+/* Balanced static mosaics. The final two cards in the eight-item chapters
+   widen to close the grid without leaving holes. */
+.star--sm, .star--wide, .star--tall, .star--lg, .star--row {
+  grid-row: span 1;
+}
+.chapter[data-index="1"] .star,
+.chapter[data-index="2"] .star,
+.chapter[data-index="3"] .star,
+.chapter[data-index="4"] .star { grid-column: span 2; }
+.chapter[data-index="1"] .star:nth-last-child(-n+2),
+.chapter[data-index="2"] .star:nth-last-child(-n+2),
+.chapter[data-index="5"] .star { grid-column: span 3; }
 /* Full-width banner tile: lay icon + label horizontally so the wide
    space reads as an intentional band rather than a hollow tile. */
 .star--row {
@@ -384,9 +389,7 @@ nav a {
   bottom: -12%;
   opacity: .15;
 }
-.star:hover .star-watermark,
-.star:focus-visible .star-watermark { opacity: .2; transform: rotate(-4deg) scale(1.04); }
-.star.is-selected .star-watermark { opacity: .22; }
+.star:hover .star-watermark { opacity: .2; transform: rotate(-4deg) scale(1.04); }
 .star::after {
   content: "";
   position: absolute;
@@ -396,18 +399,11 @@ nav a {
   transition: opacity .3s ease;
   pointer-events: none;
 }
-.star:hover, .star:focus-visible {
+.star:hover {
   border-color: color-mix(in srgb, var(--rust) 55%, var(--rule));
   box-shadow: 0 10px 26px rgba(38,50,41,.1);
 }
-.star:hover::after, .star:focus-visible::after { opacity: 1; }
-.star:focus-visible { outline: 2px solid var(--rust); outline-offset: 2px; }
-.star.is-selected {
-  border-color: var(--rust);
-  background: linear-gradient(150deg, color-mix(in srgb, var(--rust) 13%, transparent), color-mix(in srgb, var(--rust) 4%, transparent));
-  box-shadow: 0 12px 30px rgba(180,95,67,.14);
-}
-.star.is-selected::after { opacity: 1; }
+.star:hover::after { opacity: 1; }
 .star-icon {
   display: grid;
   place-items: center;
@@ -433,10 +429,6 @@ nav a {
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-.star.is-selected .star-icon {
-  background: color-mix(in srgb, var(--rust) 16%, transparent);
-  border-color: color-mix(in srgb, var(--rust) 45%, var(--rule));
-}
 .star-label {
   position: relative;
   z-index: 1;
@@ -448,63 +440,14 @@ nav a {
 .star--lg .star-label, .star--tall .star-label {
   font-size: clamp(1rem, 1.45vw, 1.35rem);
 }
-/* Detail text inside the star is the no-JS fallback; hidden once enhanced. */
-.star-detail {
-  font-size: .8rem;
-  line-height: 1.4;
-  color: color-mix(in srgb, var(--ink) 80%, var(--muted));
+.star-names {
+  position: relative;
+  z-index: 1;
+  color: color-mix(in srgb, var(--ink) 78%, var(--muted));
+  font-size: clamp(.74rem, .95vw, .9rem);
+  line-height: 1.3;
+  letter-spacing: .02em;
 }
-body[data-enhanced] .star-detail { display: none; }
-
-/* Shared detail tray */
-.tray {
-  margin-top: clamp(1.1rem, 1.8vw, 1.6rem);
-  min-height: 3.4rem;
-  display: flex;
-  align-items: center;
-  padding: clamp(1rem, 1.8vw, 1.5rem) clamp(1.2rem, 2vw, 1.8rem);
-  border: 1px solid color-mix(in srgb, var(--rust) 30%, var(--rule));
-  border-left: 4px solid var(--rust);
-  border-radius: 12px;
-  background: color-mix(in srgb, var(--rust) 6%, transparent);
-}
-body:not([data-enhanced]) .tray { display: none; }
-/* No-JS fallback: let tiles grow to fit their inline detail text instead
-   of clipping against the fixed mosaic row heights. */
-body:not([data-enhanced]) .constellation {
-  grid-auto-rows: auto;
-}
-body:not([data-enhanced]) .star {
-  grid-row: span 1 !important;
-  overflow: visible;
-  opacity: 1;
-  transform: none;
-}
-body:not([data-enhanced]) .star-watermark { display: none; }
-.tray-detail {
-  margin: 0;
-  font-size: clamp(1.05rem, 1.5vw, 1.35rem);
-  line-height: 1.45;
-  letter-spacing: -.01em;
-  color: var(--ink);
-}
-
-/* One distinct closing statement per chapter */
-.chapter-closing {
-  margin: clamp(2.2rem, 3.6vw, 3rem) 0 0;
-  padding-left: clamp(1rem, 1.6vw, 1.4rem);
-  border-left: 4px solid var(--rust);
-  font-size: clamp(1.5rem, 2.6vw, 2.3rem);
-  font-weight: 300;
-  line-height: 1.2;
-  letter-spacing: -.02em;
-  max-width: 30ch;
-  opacity: 0;
-  transform: translateY(.8rem);
-  transition: opacity .55s ease .5s, transform .55s ease .5s;
-}
-.chapter.active .chapter-closing { opacity: 1; transform: none; }
-
 .epilogue {
   position: relative;
   min-height: 100svh;
@@ -628,11 +571,8 @@ body[data-theme="dark"] .cursor-light {
 body[data-theme="dark"] .land { filter: drop-shadow(0 0 22px rgba(67, 143, 174, .18)); }
 body[data-theme="dark"] .route { filter: drop-shadow(0 0 5px rgba(255, 159, 110, .4)); }
 body[data-theme="dark"] .place text { stroke: var(--paper-deep); }
-body[data-theme="dark"] .chapter-closing { border-color: var(--rust); }
 body[data-theme="dark"] .star, body[data-theme="dark"] .resource-card { background: color-mix(in srgb, var(--paper-deep) 70%, transparent); }
 body[data-theme="dark"] .star-icon, body[data-theme="dark"] .resource-glyph { background: color-mix(in srgb, var(--paper) 60%, transparent); }
-body[data-theme="dark"] .star.is-selected { background: linear-gradient(150deg, color-mix(in srgb, var(--rust) 18%, transparent), color-mix(in srgb, var(--rust) 6%, transparent)); }
-body[data-theme="dark"] .tray { background: color-mix(in srgb, var(--rust) 10%, transparent); }
 body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f15, var(--paper)); }
 
 @media (max-width: 800px) {
@@ -676,7 +616,7 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
     gap: .7rem;
   }
   .star--sm, .star--wide, .star--tall, .star--lg, .star--row {
-    grid-column: span 1;
+    grid-column: span 1 !important;
     grid-row: span 1;
     flex-direction: column;
     align-items: flex-start;
@@ -690,8 +630,6 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
   .star-label { font-size: .9rem; }
   .star--lg .star-label, .star--tall .star-label { font-size: .95rem; }
   .star-icon, .star--lg .star-icon, .star--tall .star-icon { width: 2.7rem; height: 2.7rem; }
-  .tray { margin-top: 1rem; }
-  .chapter-closing { margin-top: 1.9rem; font-size: clamp(1.4rem, 6vw, 1.9rem); }
   .epilogue { padding: 5rem 1.5rem 4rem; }
   .resource-cards { grid-template-columns: 1fr 1fr; margin-top: 3rem; padding-top: 2.2rem; gap: 1rem; }
   footer { gap: 1rem; }
@@ -707,5 +645,5 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
   .cursor-light { display: none; }
   .route { stroke-dashoffset: 0; }
   .chapter { opacity: 1; transform: none; }
-  .moment, .chapter-closing, .star, .tray { opacity: 1; transform: none; transition: none; }
+  .moment, .star { opacity: 1; transform: none; transition: none; }
 }
