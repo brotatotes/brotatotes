@@ -75,79 +75,21 @@ const observer = new IntersectionObserver((entries) => {
 chapters.forEach((chapter) => observer.observe(chapter));
 activateChapter(chapters[0]);
 
-/* ---- Icon constellation: shared detail tray per chapter ---- */
-// Mark enhanced so CSS can hide the in-tile fallback detail and show the tray.
-document.body.setAttribute('data-enhanced', '');
+/* ---- Icon constellation: static graphic cards ---- */
+document.querySelectorAll('.star').forEach((star) => {
+  const use = star.querySelector('.star-icon svg use');
+  const href = use && (use.getAttribute('href') || use.getAttribute('xlink:href'));
+  if (!href) return;
 
-document.querySelectorAll('.constellation-block').forEach((block) => {
-  const stars = [...block.querySelectorAll('.star')];
-  const tray = block.querySelector('.tray-detail');
-  if (!stars.length || !tray) return;
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns, 'svg');
+  svg.setAttribute('viewBox', '0 0 32 32');
+  svg.setAttribute('class', 'star-watermark');
+  svg.setAttribute('aria-hidden', 'true');
+  svg.setAttribute('focusable', 'false');
 
-  // Inject a large decorative watermark of each tile's own icon so the
-  // highlight cards read as graphic panels rather than mostly text.
-  // Purely decorative + JS-only, so the no-JS fallback is unaffected.
-  stars.forEach((star) => {
-    const use = star.querySelector('.star-icon svg use');
-    const href = use && (use.getAttribute('href') || use.getAttribute('xlink:href'));
-    if (!href) return;
-    const ns = 'http://www.w3.org/2000/svg';
-    const svg = document.createElementNS(ns, 'svg');
-    svg.setAttribute('viewBox', '0 0 32 32');
-    svg.setAttribute('class', 'star-watermark');
-    svg.setAttribute('aria-hidden', 'true');
-    svg.setAttribute('focusable', 'false');
-    const u = document.createElementNS(ns, 'use');
-    u.setAttribute('href', href);
-    svg.appendChild(u);
-    star.insertBefore(svg, star.firstChild);
-  });
-
-  let selected = stars.find((s) => s.classList.contains('is-selected')) || stars[0];
-
-  const showDetail = (star) => { tray.textContent = star.dataset.detail || ''; };
-
-  const select = (star) => {
-    selected = star;
-    stars.forEach((s) => {
-      const on = s === star;
-      s.classList.toggle('is-selected', on);
-      s.setAttribute('aria-pressed', String(on));
-      s.setAttribute('aria-selected', String(on));
-    });
-    showDetail(star);
-  };
-
-  // Initialize tray to the default-selected highlight.
-  showDetail(selected);
-
-  stars.forEach((star, i) => {
-    // Pointer hover previews without committing the selection.
-    star.addEventListener('pointerenter', (e) => {
-      if (e.pointerType === 'mouse') showDetail(star);
-    });
-    star.addEventListener('pointerleave', (e) => {
-      if (e.pointerType === 'mouse') showDetail(selected);
-    });
-    // Focus previews too, so keyboard users see details while arrowing.
-    star.addEventListener('focus', () => showDetail(star));
-    star.addEventListener('blur', () => showDetail(selected));
-    // Click / tap / Enter / Space commit the selection (buttons fire click on both).
-    star.addEventListener('click', () => select(star));
-    // Roving arrow-key navigation within the constellation.
-    star.addEventListener('keydown', (event) => {
-      const cols = { ArrowRight: 1, ArrowLeft: -1, ArrowDown: 1, ArrowUp: -1 };
-      if (event.key in cols) {
-        event.preventDefault();
-        const next = stars[(i + cols[event.key] + stars.length) % stars.length];
-        next.focus();
-      } else if (event.key === 'Home') {
-        event.preventDefault();
-        stars[0].focus();
-      } else if (event.key === 'End') {
-        event.preventDefault();
-        stars[stars.length - 1].focus();
-      }
-    });
-  });
+  const watermarkUse = document.createElementNS(ns, 'use');
+  watermarkUse.setAttribute('href', href);
+  svg.appendChild(watermarkUse);
+  star.insertBefore(svg, star.firstChild);
 });
