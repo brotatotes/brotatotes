@@ -1,5 +1,7 @@
 # Local review/verification artifacts (not part of the site)
 review.py
+build_index.py
+chapter_shots.py
 inspect_crops.py
 full_shots.py
 mobile_scroll.py
