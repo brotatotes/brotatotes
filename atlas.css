@@ -609,9 +609,9 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
     margin-top: 2rem;
     padding-top: 2rem;
   }
-  /* Compact two-column visual grid on mobile. */
+  /* Full-width cards keep the compact subtext readable on mobile. */
   .constellation {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     grid-auto-rows: minmax(6.2rem, auto);
     gap: .7rem;
   }
