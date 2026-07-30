@@ -2,6 +2,9 @@ const root = document.documentElement;
 const chapters = [...document.querySelectorAll('.chapter')];
 const places = [...document.querySelectorAll('.places .place')];
 const routes = [...document.querySelectorAll('.route-lines .route')];
+const progressRoutes = [...document.querySelectorAll('.route-progress-lines .route-progress')];
+const traveler = document.querySelector('.route-traveler');
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const number = document.querySelector('#active-number');
 const region = document.querySelector('#active-region');
 const status = document.querySelector('#route-status');
@@ -54,15 +57,15 @@ function activateChapter(chapter) {
     place.classList.toggle('active', step === index);
     place.classList.toggle('visited', step < index);
   });
-  routes.forEach((route, routeIndex) => {
-    route.classList.toggle('drawn', routeIndex < index - 1);
-  });
   number.textContent = String(index).padStart(2, '0');
   region.textContent = chapter.dataset.region;
   status.textContent = chapter.dataset.status;
 }
 
+let navigationLockUntil = 0;
+let navigationTimer = 0;
 const observer = new IntersectionObserver((entries) => {
+  if (Date.now() < navigationLockUntil) return;
   const visible = entries
     .filter((entry) => entry.isIntersecting)
     .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
@@ -74,6 +77,84 @@ const observer = new IntersectionObserver((entries) => {
 
 chapters.forEach((chapter) => observer.observe(chapter));
 activateChapter(chapters[0]);
+
+function scrollToChapter(index) {
+  const chapter = chapters[index - 1];
+  if (!chapter) return;
+  const stickyOffset = window.innerWidth <= 800
+    ? document.querySelector('.atlas-stage')?.offsetHeight || 0
+    : 0;
+  const top = chapter.getBoundingClientRect().top + window.scrollY - stickyOffset - 16;
+  navigationLockUntil = Date.now() + 2200;
+  window.clearTimeout(navigationTimer);
+  activateChapter(chapter);
+  navigationTimer = window.setTimeout(() => activateChapter(chapter), 2200);
+  window.scrollTo({
+    top,
+    behavior: reducedMotion.matches ? 'auto' : 'smooth'
+  });
+}
+
+function cancelMapNavigation() {
+  navigationLockUntil = 0;
+  window.clearTimeout(navigationTimer);
+}
+window.addEventListener('wheel', cancelMapNavigation, { passive: true });
+window.addEventListener('touchstart', cancelMapNavigation, { passive: true });
+
+places.forEach((place) => {
+  const index = Number(place.dataset.index);
+  place.addEventListener('click', () => scrollToChapter(index));
+  place.addEventListener('keydown', (event) => {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    event.preventDefault();
+    scrollToChapter(index);
+  });
+});
+
+function updateRouteProgress() {
+  if (!traveler || !routes.length || progressRoutes.length !== routes.length) return;
+
+  const focusLine = window.scrollY + window.innerHeight * .45;
+  const anchors = chapters.map((chapter) => chapter.getBoundingClientRect().top + window.scrollY);
+  let segment = 0;
+  let fraction = 0;
+
+  if (focusLine >= anchors[anchors.length - 1]) {
+    segment = routes.length - 1;
+    fraction = 1;
+  } else if (focusLine > anchors[0]) {
+    for (let index = 0; index < anchors.length - 1; index += 1) {
+      if (focusLine <= anchors[index + 1]) {
+        segment = index;
+        fraction = (focusLine - anchors[index]) / (anchors[index + 1] - anchors[index]);
+        break;
+      }
+    }
+  }
+
+  progressRoutes.forEach((route, index) => {
+    const progress = index < segment ? 1 : index === segment ? fraction : 0;
+    route.style.strokeDashoffset = String(1 - progress);
+  });
+
+  const route = routes[segment];
+  const point = route.getPointAtLength(route.getTotalLength() * fraction);
+  traveler.setAttribute('transform', `translate(${point.x} ${point.y})`);
+}
+
+let routeFrame = 0;
+function requestRouteUpdate() {
+  if (routeFrame) return;
+  routeFrame = window.requestAnimationFrame(() => {
+    routeFrame = 0;
+    updateRouteProgress();
+  });
+}
+
+window.addEventListener('scroll', requestRouteUpdate, { passive: true });
+window.addEventListener('resize', requestRouteUpdate);
+updateRouteProgress();
 
 /* ---- Icon constellation: static graphic cards ---- */
 document.querySelectorAll('.star').forEach((star) => {
