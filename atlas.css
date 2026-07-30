@@ -329,9 +329,9 @@ nav a {
 .star--sm, .star--wide, .star--tall, .star--lg, .star--row {
   grid-row: span 1;
 }
-.chapter[data-index="2"] .star,
-.chapter[data-index="4"] .star { grid-column: span 2; }
+.chapter[data-index="2"] .star { grid-column: span 2; }
 .chapter[data-index="3"] .star { grid-column: span 3; }
+.chapter[data-index="4"] .star { grid-column: span 3; }
 .chapter[data-index="3"] .star:last-child { grid-column: span 6; }
 .chapter[data-index="2"] .star:nth-last-child(-n+2),
 .chapter[data-index="5"] .star { grid-column: span 3; }
