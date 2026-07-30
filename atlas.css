@@ -296,9 +296,9 @@ nav a {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: .55rem;
+  gap: .65rem;
   margin: 0;
-  padding: clamp(.9rem, 1.35vw, 1.25rem);
+  padding: clamp(1rem, 1.35vw, 1.25rem);
   border: 1px solid var(--rule);
   border-radius: 14px;
   background: color-mix(in srgb, var(--paper) 52%, transparent);
@@ -320,6 +320,7 @@ nav a {
 .chapter[data-index="3"] .star:last-child { grid-column: span 6; }
 .chapter[data-index="2"] .star:nth-last-child(-n+2),
 .chapter[data-index="5"] .star { grid-column: span 3; }
+.chapter[data-index="5"] .constellation { grid-auto-rows: minmax(6.5rem, auto); }
 
 /* Fountain Hills uses card width to reflect content density while each row
    still closes cleanly across the six-column grid. */
@@ -331,20 +332,26 @@ nav a {
 .chapter[data-index="1"] .star:nth-child(6) { grid-column: span 2; }
 .chapter[data-index="1"] .star:nth-child(4),
 .chapter[data-index="1"] .star:nth-child(5) { grid-column: span 4; }
-/* Full-width banner tile: lay icon + label horizontally so the wide
-   space reads as an intentional band rather than a hollow tile. */
+/* Full-width feature cards align the icon beside a stacked title/evidence block. */
 .star--row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  align-items: start;
+  column-gap: clamp(1rem, 2vw, 1.4rem);
+  row-gap: .4rem;
+  padding-inline: clamp(1.1rem, 2vw, 1.6rem);
+}
+.star--row .star-icon { grid-row: 1 / 3; }
+.star--row .star-label,
+.star--row .star-names { grid-column: 2; }
+.star:not(:has(.star-names)) {
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
-  gap: clamp(1rem, 2vw, 1.6rem);
-  padding-inline: clamp(1.1rem, 2vw, 1.8rem);
+  gap: 1rem;
 }
-.star--row .star-icon {
-  width: clamp(3rem, 4.4vw, 3.7rem);
-  height: clamp(3rem, 4.4vw, 3.7rem);
-}
-.star--row .star-label { font-size: clamp(1rem, 1.45vw, 1.35rem); }
+.star--row:not(:has(.star-names)) { display: flex; }
+.star--row .star-label { font-size: clamp(1.05rem, 1.35vw, 1.2rem); }
 .star--row .star-watermark {
   width: 34%;
   height: 200%;
@@ -397,9 +404,9 @@ nav a {
 .star-icon {
   display: grid;
   place-items: center;
-  width: clamp(2.9rem, 4.8vw, 3.7rem);
-  height: clamp(2.9rem, 4.8vw, 3.7rem);
-  border-radius: 12px;
+  width: clamp(2.75rem, 3.2vw, 3rem);
+  height: clamp(2.75rem, 3.2vw, 3rem);
+  border-radius: 10px;
   background: color-mix(in srgb, var(--paper-deep) 60%, transparent);
   border: 1px solid var(--rule);
   position: relative;
@@ -407,36 +414,36 @@ nav a {
   transition: background .3s ease, border-color .3s ease;
 }
 .star--lg .star-icon, .star--tall .star-icon {
-  width: clamp(3.5rem, 6vw, 4.6rem);
-  height: clamp(3.5rem, 6vw, 4.6rem);
+  width: clamp(3rem, 3.6vw, 3.25rem);
+  height: clamp(3rem, 3.6vw, 3.25rem);
 }
 .star-icon svg {
-  width: 60%;
-  height: 60%;
+  width: 54%;
+  height: 54%;
   fill: none;
   stroke: var(--rust);
-  stroke-width: 1.9;
+  stroke-width: 1.75;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 .star-label {
   position: relative;
   z-index: 1;
-  font-size: clamp(.85rem, 1.1vw, 1.05rem);
+  font-size: clamp(.95rem, 1.15vw, 1.1rem);
   font-weight: 500;
-  line-height: 1.12;
+  line-height: 1.2;
   letter-spacing: -.01em;
 }
 .star--lg .star-label, .star--tall .star-label {
-  font-size: clamp(1rem, 1.45vw, 1.35rem);
+  font-size: clamp(1.05rem, 1.35vw, 1.2rem);
 }
 .star-names {
   position: relative;
   z-index: 1;
   color: color-mix(in srgb, var(--ink) 78%, var(--muted));
-  font-size: clamp(.74rem, .95vw, .9rem);
-  line-height: 1.3;
-  letter-spacing: .02em;
+  font-size: clamp(.8rem, .92vw, .9rem);
+  line-height: 1.5;
+  letter-spacing: .01em;
 }
 .epilogue {
   position: relative;
@@ -620,11 +627,11 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
   }
   .star-watermark { opacity: .1; }
   .star--row .star-watermark { width: 68%; height: 68%; right: -14%; bottom: -20%; }
-  .star--row .star-icon { width: 2.7rem; height: 2.7rem; }
-  .star--row .star-label { font-size: .9rem; }
-  .star-label { font-size: .9rem; }
-  .star--lg .star-label, .star--tall .star-label { font-size: .95rem; }
-  .star-icon, .star--lg .star-icon, .star--tall .star-icon { width: 2.7rem; height: 2.7rem; }
+  .star--row .star-label { font-size: 1.05rem; }
+  .star-label { font-size: .98rem; }
+  .star--lg .star-label, .star--tall .star-label { font-size: 1.05rem; }
+  .star-names { font-size: .84rem; line-height: 1.45; }
+  .star-icon, .star--lg .star-icon, .star--tall .star-icon { width: 2.6rem; height: 2.6rem; }
   .epilogue { padding: 5rem 1.5rem 4rem; }
   .resource-cards { grid-template-columns: 1fr 1fr; margin-top: 3rem; padding-top: 2.2rem; gap: 1rem; }
   footer { gap: 1rem; }
