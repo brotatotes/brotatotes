@@ -734,7 +734,6 @@ body[data-theme="dark"] .star-icon, body[data-theme="dark"] .resource-glyph { ba
 body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f15, var(--paper)); }
 
 @media (min-width: 801px) {
-  .place-2 text { transform: translate(8px, 12px); }
   .place-5 text { transform: translate(12px, 8px); }
 }
 
