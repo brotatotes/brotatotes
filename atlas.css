@@ -586,8 +586,8 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
   .hero { padding-top: 8rem; }
   .hero h1 {
     max-width: 100%;
-    font-size: clamp(3.8rem, 19vw, 5.6rem);
-    line-height: .86;
+    font-size: clamp(3.2rem, 16.5vw, 4.75rem);
+    line-height: .9;
   }
   .intro, .begin { margin-left: 0; }
   .placeholder-note { left: 1.25rem; right: auto; }
