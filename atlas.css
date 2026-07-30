@@ -584,7 +584,11 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
   .theme-picker { top: 4.25rem; }
   nav a:first-child { display: none; }
   .hero { padding-top: 8rem; }
-  .hero h1 { font-size: clamp(4.2rem, 22vw, 7rem); }
+  .hero h1 {
+    max-width: 100%;
+    font-size: clamp(3.8rem, 19vw, 5.6rem);
+    line-height: .86;
+  }
   .intro, .begin { margin-left: 0; }
   .placeholder-note { left: 1.25rem; right: auto; }
   .journey { display: block; }
