@@ -5,6 +5,7 @@ const routes = [...document.querySelectorAll('.route-lines .route')];
 const progressRoutes = [...document.querySelectorAll('.route-progress-lines .route-progress')];
 const traveler = document.querySelector('.route-traveler');
 const atlasStage = document.querySelector('.atlas-stage');
+const journey = document.querySelector('.journey');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const number = document.querySelector('#active-number');
 const region = document.querySelector('#active-region');
@@ -66,19 +67,20 @@ function activateChapter(chapter) {
 let navigationLockUntil = 0;
 let navigationTimer = 0;
 let navigationScrollTimer = 0;
-const observer = new IntersectionObserver((entries) => {
-  if (Date.now() < navigationLockUntil) return;
-  const visible = entries
-    .filter((entry) => entry.isIntersecting)
-    .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-  if (visible) activateChapter(visible.target);
-}, {
-  rootMargin: '-32% 0px -32% 0px',
-  threshold: [0, .2, .5, .8]
-});
-
-chapters.forEach((chapter) => observer.observe(chapter));
 activateChapter(chapters[0]);
+
+function chapterWaypoints() {
+  const journeyTop = journey.getBoundingClientRect().top + window.scrollY;
+  const mobile = window.innerWidth <= 800;
+  const headingOffset = mobile
+    ? (atlasStage?.offsetHeight || 0) + 16
+    : window.innerHeight * .18;
+
+  return chapters.map((chapter, index) => {
+    if (index === 0) return Math.round(journeyTop);
+    return Math.round(chapter.getBoundingClientRect().top + window.scrollY - headingOffset);
+  });
+}
 
 function setRouteToChapter(index, isJump = false) {
   if (!traveler || !routes.length || progressRoutes.length !== routes.length) return;
@@ -98,10 +100,7 @@ function setRouteToChapter(index, isJump = false) {
 function scrollToChapter(index) {
   const chapter = chapters[index - 1];
   if (!chapter) return;
-  const stickyOffset = window.innerWidth <= 800
-    ? atlasStage?.offsetHeight || 0
-    : 0;
-  const top = chapter.getBoundingClientRect().top + window.scrollY - stickyOffset - 16;
+  const top = chapterWaypoints()[index - 1];
   const travelDelay = reducedMotion.matches ? 0 : 800;
   navigationLockUntil = Date.now() + 3000;
   window.clearTimeout(navigationTimer);
@@ -144,24 +143,28 @@ function updateRouteProgress() {
   if (!traveler || !routes.length || progressRoutes.length !== routes.length) return;
   if (Date.now() < navigationLockUntil) return;
 
-  const focusOffset = window.innerWidth <= 800 ? atlasStage?.offsetHeight || 0 : 0;
-  const focusLine = window.scrollY + focusOffset;
-  const anchors = chapters.map((chapter) => chapter.getBoundingClientRect().top + window.scrollY);
+  const focusLine = window.scrollY;
+  const anchors = chapterWaypoints();
   let segment = 0;
   let fraction = 0;
+  let activeIndex = 0;
 
   if (focusLine >= anchors[anchors.length - 1]) {
     segment = routes.length - 1;
     fraction = 1;
+    activeIndex = chapters.length - 1;
   } else if (focusLine > anchors[0]) {
     for (let index = 0; index < anchors.length - 1; index += 1) {
-      if (focusLine <= anchors[index + 1]) {
+      if (focusLine < anchors[index + 1]) {
         segment = index;
         fraction = (focusLine - anchors[index]) / (anchors[index + 1] - anchors[index]);
+        activeIndex = index;
         break;
       }
     }
   }
+
+  activateChapter(chapters[activeIndex]);
 
   progressRoutes.forEach((route, index) => {
     const progress = index < segment ? 1 : index === segment ? fraction : 0;

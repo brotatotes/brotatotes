@@ -239,11 +239,9 @@ nav a {
 }
 .route-traveler {
   pointer-events: none;
-  transition: transform .12s linear;
 }
 .route-traveler.jumping {
-  transition-duration: .8s;
-  transition-timing-function: cubic-bezier(.22, .8, .24, 1);
+  transition: transform .8s cubic-bezier(.22, .8, .24, 1);
 }
 .traveler-halo {
   fill: var(--rust);
@@ -257,6 +255,7 @@ nav a {
 .place {
   cursor: pointer;
   outline: none;
+  pointer-events: bounding-box;
 }
 .place text {
   fill: var(--ink);
@@ -272,7 +271,8 @@ nav a {
 .place text.label-end { text-anchor: end; }
 .place .dot { fill: var(--paper); stroke: var(--rust); stroke-width: 3; }
 .place .pulse { fill: none; stroke: var(--rust); stroke-width: 3; opacity: 0; transform: scale(.4); transition: .5s ease; }
-.place.active text, .place.visited text { opacity: 1; }
+.place.active text { fill: var(--rust); opacity: 1; }
+.place.visited text { opacity: 1; }
 .place.active .dot { fill: var(--rust); stroke: var(--paper); stroke-width: 4; }
 .place.active .pulse,
 .place:focus-visible .pulse { opacity: .8; transform: scale(1); }
@@ -292,7 +292,7 @@ nav a {
 .route-status { color: var(--ink); }
 
 .chapters {
-  padding: 0 clamp(1.5rem, 3.6vw, 4rem) 32svh;
+  padding: 0 clamp(1.5rem, 3.6vw, 4rem) 75svh;
 }
 .chapter {
   min-height: auto;
@@ -668,6 +668,11 @@ body[data-theme="dark"] .place text { stroke: var(--paper-deep); }
 body[data-theme="dark"] .star { background: color-mix(in srgb, var(--paper-deep) 70%, transparent); }
 body[data-theme="dark"] .star-icon, body[data-theme="dark"] .resource-glyph { background: color-mix(in srgb, var(--paper) 60%, transparent); }
 body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f15, var(--paper)); }
+
+@media (min-width: 801px) {
+  .place-2 text { transform: translate(8px, 12px); }
+  .place-5 text { transform: translate(12px, 8px); }
+}
 
 @media (max-width: 800px) {
   .theme-picker { top: 4.25rem; }
