@@ -262,7 +262,7 @@ nav a {
   fill: var(--ink);
   paint-order: stroke;
   stroke: var(--paper-deep);
-  stroke-width: 5px;
+  stroke-width: 2px;
   stroke-linejoin: round;
   font: 400 17px "DM Mono", monospace;
   letter-spacing: .035em;
@@ -691,7 +691,6 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
     backdrop-filter: blur(12px);
   }
   .map-wrap { inset: 15% 1.25rem 12%; }
-  .map { transform: scale(.96); transform-origin: center; }
   .place text, .place.visited text { font-size: 20px; opacity: 0; transition: none; }
   .place.active text { opacity: 1; }
   .place-5 text { transform: translate(-70px, 26px); }
