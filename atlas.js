@@ -64,6 +64,7 @@ function activateChapter(chapter) {
 
 let navigationLockUntil = 0;
 let navigationTimer = 0;
+let navigationScrollTimer = 0;
 const observer = new IntersectionObserver((entries) => {
   if (Date.now() < navigationLockUntil) return;
   const visible = entries
@@ -100,24 +101,30 @@ function scrollToChapter(index) {
     ? document.querySelector('.atlas-stage')?.offsetHeight || 0
     : 0;
   const top = chapter.getBoundingClientRect().top + window.scrollY - stickyOffset - 16;
-  navigationLockUntil = Date.now() + 2200;
+  const travelDelay = reducedMotion.matches ? 0 : 800;
+  navigationLockUntil = Date.now() + 3000;
   window.clearTimeout(navigationTimer);
+  window.clearTimeout(navigationScrollTimer);
   activateChapter(chapter);
   setRouteToChapter(index, true);
+  navigationScrollTimer = window.setTimeout(() => {
+    window.scrollTo({
+      top,
+      behavior: reducedMotion.matches ? 'auto' : 'smooth'
+    });
+  }, travelDelay);
   navigationTimer = window.setTimeout(() => {
     traveler?.classList.remove('jumping');
     activateChapter(chapter);
     updateRouteProgress();
-  }, 2200);
-  window.scrollTo({
-    top,
-    behavior: reducedMotion.matches ? 'auto' : 'smooth'
-  });
+  }, 3000);
 }
 
 function cancelMapNavigation() {
   navigationLockUntil = 0;
   window.clearTimeout(navigationTimer);
+  window.clearTimeout(navigationScrollTimer);
+  traveler?.classList.remove('jumping');
 }
 window.addEventListener('wheel', cancelMapNavigation, { passive: true });
 window.addEventListener('touchstart', cancelMapNavigation, { passive: true });
