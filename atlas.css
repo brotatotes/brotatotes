@@ -305,6 +305,7 @@ nav a {
   color: var(--ink);
   font-family: inherit;
   text-align: left;
+  text-decoration: none;
   overflow: hidden;
   transition: border-color .3s ease, background .3s ease, box-shadow .3s ease;
 }
