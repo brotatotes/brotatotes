@@ -78,6 +78,21 @@ const observer = new IntersectionObserver((entries) => {
 chapters.forEach((chapter) => observer.observe(chapter));
 activateChapter(chapters[0]);
 
+function setRouteToChapter(index, isJump = false) {
+  if (!traveler || !routes.length || progressRoutes.length !== routes.length) return;
+  const segment = Math.max(0, Math.min(routes.length - 1, index - 2));
+  const fraction = index === 1 ? 0 : 1;
+
+  progressRoutes.forEach((route, routeIndex) => {
+    route.style.strokeDashoffset = String(routeIndex < index - 1 ? 0 : 1);
+  });
+
+  const route = routes[segment];
+  const point = route.getPointAtLength(route.getTotalLength() * fraction);
+  traveler.classList.toggle('jumping', isJump && !reducedMotion.matches);
+  traveler.style.transform = `translate(${point.x}px, ${point.y}px)`;
+}
+
 function scrollToChapter(index) {
   const chapter = chapters[index - 1];
   if (!chapter) return;
@@ -88,7 +103,12 @@ function scrollToChapter(index) {
   navigationLockUntil = Date.now() + 2200;
   window.clearTimeout(navigationTimer);
   activateChapter(chapter);
-  navigationTimer = window.setTimeout(() => activateChapter(chapter), 2200);
+  setRouteToChapter(index, true);
+  navigationTimer = window.setTimeout(() => {
+    traveler?.classList.remove('jumping');
+    activateChapter(chapter);
+    updateRouteProgress();
+  }, 2200);
   window.scrollTo({
     top,
     behavior: reducedMotion.matches ? 'auto' : 'smooth'
@@ -114,6 +134,7 @@ places.forEach((place) => {
 
 function updateRouteProgress() {
   if (!traveler || !routes.length || progressRoutes.length !== routes.length) return;
+  if (Date.now() < navigationLockUntil) return;
 
   const focusLine = window.scrollY + window.innerHeight * .45;
   const anchors = chapters.map((chapter) => chapter.getBoundingClientRect().top + window.scrollY);
@@ -140,7 +161,7 @@ function updateRouteProgress() {
 
   const route = routes[segment];
   const point = route.getPointAtLength(route.getTotalLength() * fraction);
-  traveler.setAttribute('transform', `translate(${point.x} ${point.y})`);
+  traveler.style.transform = `translate(${point.x}px, ${point.y}px)`;
 }
 
 let routeFrame = 0;
