@@ -695,9 +695,24 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
 }
 
 @media (max-width: 800px) {
-  .theme-picker { top: 4.25rem; }
-  .site-header nav a:first-child { display: none; }
-  .hero { padding-top: 8rem; }
+  .site-header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    row-gap: 1rem;
+  }
+  .theme-picker {
+    position: static;
+    justify-self: end;
+    transform: none;
+  }
+  .site-header nav {
+    grid-column: 1 / -1;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 1rem;
+    border-top: 1px solid var(--rule);
+  }
+  .hero { padding-top: 9.5rem; }
   .hero h1 {
     max-width: 100%;
     font-size: clamp(3.2rem, 16.5vw, 4.75rem);
