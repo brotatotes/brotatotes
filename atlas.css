@@ -304,15 +304,18 @@ nav a {
 .chapter.active { opacity: 1; transform: none; }
 .chapter-head { max-width: 42rem; }
 .chapter-number {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
   color: var(--muted);
   font-size: .65rem;
 }
 .chapter-years {
+  margin-left: .45rem;
   color: var(--rust);
   white-space: nowrap;
+}
+.chapter-years::before {
+  content: "·";
+  margin-right: .45rem;
+  color: var(--muted);
 }
 .chapter h2 {
   margin: .8rem 0 0;
