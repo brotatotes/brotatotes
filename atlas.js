@@ -4,6 +4,7 @@ const places = [...document.querySelectorAll('.places .place')];
 const routes = [...document.querySelectorAll('.route-lines .route')];
 const progressRoutes = [...document.querySelectorAll('.route-progress-lines .route-progress')];
 const traveler = document.querySelector('.route-traveler');
+const atlasStage = document.querySelector('.atlas-stage');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const number = document.querySelector('#active-number');
 const region = document.querySelector('#active-region');
@@ -98,7 +99,7 @@ function scrollToChapter(index) {
   const chapter = chapters[index - 1];
   if (!chapter) return;
   const stickyOffset = window.innerWidth <= 800
-    ? document.querySelector('.atlas-stage')?.offsetHeight || 0
+    ? atlasStage?.offsetHeight || 0
     : 0;
   const top = chapter.getBoundingClientRect().top + window.scrollY - stickyOffset - 16;
   const travelDelay = reducedMotion.matches ? 0 : 800;
@@ -116,7 +117,7 @@ function scrollToChapter(index) {
   navigationTimer = window.setTimeout(() => {
     traveler?.classList.remove('jumping');
     activateChapter(chapter);
-    updateRouteProgress();
+    setRouteToChapter(index);
   }, 3000);
 }
 
@@ -143,7 +144,8 @@ function updateRouteProgress() {
   if (!traveler || !routes.length || progressRoutes.length !== routes.length) return;
   if (Date.now() < navigationLockUntil) return;
 
-  const focusLine = window.scrollY + window.innerHeight * .45;
+  const focusOffset = window.innerWidth <= 800 ? atlasStage?.offsetHeight || 0 : 0;
+  const focusLine = window.scrollY + focusOffset;
   const anchors = chapters.map((chapter) => chapter.getBoundingClientRect().top + window.scrollY);
   let segment = 0;
   let fraction = 0;
