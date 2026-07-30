@@ -364,29 +364,34 @@ a { color: inherit; }
   transition: border-color .3s ease, background .3s ease, box-shadow .3s ease;
 }
 .chapter.active .star { opacity: 1; transform: none; }
-/* Balanced static mosaics. The final two cards in the eight-item chapters
-   widen to close the grid without leaving holes. */
+/* Editorial mosaics. The first card carries the chapter's main idea, while
+   secondary cards close each six-column row without leaving holes. */
 .star--sm, .star--wide, .star--tall, .star--lg, .star--row {
   grid-row: span 1;
 }
+.chapter[data-index="1"] .star,
 .chapter[data-index="2"] .star { grid-column: span 2; }
-.chapter[data-index="3"] .star { grid-column: span 3; }
-.chapter[data-index="4"] .star { grid-column: span 3; }
-.chapter[data-index="3"] .star:last-child { grid-column: span 6; }
-.chapter[data-index="2"] .star:nth-last-child(-n+2),
+.chapter[data-index="1"] .star:nth-child(1),
+.chapter[data-index="2"] .star:nth-child(1),
+.chapter[data-index="3"] .star:nth-child(1) {
+  grid-column: span 4;
+  grid-row: span 2;
+}
+.chapter[data-index="1"] .star:nth-child(1) {
+  grid-column: span 6;
+  grid-row: span 1;
+}
+.chapter[data-index="1"] .star:nth-child(2),
+.chapter[data-index="1"] .star:nth-child(3) { grid-column: span 3; }
+.chapter[data-index="1"] .star:nth-child(4),
+.chapter[data-index="2"] .star:nth-child(4) { grid-column: span 4; }
+.chapter[data-index="3"] .star:nth-child(2),
+.chapter[data-index="3"] .star:nth-child(3) { grid-column: span 2; }
+.chapter[data-index="3"] .star:nth-child(4),
+.chapter[data-index="3"] .star:nth-child(5),
+.chapter[data-index="4"] .star,
 .chapter[data-index="5"] .star { grid-column: span 3; }
 .chapter[data-index="5"] .constellation { grid-auto-rows: minmax(6.5rem, auto); }
-
-/* Fountain Hills uses card width to reflect content density while each row
-   still closes cleanly across the six-column grid. */
-.chapter[data-index="1"] .star:nth-child(1),
-.chapter[data-index="1"] .star:nth-child(2),
-.chapter[data-index="1"] .star:nth-child(7),
-.chapter[data-index="1"] .star:nth-child(8) { grid-column: span 3; }
-.chapter[data-index="1"] .star:nth-child(3),
-.chapter[data-index="1"] .star:nth-child(6) { grid-column: span 2; }
-.chapter[data-index="1"] .star:nth-child(4),
-.chapter[data-index="1"] .star:nth-child(5) { grid-column: span 4; }
 /* Full-width feature cards align the icon beside a stacked title/evidence block. */
 .star--row {
   display: grid;
@@ -755,7 +760,7 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
   }
   .star--sm, .star--wide, .star--tall, .star--lg, .star--row {
     grid-column: span 1 !important;
-    grid-row: span 1;
+    grid-row: span 1 !important;
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
