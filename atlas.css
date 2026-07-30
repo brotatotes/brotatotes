@@ -254,14 +254,11 @@ nav a {
 
 .chapters { padding: 0 clamp(1.5rem, 3.6vw, 4rem); }
 .chapter {
-  min-height: 100svh;
+  min-height: auto;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 9svh 0;
-  opacity: .3;
-  transform: translateY(1.5rem);
-  transition: opacity .6s ease, transform .6s ease;
+  justify-content: flex-start;
+  padding: clamp(2.5rem, 4vw, 4rem) 0;
 }
 .chapter.active { opacity: 1; transform: none; }
 .chapter-head { max-width: 42rem; }
@@ -309,21 +306,9 @@ nav a {
   font-family: inherit;
   text-align: left;
   overflow: hidden;
-  opacity: 0;
-  transform: translateY(.8rem) scale(.98);
-  transition: opacity .5s ease, transform .5s ease, border-color .3s ease, background .3s ease, box-shadow .3s ease;
+  transition: border-color .3s ease, background .3s ease, box-shadow .3s ease;
 }
 .chapter.active .star { opacity: 1; transform: none; }
-.chapter.active .star:nth-child(1) { transition-delay: .06s; }
-.chapter.active .star:nth-child(2) { transition-delay: .12s; }
-.chapter.active .star:nth-child(3) { transition-delay: .18s; }
-.chapter.active .star:nth-child(4) { transition-delay: .24s; }
-.chapter.active .star:nth-child(5) { transition-delay: .30s; }
-.chapter.active .star:nth-child(6) { transition-delay: .36s; }
-.chapter.active .star:nth-child(7) { transition-delay: .42s; }
-.chapter.active .star:nth-child(8) { transition-delay: .48s; }
-.chapter.active .star:nth-child(9) { transition-delay: .54s; }
-.chapter.active .star:nth-child(10) { transition-delay: .60s; }
 /* Balanced static mosaics. The final two cards in the eight-item chapters
    widen to close the grid without leaving holes. */
 .star--sm, .star--wide, .star--tall, .star--lg, .star--row {
@@ -594,7 +579,7 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
   .journey { display: block; }
   .atlas-stage {
     z-index: 2;
-    height: 46svh;
+    height: 36svh;
     padding: 1.25rem;
     border-right: 0;
     border-bottom: 1px solid var(--rule);
@@ -610,9 +595,10 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
   .chapters { padding: 0 1.5rem; }
   .chapter {
     min-height: auto;
-    padding: calc(46svh + 1.75rem) 0 10svh;
+    padding: 1rem 0 3rem;
     justify-content: flex-start;
   }
+  .chapter + .chapter { padding-top: 1.5rem; }
   .chapter h2 { font-size: clamp(2.6rem, 12vw, 4rem); }
   .constellation-block {
     margin-top: 2rem;
