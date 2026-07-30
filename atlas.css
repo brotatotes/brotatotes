@@ -203,15 +203,18 @@ nav a {
   display: grid;
   place-items: center;
 }
-.map { width: 100%; height: 100%; overflow: visible; }
-.world-context {
-  opacity: .13;
-  filter: saturate(.65);
+.map { width: 100%; height: 100%; overflow: hidden; }
+.regional-map { pointer-events: none; }
+.neighboring-land {
+  fill: color-mix(in srgb, var(--sage) 18%, var(--paper-deep));
+  stroke: color-mix(in srgb, var(--sage-line) 42%, var(--paper-deep));
+  stroke-width: 1;
+  opacity: .88;
 }
 .land {
   fill: var(--sage);
   stroke: var(--sage-line);
-  stroke-width: 1.5;
+  stroke-width: 2.2;
   filter: url(#paper-shadow);
 }
 .route {
@@ -230,7 +233,14 @@ nav a {
   stroke-dashoffset: 1;
   stroke-linecap: round;
 }
-.route-traveler { pointer-events: none; }
+.route-traveler {
+  pointer-events: none;
+  transition: transform .12s linear;
+}
+.route-traveler.jumping {
+  transition-duration: .8s;
+  transition-timing-function: cubic-bezier(.22, .8, .24, 1);
+}
 .traveler-halo {
   fill: var(--rust);
   opacity: .18;
@@ -277,7 +287,9 @@ nav a {
 }
 .route-status { color: var(--ink); }
 
-.chapters { padding: 0 clamp(1.5rem, 3.6vw, 4rem); }
+.chapters {
+  padding: 0 clamp(1.5rem, 3.6vw, 4rem) 32svh;
+}
 .chapter {
   min-height: auto;
   display: flex;
@@ -287,7 +299,17 @@ nav a {
 }
 .chapter.active { opacity: 1; transform: none; }
 .chapter-head { max-width: 42rem; }
-.chapter-number { color: var(--muted); font-size: .65rem; }
+.chapter-number {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--muted);
+  font-size: .65rem;
+}
+.chapter-years {
+  color: var(--rust);
+  white-space: nowrap;
+}
 .chapter h2 {
   margin: .8rem 0 0;
   font-size: clamp(2.8rem, 5.4vw, 5.6rem);
@@ -591,8 +613,11 @@ body[data-theme="dark"] .grain { opacity: .1; mix-blend-mode: screen; }
 body[data-theme="dark"] .cursor-light {
   background: radial-gradient(circle 28rem at var(--mouse-x) var(--mouse-y), rgba(255, 159, 110, .14), transparent 70%);
 }
-body[data-theme="dark"] .world-context { opacity: .07; filter: saturate(.7) brightness(1.4); }
-body[data-theme="dark"] .land { filter: drop-shadow(0 0 22px rgba(67, 143, 174, .18)); }
+body[data-theme="dark"] .land {
+  fill: #234157;
+  stroke: #5f8298;
+  filter: drop-shadow(0 0 22px rgba(67, 143, 174, .18));
+}
 body[data-theme="dark"] .route,
 body[data-theme="dark"] .route-progress,
 body[data-theme="dark"] .route-traveler { filter: drop-shadow(0 0 5px rgba(255, 159, 110, .4)); }
@@ -628,7 +653,7 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
   .place.active text { opacity: 1; }
   .place-5 text { transform: translate(-70px, 26px); }
   .atlas-caption { left: 1.25rem; right: 1.25rem; bottom: 1rem; }
-  .chapters { padding: 0 1.5rem; }
+  .chapters { padding: 0 1.5rem 18svh; }
   .chapter {
     min-height: auto;
     padding: 1rem 0 3rem;
