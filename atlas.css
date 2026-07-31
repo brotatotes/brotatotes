@@ -383,19 +383,23 @@ a { color: inherit; }
 }
 .chapter[data-index="1"] .star:nth-child(2),
 .chapter[data-index="1"] .star:nth-child(3) { grid-column: span 3; }
-.chapter[data-index="1"] .star:nth-child(4) { grid-column: span 4; }
+.chapter[data-index="1"] .star:nth-child(4) { grid-column: span 6; }
+.chapter[data-index="1"] .star:nth-child(5),
+.chapter[data-index="1"] .star:nth-child(6),
+.chapter[data-index="1"] .star:nth-child(7),
+.chapter[data-index="1"] .star:nth-child(8) { grid-column: span 3; }
 /* Evanston carries the densest evidence. Full-width feature rows keep its
    selected coursework, projects, and competition results readable. */
 .chapter[data-index="2"] .star:nth-child(1),
-.chapter[data-index="2"] .star:nth-child(2),
-.chapter[data-index="2"] .star:nth-child(5) {
+.chapter[data-index="2"] .star:nth-child(4),
+.chapter[data-index="2"] .star:nth-child(7) {
   grid-column: span 6;
   grid-row: span 1;
 }
+.chapter[data-index="2"] .star:nth-child(2),
 .chapter[data-index="2"] .star:nth-child(3),
-.chapter[data-index="2"] .star:nth-child(4),
-.chapter[data-index="2"] .star:nth-child(6),
-.chapter[data-index="2"] .star:nth-child(7) { grid-column: span 3; }
+.chapter[data-index="2"] .star:nth-child(5),
+.chapter[data-index="2"] .star:nth-child(6) { grid-column: span 3; }
 .chapter[data-index="3"] .star:nth-child(2),
 .chapter[data-index="3"] .star:nth-child(3) { grid-column: span 2; }
 .chapter[data-index="3"] .star:nth-child(4),
@@ -415,7 +419,8 @@ a { color: inherit; }
 }
 .star--row .star-icon { grid-row: 1 / 3; }
 .star--row .star-label,
-.star--row .star-names { grid-column: 2; }
+.star--row .star-names,
+.star--row .star-badges { grid-column: 2; }
 .star:not(:has(.star-names)) {
   flex-direction: row;
   align-items: center;
@@ -458,6 +463,15 @@ a { color: inherit; }
   opacity: .15;
 }
 .star:hover .star-watermark { opacity: .2; transform: rotate(-4deg) scale(1.04); }
+.chapter[data-index="1"] .star:nth-child(5) .star-watermark,
+.chapter[data-index="1"] .star:nth-child(6) .star-watermark,
+.chapter[data-index="1"] .star:nth-child(7) .star-watermark,
+.chapter[data-index="1"] .star:nth-child(8) .star-watermark {
+  display: none;
+}
+.chapter[data-index="2"] .star:nth-child(3) {
+  padding-bottom: 2.25rem;
+}
 .star::after {
   content: "";
   position: absolute;
@@ -515,6 +529,54 @@ a { color: inherit; }
   font-size: clamp(.8rem, .92vw, .9rem);
   line-height: 1.5;
   letter-spacing: .01em;
+}
+.star-badges {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .38rem;
+  margin-top: .1rem;
+}
+.star-badge {
+  min-height: 1.55rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .28rem .58rem .24rem;
+  border: 1px solid color-mix(in srgb, var(--rust) 28%, var(--rule));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--paper-deep) 62%, transparent);
+  color: color-mix(in srgb, var(--ink) 78%, var(--muted));
+  font: 600 .6rem/1 "DM Mono", monospace;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.star-badge--award {
+  border-color: color-mix(in srgb, var(--rust) 58%, var(--rule));
+  color: var(--rust);
+}
+.star-badge--logo {
+  min-width: 3.4rem;
+  height: 1.7rem;
+  padding: .18rem .52rem;
+  background: color-mix(in srgb, #fff 72%, var(--paper-deep));
+}
+.star-badge--logo img {
+  display: block;
+  width: auto;
+  max-width: 3rem;
+  height: 1.15rem;
+  object-fit: contain;
+}
+.star-badge--ford img { height: .9rem; }
+body[data-theme="dark"] .star-badge--logo {
+  background: color-mix(in srgb, #fff 30%, var(--paper-deep));
+}
+body[data-theme="dark"] .star-badge--nasa {
+  background: color-mix(in srgb, #fff 55%, var(--paper-deep));
 }
 .epilogue {
   position: relative;
