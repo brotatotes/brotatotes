@@ -401,13 +401,13 @@ a { color: inherit; }
 .star-label {
   position: relative;
   z-index: 1;
-  font-size: clamp(.95rem, 1.15vw, 1.1rem);
+  font-size: clamp(1.05rem, 1.3vw, 1.22rem);
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: -.01em;
 }
 .star--lg .star-label, .star--tall .star-label {
-  font-size: clamp(1.05rem, 1.35vw, 1.2rem);
+  font-size: clamp(1.12rem, 1.45vw, 1.3rem);
 }
 
 .star-takeaway {
@@ -415,7 +415,7 @@ a { color: inherit; }
   z-index: 1;
   margin: 0;
   color: color-mix(in srgb, var(--ink) 76%, var(--muted));
-  font-size: clamp(.78rem, .88vw, .88rem);
+  font-size: clamp(.88rem, .98vw, .98rem);
   line-height: 1.42;
 }
 .math-highlights {
@@ -474,12 +474,12 @@ a { color: inherit; }
 .math-feature { display: block; }
 .math-highlight-copy { min-width: 0; }
 .math-highlight-label {
-  font: 400 clamp(.64rem, .73vw, .73rem)/1.3 "DM Mono", monospace;
+  font: 400 clamp(.76rem, .86vw, .86rem)/1.3 "DM Mono", monospace;
 }
 .math-highlight-fact {
   margin-top: .2rem;
   color: color-mix(in srgb, var(--ink) 70%, var(--muted));
-  font: 400 clamp(.58rem, .65vw, .65rem)/1.3 "DM Mono", monospace;
+  font: 400 clamp(.7rem, .78vw, .78rem)/1.35 "DM Mono", monospace;
 }
 .math-subjects {
   display: flex;
@@ -493,19 +493,19 @@ a { color: inherit; }
   border-radius: 999px;
   color: color-mix(in srgb, var(--ink) 78%, var(--muted));
   background: color-mix(in srgb, var(--paper) 68%, transparent);
-  font: 400 clamp(.56rem, .62vw, .62rem)/1 "DM Mono", monospace;
+  font: 400 clamp(.66rem, .72vw, .72rem)/1.1 "DM Mono", monospace;
 }
 .math-feature {
   margin-top: .55rem;
   color: var(--ink);
-  font-size: clamp(.88rem, 1vw, 1rem);
+  font-size: clamp(.94rem, 1.08vw, 1.08rem);
   font-weight: 500;
   line-height: 1.35;
 }
 .math-feature span {
   margin-right: .35rem;
   color: color-mix(in srgb, var(--rust) 70%, var(--muted));
-  font: 400 .58rem/1 "DM Mono", monospace;
+  font: 400 .66rem/1 "DM Mono", monospace;
   letter-spacing: .06em;
   text-transform: uppercase;
 }
@@ -558,12 +558,12 @@ a { color: inherit; }
 .flat-highlight-fact { display: block; }
 .flat-highlight-copy { min-width: 0; }
 .flat-highlight-label {
-  font: 400 clamp(.64rem, .73vw, .73rem)/1.3 "DM Mono", monospace;
+  font: 400 clamp(.76rem, .86vw, .86rem)/1.3 "DM Mono", monospace;
 }
 .flat-highlight-fact {
   margin-top: .25rem;
   color: color-mix(in srgb, var(--ink) 72%, var(--muted));
-  font-size: clamp(.72rem, .8vw, .8rem);
+  font-size: clamp(.82rem, .92vw, .92rem);
   line-height: 1.4;
 }
 .flat-chips {
@@ -580,7 +580,7 @@ a { color: inherit; }
   border-radius: 999px;
   color: color-mix(in srgb, var(--ink) 78%, var(--muted));
   background: color-mix(in srgb, var(--paper) 68%, transparent);
-  font: 400 clamp(.56rem, .62vw, .62rem)/1.2 "DM Mono", monospace;
+  font: 400 clamp(.66rem, .72vw, .72rem)/1.25 "DM Mono", monospace;
 }
 .epilogue {
   position: relative;
@@ -842,9 +842,9 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
     justify-content: flex-start;
     gap: .55rem;
   }
-  .star--row .star-label { font-size: 1.05rem; }
-  .star-label { font-size: .98rem; }
-  .star--lg .star-label, .star--tall .star-label { font-size: 1.05rem; }
+  .star--row .star-label { font-size: 1.12rem; }
+  .star-label { font-size: 1.05rem; }
+  .star--lg .star-label, .star--tall .star-label { font-size: 1.12rem; }
   .math-highlights { grid-template-columns: 1fr; }
   .math-highlight--coursework { grid-column: auto; }
   .math-highlight {
@@ -855,6 +855,9 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
   .math-highlight--competitions { border-right: 0; }
   .math-highlight-icon { margin-top: .05rem; }
   .math-highlight--coursework { min-height: 6.25rem; }
+  .math-highlight-label { font-size: .8rem; }
+  .math-highlight-fact { font-size: .74rem; }
+  .math-subjects span { font-size: .68rem; }
   .flat-highlights { grid-template-columns: 1fr; }
   .flat-highlight {
     min-height: 4rem;
@@ -862,9 +865,9 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
     border-right: 0 !important;
   }
   .flat-highlight-icon { margin-top: .05rem; }
-  .flat-highlight-label { font-size: .72rem; }
-  .flat-highlight-fact { font-size: .76rem; }
-  .flat-chips span { font-size: .62rem; }
+  .flat-highlight-label { font-size: .8rem; }
+  .flat-highlight-fact { font-size: .84rem; }
+  .flat-chips span { font-size: .68rem; }
   .epilogue {
     min-height: auto;
     padding: 5rem 1.5rem 4rem;
