@@ -370,36 +370,14 @@ a { color: inherit; }
   grid-row: span 1;
 }
 .chapter[data-index="1"] .star,
-.chapter[data-index="2"] .star { grid-column: span 2; }
-.chapter[data-index="1"] .star:nth-child(1),
-.chapter[data-index="2"] .star:nth-child(1),
+.chapter[data-index="2"] .star {
+  grid-column: span 6;
+  grid-row: span 1;
+}
 .chapter[data-index="3"] .star:nth-child(1) {
   grid-column: span 4;
   grid-row: span 2;
 }
-.chapter[data-index="1"] .star:nth-child(1) {
-  grid-column: span 6;
-  grid-row: span 1;
-}
-.chapter[data-index="1"] .star:nth-child(2),
-.chapter[data-index="1"] .star:nth-child(3) { grid-column: span 3; }
-.chapter[data-index="1"] .star:nth-child(4) { grid-column: span 6; }
-.chapter[data-index="1"] .star:nth-child(5) { grid-column: span 6; }
-.chapter[data-index="1"] .star:nth-child(6),
-.chapter[data-index="1"] .star:nth-child(7),
-.chapter[data-index="1"] .star:nth-child(8) { grid-column: span 2; }
-/* Evanston carries the densest evidence. Full-width feature rows keep its
-   selected coursework, projects, and competition results readable. */
-.chapter[data-index="2"] .star:nth-child(1),
-.chapter[data-index="2"] .star:nth-child(4),
-.chapter[data-index="2"] .star:nth-child(7) {
-  grid-column: span 6;
-  grid-row: span 1;
-}
-.chapter[data-index="2"] .star:nth-child(2),
-.chapter[data-index="2"] .star:nth-child(3),
-.chapter[data-index="2"] .star:nth-child(5),
-.chapter[data-index="2"] .star:nth-child(6) { grid-column: span 3; }
 .chapter[data-index="3"] .star:nth-child(2),
 .chapter[data-index="3"] .star:nth-child(3) { grid-column: span 2; }
 .chapter[data-index="3"] .star:nth-child(4),
@@ -526,15 +504,10 @@ a { color: inherit; }
   width: 100%;
   margin-top: .15rem;
 }
-.chapter[data-index="1"] .star:nth-child(1) .detail-tiles,
-.chapter[data-index="1"] .star:nth-child(4) .detail-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.chapter[data-index="1"] .star:nth-child(5) .detail-tiles { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-.chapter[data-index="2"] .star:nth-child(1) .detail-tiles,
-.chapter[data-index="2"] .star:nth-child(4) .detail-tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.chapter[data-index="2"] .star:nth-child(7) .detail-tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.chapter[data-index="1"] .star:nth-child(6) .detail-tiles,
-.chapter[data-index="1"] .star:nth-child(7) .detail-tiles,
-.chapter[data-index="1"] .star:nth-child(8) .detail-tiles { grid-template-columns: 1fr; }
+.chapter[data-index="1"] .detail-tiles,
+.chapter[data-index="2"] .detail-tiles {
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+}
 .detail-tile {
   min-width: 0;
   min-height: 3.85rem;
@@ -894,12 +867,8 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
   .star-names { font-size: .84rem; line-height: 1.45; }
   .star-icon, .star--lg .star-icon, .star--tall .star-icon { width: 2.6rem; height: 2.6rem; }
   .detail-tiles,
-  .chapter[data-index="1"] .star:nth-child(1) .detail-tiles,
-  .chapter[data-index="1"] .star:nth-child(4) .detail-tiles,
-  .chapter[data-index="1"] .star:nth-child(5) .detail-tiles,
-  .chapter[data-index="2"] .star:nth-child(1) .detail-tiles,
-  .chapter[data-index="2"] .star:nth-child(4) .detail-tiles,
-  .chapter[data-index="2"] .star:nth-child(7) .detail-tiles {
+  .chapter[data-index="1"] .detail-tiles,
+  .chapter[data-index="2"] .detail-tiles {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .detail-tile { min-height: 3.7rem; }
