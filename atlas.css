@@ -30,10 +30,15 @@ a { color: inherit; }
   padding: .75rem 1rem;
   background: var(--ink);
   color: var(--paper);
-  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
   transform: translateY(calc(-100% - 2rem));
 }
-.skip-link:focus { visibility: visible; transform: none; }
+.skip-link:focus {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
 
 .grain {
   position: fixed;
