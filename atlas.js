@@ -189,8 +189,35 @@ window.addEventListener('scroll', requestRouteUpdate, { passive: true });
 window.addEventListener('resize', requestRouteUpdate);
 updateRouteProgress();
 
-/* ---- Icon constellation: static graphic cards ---- */
+/* ---- Icon-led detail cards: hover/focus on desktop, tap on touch ---- */
+document.querySelectorAll('.star:has(.detail-tiles)').forEach((star) => {
+  const tiles = [...star.querySelectorAll('.detail-tile')];
+  const title = star.querySelector('.star-detail-title');
+  const text = star.querySelector('.star-detail-text');
+  if (!tiles.length || !title || !text) return;
+
+  const activate = (tile) => {
+    tiles.forEach((item) => {
+      const selected = item === tile;
+      item.classList.toggle('active', selected);
+      item.setAttribute('aria-pressed', String(selected));
+    });
+    title.textContent = tile.dataset.label || '';
+    text.textContent = tile.dataset.detail || '';
+  };
+
+  tiles.forEach((tile) => {
+    tile.addEventListener('pointerenter', (event) => {
+      if (event.pointerType !== 'touch') activate(tile);
+    });
+    tile.addEventListener('focus', () => activate(tile));
+    tile.addEventListener('click', () => activate(tile));
+  });
+});
+
+/* ---- Decorative watermarks for legacy static cards ---- */
 document.querySelectorAll('.star').forEach((star) => {
+  if (star.querySelector('.detail-tiles')) return;
   const use = star.querySelector('.star-icon svg use');
   const href = use && (use.getAttribute('href') || use.getAttribute('xlink:href'));
   if (!href) return;
