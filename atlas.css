@@ -383,8 +383,19 @@ a { color: inherit; }
 }
 .chapter[data-index="1"] .star:nth-child(2),
 .chapter[data-index="1"] .star:nth-child(3) { grid-column: span 3; }
-.chapter[data-index="1"] .star:nth-child(4),
-.chapter[data-index="2"] .star:nth-child(4) { grid-column: span 4; }
+.chapter[data-index="1"] .star:nth-child(4) { grid-column: span 4; }
+/* Evanston carries the densest evidence. Full-width feature rows keep its
+   selected coursework, projects, and competition results readable. */
+.chapter[data-index="2"] .star:nth-child(1),
+.chapter[data-index="2"] .star:nth-child(2),
+.chapter[data-index="2"] .star:nth-child(5) {
+  grid-column: span 6;
+  grid-row: span 1;
+}
+.chapter[data-index="2"] .star:nth-child(3),
+.chapter[data-index="2"] .star:nth-child(4),
+.chapter[data-index="2"] .star:nth-child(6),
+.chapter[data-index="2"] .star:nth-child(7) { grid-column: span 3; }
 .chapter[data-index="3"] .star:nth-child(2),
 .chapter[data-index="3"] .star:nth-child(3) { grid-column: span 2; }
 .chapter[data-index="3"] .star:nth-child(4),
