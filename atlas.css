@@ -508,9 +508,6 @@ a { color: inherit; }
 .chapter[data-index="2"] .detail-tiles {
   grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
 }
-.chapter[data-index="1"] .star:first-child > .detail-tiles {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
 .detail-tile {
   min-width: 0;
   min-height: 3.85rem;
@@ -536,49 +533,96 @@ a { color: inherit; }
 }
 .detail-tile:focus-visible { outline: 2px solid var(--rust); outline-offset: 2px; }
 .detail-tile:active { transform: translateY(1px); }
-.detail-tile[data-panel="coursework"].active {
-  border-color: color-mix(in srgb, var(--rust) 46%, var(--rule));
-  background: color-mix(in srgb, var(--paper-deep) 70%, transparent);
-}
-.coursework-panel[hidden] { display: none; }
-.coursework-panel {
+.math-highlights {
+  position: relative;
+  z-index: 2;
   display: grid;
-  gap: .58rem;
-  margin-top: .55rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0;
+  width: 100%;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
 }
-.coursework-tabs {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: .35rem;
-}
-.coursework-tab {
+.math-highlight {
   min-width: 0;
-  padding: .48rem .35rem;
-  border: 1px solid var(--rule);
-  border-radius: 8px;
-  background: color-mix(in srgb, var(--paper-deep) 56%, transparent);
-  color: color-mix(in srgb, var(--ink) 76%, var(--muted));
-  font: 400 clamp(.58rem, .64vw, .64rem)/1.2 "DM Mono", monospace;
-  cursor: pointer;
-  transition: border-color .2s ease, background .2s ease, color .2s ease;
+  min-height: 4.2rem;
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+  align-items: center;
+  gap: .65rem;
+  padding: .75rem .65rem;
+  overflow: hidden;
+  background: transparent;
+  transition: background .22s ease;
 }
-.coursework-tab:hover,
-.coursework-tab:focus-visible,
-.coursework-tab.active {
-  border-color: color-mix(in srgb, var(--rust) 68%, var(--rule));
-  background: color-mix(in srgb, var(--paper) 88%, var(--paper-deep));
-  color: var(--rust);
+.math-highlight:hover {
+  background: color-mix(in srgb, var(--rust) 5%, transparent);
 }
-.coursework-tab:focus-visible { outline: 2px solid var(--rust); outline-offset: 2px; }
-.coursework-detail {
-  padding-top: .58rem;
+.math-highlight--competitions { border-right: 1px solid var(--rule); }
+.math-highlight--coursework {
+  grid-column: 1 / -1;
+  min-height: 6.3rem;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
   border-top: 1px solid var(--rule);
 }
-.coursework-detail-text {
-  display: block;
-  color: color-mix(in srgb, var(--ink) 82%, var(--muted));
-  font-size: clamp(.75rem, .82vw, .82rem);
-  line-height: 1.42;
+.math-highlight-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--rust) 35%, var(--rule));
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--paper) 72%, transparent);
+}
+.math-highlight-icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: none;
+  stroke: var(--rust);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.math-highlight-copy,
+.math-highlight-label,
+.math-highlight-fact,
+.math-feature { display: block; }
+.math-highlight-copy { min-width: 0; }
+.math-highlight-label {
+  font: 400 clamp(.64rem, .73vw, .73rem)/1.3 "DM Mono", monospace;
+}
+.math-highlight-fact {
+  margin-top: .2rem;
+  color: color-mix(in srgb, var(--ink) 70%, var(--muted));
+  font: 400 clamp(.58rem, .65vw, .65rem)/1.3 "DM Mono", monospace;
+}
+.math-subjects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+  margin-top: .48rem;
+}
+.math-subjects span {
+  padding: .25rem .45rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  color: color-mix(in srgb, var(--ink) 78%, var(--muted));
+  background: color-mix(in srgb, var(--paper) 68%, transparent);
+  font: 400 clamp(.56rem, .62vw, .62rem)/1 "DM Mono", monospace;
+}
+.math-feature {
+  margin-top: .55rem;
+  color: var(--ink);
+  font-size: clamp(.88rem, 1vw, 1rem);
+  font-weight: 500;
+  line-height: 1.35;
+}
+.math-feature span {
+  margin-right: .35rem;
+  color: color-mix(in srgb, var(--rust) 70%, var(--muted));
+  font: 400 .58rem/1 "DM Mono", monospace;
+  letter-spacing: .06em;
+  text-transform: uppercase;
 }
 .detail-icon {
   width: 2.05rem;
@@ -918,13 +962,16 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .detail-tile { min-height: 3.7rem; }
-  .chapter[data-index="1"] .star:first-child > .detail-tiles .detail-hint { display: none; }
-  .chapter[data-index="1"] .star:first-child > .detail-tiles .detail-tile { min-height: 3.45rem; }
-  .coursework-tabs { grid-template-columns: 1fr; }
-  .coursework-tab {
-    padding: .48rem .62rem;
-    text-align: left;
+  .math-highlights { grid-template-columns: 1fr; }
+  .math-highlight--coursework { grid-column: auto; }
+  .math-highlight {
+    min-height: 3.85rem;
+    align-items: start;
   }
+  .math-highlight + .math-highlight { border-top: 1px solid var(--rule); }
+  .math-highlight--competitions { border-right: 0; }
+  .math-highlight-icon { margin-top: .05rem; }
+  .math-highlight--coursework { min-height: 6.25rem; }
   .detail-label { font-size: .72rem; }
   .detail-hint { font-size: .68rem; }
   .star-detail-panel { min-height: 3.5rem; }

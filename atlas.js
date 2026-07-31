@@ -194,7 +194,6 @@ document.querySelectorAll('.star:has(.detail-tiles)').forEach((star) => {
   const tiles = [...star.querySelectorAll('.detail-tile')];
   const title = star.querySelector('.star-detail-title');
   const text = star.querySelector('.star-detail-text');
-  const coursework = star.querySelector('.coursework-panel');
   if (!tiles.length || !title || !text) return;
 
   const activate = (tile) => {
@@ -203,11 +202,8 @@ document.querySelectorAll('.star:has(.detail-tiles)').forEach((star) => {
       item.classList.toggle('active', selected);
       item.setAttribute('aria-pressed', String(selected));
     });
-    const showsCoursework = tile.dataset.panel === 'coursework';
     title.textContent = tile.dataset.label || '';
     text.textContent = tile.dataset.detail || '';
-    text.hidden = showsCoursework;
-    if (coursework) coursework.hidden = !showsCoursework;
   };
 
   tiles.forEach((tile) => {
@@ -217,40 +213,6 @@ document.querySelectorAll('.star:has(.detail-tiles)').forEach((star) => {
     tile.addEventListener('focus', () => activate(tile));
     tile.addEventListener('click', () => activate(tile));
   });
-});
-
-/* ---- Advanced coursework: subject tabs inside the shared detail panel ---- */
-document.querySelectorAll('.coursework-panel').forEach((feature) => {
-  const tabs = [...feature.querySelectorAll('.coursework-tab')];
-  const text = feature.querySelector('.coursework-detail-text');
-  if (!tabs.length || !text) return;
-
-  const activate = (tab, focus = false) => {
-    tabs.forEach((item) => {
-      const selected = item === tab;
-      item.classList.toggle('active', selected);
-      item.setAttribute('aria-selected', String(selected));
-      item.tabIndex = selected ? 0 : -1;
-    });
-    text.textContent = tab.dataset.courseDetail || '';
-    if (focus) tab.focus();
-  };
-
-  tabs.forEach((tab, index) => {
-    tab.addEventListener('click', () => activate(tab));
-    tab.addEventListener('keydown', (event) => {
-      const direction = event.key === 'ArrowRight' || event.key === 'ArrowDown'
-        ? 1
-        : event.key === 'ArrowLeft' || event.key === 'ArrowUp'
-          ? -1
-          : 0;
-      if (!direction) return;
-      event.preventDefault();
-      activate(tabs[(index + direction + tabs.length) % tabs.length], true);
-    });
-  });
-
-  activate(tabs.find((tab) => tab.classList.contains('active')) || tabs[0]);
 });
 
 /* ---- Decorative watermarks for legacy static cards ---- */
