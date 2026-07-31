@@ -508,6 +508,9 @@ a { color: inherit; }
 .chapter[data-index="2"] .detail-tiles {
   grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
 }
+.chapter[data-index="1"] .star:first-child > .detail-tiles {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
 .detail-tile {
   min-width: 0;
   min-height: 3.85rem;
@@ -533,6 +536,50 @@ a { color: inherit; }
 }
 .detail-tile:focus-visible { outline: 2px solid var(--rust); outline-offset: 2px; }
 .detail-tile:active { transform: translateY(1px); }
+.detail-tile[data-panel="coursework"].active {
+  border-color: color-mix(in srgb, var(--rust) 46%, var(--rule));
+  background: color-mix(in srgb, var(--paper-deep) 70%, transparent);
+}
+.coursework-panel[hidden] { display: none; }
+.coursework-panel {
+  display: grid;
+  gap: .58rem;
+  margin-top: .55rem;
+}
+.coursework-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .35rem;
+}
+.coursework-tab {
+  min-width: 0;
+  padding: .48rem .35rem;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--paper-deep) 56%, transparent);
+  color: color-mix(in srgb, var(--ink) 76%, var(--muted));
+  font: 400 clamp(.58rem, .64vw, .64rem)/1.2 "DM Mono", monospace;
+  cursor: pointer;
+  transition: border-color .2s ease, background .2s ease, color .2s ease;
+}
+.coursework-tab:hover,
+.coursework-tab:focus-visible,
+.coursework-tab.active {
+  border-color: color-mix(in srgb, var(--rust) 68%, var(--rule));
+  background: color-mix(in srgb, var(--paper) 88%, var(--paper-deep));
+  color: var(--rust);
+}
+.coursework-tab:focus-visible { outline: 2px solid var(--rust); outline-offset: 2px; }
+.coursework-detail {
+  padding-top: .58rem;
+  border-top: 1px solid var(--rule);
+}
+.coursework-detail-text {
+  display: block;
+  color: color-mix(in srgb, var(--ink) 82%, var(--muted));
+  font-size: clamp(.75rem, .82vw, .82rem);
+  line-height: 1.42;
+}
 .detail-icon {
   width: 2.05rem;
   height: 2.05rem;
@@ -825,8 +872,7 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
     padding: 1.25rem;
     border-right: 0;
     border-bottom: 1px solid var(--rule);
-    background: color-mix(in srgb, var(--paper-deep) 95%, transparent);
-    backdrop-filter: blur(12px);
+    background: var(--paper-deep);
   }
   .map-wrap { inset: 15% 1.25rem 12%; }
   .place text, .place.visited text { font-size: 20px; opacity: 0; transition: none; }
@@ -872,6 +918,13 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .detail-tile { min-height: 3.7rem; }
+  .chapter[data-index="1"] .star:first-child > .detail-tiles .detail-hint { display: none; }
+  .chapter[data-index="1"] .star:first-child > .detail-tiles .detail-tile { min-height: 3.45rem; }
+  .coursework-tabs { grid-template-columns: 1fr; }
+  .coursework-tab {
+    padding: .48rem .62rem;
+    text-align: left;
+  }
   .detail-label { font-size: .72rem; }
   .detail-hint { font-size: .68rem; }
   .star-detail-panel { min-height: 3.5rem; }

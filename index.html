@@ -205,16 +205,26 @@
                 </button>
                 <button class="detail-tile" type="button" aria-pressed="false" data-label="Camp Euclid" data-detail="Participated in Camp Euclid, an online mathematics research program.">
                   <span class="detail-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-compass"/></svg></span>
-                  <span class="detail-copy"><span class="detail-label">Camp Euclid</span><span class="detail-hint">mathematical research</span></span>
+                  <span class="detail-copy"><span class="detail-label">Camp Euclid</span><span class="detail-hint">research program</span></span>
                 </button>
-                <button class="detail-tile" type="button" aria-pressed="false" data-label="Advanced Coursework" data-detail="Studied calculus, linear algebra, and category theory in high school, including a final project on the Game of Sprouts.">
+                <button class="detail-tile" type="button" aria-pressed="false" data-label="Advanced Coursework" data-panel="coursework">
                   <span class="detail-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-network"/></svg></span>
-                  <span class="detail-copy"><span class="detail-label">Advanced Coursework</span><span class="detail-hint">calculus + linear algebra + category theory</span></span>
+                  <span class="detail-copy"><span class="detail-label">Advanced Coursework</span><span class="detail-hint">three high-school subjects</span></span>
                 </button>
                 </div>
                 <div class="star-detail-panel" aria-live="polite">
                   <span class="star-detail-title">Math Competitions</span>
                   <span class="star-detail-text">Competed in mathematics through school and national programs.</span>
+                  <div class="coursework-panel" hidden>
+                    <div class="coursework-tabs" role="tablist" aria-label="Advanced coursework subjects">
+                      <button class="coursework-tab" type="button" role="tab" aria-selected="false" data-course-detail="Studied calculus as part of an accelerated high-school mathematics path.">Calculus</button>
+                      <button class="coursework-tab" type="button" role="tab" aria-selected="false" data-course-detail="Studied linear algebra before beginning university.">Linear Algebra</button>
+                      <button class="coursework-tab active" type="button" role="tab" aria-selected="true" data-course-detail="Studied the Game of Sprouts for the final project in a high-school category theory course.">Category Theory</button>
+                    </div>
+                    <div class="coursework-detail" aria-live="polite">
+                      <span class="coursework-detail-text">Studied the Game of Sprouts for the final project in a high-school category theory course.</span>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div role="listitem" class="star star--sm">
