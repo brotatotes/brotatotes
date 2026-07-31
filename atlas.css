@@ -260,12 +260,12 @@ a { color: inherit; }
 .place text {
   fill: var(--ink);
   paint-order: stroke;
-  stroke: var(--paper-deep);
-  stroke-width: 2px;
+  stroke: var(--paper);
+  stroke-width: 3px;
   stroke-linejoin: round;
-  font: 400 17px "DM Mono", monospace;
+  font: 500 17px "DM Mono", monospace;
   letter-spacing: .035em;
-  opacity: .68;
+  opacity: 1;
   transition: opacity .5s ease;
 }
 .place text.label-end { text-anchor: end; }
