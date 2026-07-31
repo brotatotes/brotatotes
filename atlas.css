@@ -3,9 +3,9 @@
   --paper-deep: #e9e0cf;
   --ink: #263229;
   --muted: #5c665b;
-  --sage: #c9d0bb;
-  --sage-line: #9da991;
-  --rust: #b45f43;
+  --sage: #d5d8ca;
+  --sage-line: #98a28f;
+  --rust: #99472f;
   --rule: rgba(38, 50, 41, .2);
   --mouse-x: 50%;
   --mouse-y: 45%;
@@ -671,7 +671,7 @@ body[data-theme="dark"] {
   --muted: #99a7b7;
   --sage: #172a38;
   --sage-line: #355469;
-  --rust: #ff9f6e;
+  --rust: #f29a6f;
   --rule: rgba(214, 229, 242, .18);
 }
 body[data-theme="dark"] .grain { opacity: .1; mix-blend-mode: screen; }
