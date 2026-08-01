@@ -809,7 +809,7 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
   .placeholder-note { left: 1.25rem; right: auto; }
   .journey { display: block; }
   .atlas-stage {
-    z-index: 2;
+    z-index: 20;
     height: 36svh;
     padding: 1.25rem;
     border-right: 0;
@@ -817,6 +817,10 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
     background: var(--paper-deep);
   }
   .map-wrap { inset: 15% 1.25rem 12%; }
+  .chapters {
+    position: relative;
+    z-index: 1;
+  }
   .place text, .place.visited text { font-size: 20px; opacity: 0; transition: none; }
   .place.active text { opacity: 1; }
   .place-5 text { transform: translate(-70px, 26px); }
