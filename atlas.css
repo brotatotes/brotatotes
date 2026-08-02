@@ -403,6 +403,28 @@ a { color: inherit; }
   box-shadow: 0 10px 26px rgba(38,50,41,.1);
 }
 .star:hover::after { opacity: 1; }
+.star[href]::before {
+  content: "↗";
+  position: absolute;
+  z-index: 3;
+  top: .9rem;
+  right: 1rem;
+  color: var(--rust);
+  font-size: 1rem;
+  line-height: 1;
+  opacity: 0;
+  transform: translate(-.2rem, .2rem);
+  transition: opacity .2s ease, transform .2s ease;
+}
+.star[href]:hover::before,
+.star[href]:focus-visible::before {
+  opacity: 1;
+  transform: none;
+}
+.star[href]:focus-visible {
+  outline: 2px solid var(--rust);
+  outline-offset: 3px;
+}
 .star-label {
   position: relative;
   z-index: 1;
@@ -777,11 +799,11 @@ body[data-theme="dark"] .star { background: color-mix(in srgb, var(--paper-deep)
 body[data-theme="dark"] .star-icon, body[data-theme="dark"] .resource-glyph { background: color-mix(in srgb, var(--paper) 60%, transparent); }
 body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f15, var(--paper)); }
 
-@media (min-width: 801px) {
+@media (min-width: 1024px) {
   .place-5 text { transform: translate(12px, 8px); }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1023px) {
   .site-header {
     display: grid;
     grid-template-columns: auto 1fr;
