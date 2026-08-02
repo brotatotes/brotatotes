@@ -71,7 +71,7 @@ activateChapter(chapters[0]);
 
 function chapterWaypoints() {
   const journeyTop = journey.getBoundingClientRect().top + window.scrollY;
-  const mobile = window.innerWidth <= 800;
+  const mobile = window.innerWidth <= 1023;
   const headingOffset = mobile
     ? (atlasStage?.offsetHeight || 0) + 16
     : window.innerHeight * .18;
