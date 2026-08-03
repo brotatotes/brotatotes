@@ -64,6 +64,9 @@ a { color: inherit; }
   border-bottom: 1px solid var(--rule);
 }
 .wordmark {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
   font-size: clamp(1.25rem, 2vw, 1.8rem);
   text-decoration: none;
   letter-spacing: -.02em;
@@ -81,6 +84,7 @@ a { color: inherit; }
   backdrop-filter: blur(12px);
 }
 .theme-button {
+  min-height: 2.75rem;
   border: 0;
   border-radius: 999px;
   padding: .48rem .72rem;
@@ -95,6 +99,9 @@ a { color: inherit; }
 .theme-button:focus-visible { outline: 2px solid var(--rust); outline-offset: 2px; }
 .site-header nav { display: flex; gap: clamp(1rem, 3vw, 2.75rem); }
 .site-header nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
   font: 400 .7rem/1 "DM Mono", monospace;
   letter-spacing: .12em;
   text-transform: uppercase;
@@ -159,6 +166,7 @@ a { color: inherit; }
   gap: 1rem;
   align-items: center;
   width: fit-content;
+  min-height: 2.75rem;
   margin: 2.75rem 0 0;
   color: var(--ink);
   font: 400 .72rem/1 "DM Mono", monospace;
@@ -262,6 +270,10 @@ a { color: inherit; }
   cursor: pointer;
   outline: none;
   pointer-events: bounding-box;
+}
+.place-hit {
+  fill: transparent;
+  stroke: none;
 }
 .place text {
   fill: var(--ink);
@@ -368,6 +380,7 @@ a { color: inherit; }
   text-decoration: none;
   overflow: hidden;
   transition: border-color .3s ease, background .3s ease, box-shadow .3s ease;
+  container-type: inline-size;
 }
 .chapter.active .star { opacity: 1; transform: none; }
 /* Editorial mosaics. The first card carries the chapter's main idea, while
@@ -562,6 +575,13 @@ a { color: inherit; }
   border-right: 0;
 }
 .flat-highlight:hover { background: color-mix(in srgb, var(--rust) 5%, transparent); }
+@container (max-width: 40rem) {
+  .flat-highlights--adaptive { grid-template-columns: 1fr; }
+  .flat-highlights--adaptive .flat-highlight { border-right: 0; }
+  .flat-highlights--adaptive .flat-highlight:last-child:nth-child(odd) {
+    grid-column: auto;
+  }
+}
 .flat-highlight-icon {
   width: 2.25rem;
   height: 2.25rem;
@@ -727,6 +747,7 @@ a { color: inherit; }
 .resource-destinations a {
   display: flex;
   align-items: center;
+  min-height: 2.75rem;
   gap: .45rem;
   padding: .42rem .65rem;
   border: 1px solid var(--rule);
