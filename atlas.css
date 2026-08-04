@@ -575,6 +575,33 @@ a { color: inherit; }
   border-right: 0;
 }
 .flat-highlight:hover { background: color-mix(in srgb, var(--rust) 5%, transparent); }
+.flat-highlight[href] {
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+}
+.flat-highlight[href]::after {
+  content: "↗";
+  position: absolute;
+  top: .55rem;
+  right: .65rem;
+  color: var(--rust);
+  font-size: .8rem;
+  line-height: 1;
+  opacity: 0;
+  transform: translate(-.15rem, .15rem);
+  transition: opacity .2s ease, transform .2s ease;
+}
+.flat-highlight[href]:hover::after,
+.flat-highlight[href]:focus-visible::after {
+  opacity: 1;
+  transform: none;
+}
+.flat-highlight[href]:focus-visible {
+  z-index: 3;
+  outline: 2px solid var(--rust);
+  outline-offset: -2px;
+}
 @container (max-width: 40rem) {
   .flat-highlights--adaptive { grid-template-columns: 1fr; }
   .flat-highlights--adaptive .flat-highlight { border-right: 0; }
