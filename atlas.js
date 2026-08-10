@@ -6,6 +6,7 @@ const progressRoutes = [...document.querySelectorAll('.route-progress-lines .rou
 const traveler = document.querySelector('.route-traveler');
 const atlasStage = document.querySelector('.atlas-stage');
 const journey = document.querySelector('.journey');
+const hero = document.querySelector('.hero');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const number = document.querySelector('#active-number');
 const region = document.querySelector('#active-region');
@@ -46,10 +47,42 @@ try { savedTheme = linkedTheme || localStorage.getItem('atlas-theme') || 'system
 if (savedTheme === 'nocturne') savedTheme = 'dark';
 setTheme(['system', 'atlas', 'dark'].includes(savedTheme) ? savedTheme : 'system');
 
+const pointerTarget = { x: window.innerWidth * .72, y: window.innerHeight * .45 };
+const pointerPosition = { ...pointerTarget };
+let pointerFrame = 0;
+
+function easePointer() {
+  pointerPosition.x += (pointerTarget.x - pointerPosition.x) * .16;
+  pointerPosition.y += (pointerTarget.y - pointerPosition.y) * .16;
+  root.style.setProperty('--mouse-x', `${pointerPosition.x}px`);
+  root.style.setProperty('--mouse-y', `${pointerPosition.y}px`);
+
+  const distance = Math.abs(pointerTarget.x - pointerPosition.x) + Math.abs(pointerTarget.y - pointerPosition.y);
+  if (distance > .2) {
+    pointerFrame = window.requestAnimationFrame(easePointer);
+  } else {
+    pointerFrame = 0;
+  }
+}
+
 window.addEventListener('pointermove', (event) => {
-  root.style.setProperty('--mouse-x', `${event.clientX}px`);
-  root.style.setProperty('--mouse-y', `${event.clientY}px`);
+  if (!hero || reducedMotion.matches) return;
+  const bounds = hero.getBoundingClientRect();
+  pointerTarget.x = event.clientX - bounds.left;
+  pointerTarget.y = event.clientY - bounds.top;
+  if (!pointerFrame) pointerFrame = window.requestAnimationFrame(easePointer);
 }, { passive: true });
+
+hero?.addEventListener('pointerdown', (event) => {
+  if (reducedMotion.matches || event.button > 0) return;
+  const bounds = hero.getBoundingClientRect();
+  const ripple = document.createElement('span');
+  ripple.className = 'cursor-ripple';
+  ripple.style.left = `${event.clientX - bounds.left}px`;
+  ripple.style.top = `${event.clientY - bounds.top}px`;
+  hero.append(ripple);
+  ripple.addEventListener('animationend', () => ripple.remove(), { once: true });
+});
 
 function activateChapter(chapter) {
   const index = Number(chapter.dataset.index);

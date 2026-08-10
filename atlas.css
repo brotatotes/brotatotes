@@ -7,7 +7,7 @@
   --sage-line: #98a28f;
   --rust: #3f6f61;
   --rule: rgba(38, 50, 41, .2);
-  --mouse-x: 50%;
+  --mouse-x: 72%;
   --mouse-y: 45%;
 }
 
@@ -133,8 +133,47 @@ a { color: inherit; }
   position: absolute;
   z-index: -1;
   inset: 0;
-  background: radial-gradient(circle 28rem at var(--mouse-x) var(--mouse-y), rgba(180, 95, 67, .17), transparent 70%);
+  background:
+    radial-gradient(circle .24rem at var(--mouse-x) var(--mouse-y), color-mix(in srgb, var(--rust) 92%, transparent) 0 72%, transparent 100%),
+    radial-gradient(circle 13rem at var(--mouse-x) var(--mouse-y), color-mix(in srgb, var(--rust) 36%, transparent), transparent 72%);
   transition: opacity .3s ease;
+}
+.cursor-light::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(color-mix(in srgb, var(--rust) 30%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--rust) 30%, transparent) 1px, transparent 1px);
+  background-size: 5.5vw 5.5vw;
+  mask-image: radial-gradient(circle 10rem at var(--mouse-x) var(--mouse-y), black, transparent 76%);
+}
+.cursor-ripple {
+  position: absolute;
+  z-index: 2;
+  width: .8rem;
+  height: .8rem;
+  border: 1px solid color-mix(in srgb, var(--rust) 82%, transparent);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(.35);
+  animation: cursor-ripple .62s cubic-bezier(.2, .72, .2, 1) forwards;
+}
+.cursor-ripple::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border: 1px solid color-mix(in srgb, var(--rust) 52%, transparent);
+  border-radius: inherit;
+  animation: cursor-ripple-secondary .62s .08s cubic-bezier(.2, .72, .2, 1) forwards;
+}
+@keyframes cursor-ripple {
+  0% { opacity: .9; transform: translate(-50%, -50%) scale(.35); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(15); }
+}
+@keyframes cursor-ripple-secondary {
+  0% { opacity: .75; transform: scale(.35); }
+  100% { opacity: 0; transform: scale(10); }
 }
 .kicker, .chapter-number, .progress, .atlas-caption, .placeholder-note, .detail {
   font-family: "DM Mono", monospace;
@@ -827,9 +866,6 @@ body[data-theme="dark"] {
   --rule: rgba(214, 229, 242, .18);
 }
 body[data-theme="dark"] .grain { opacity: .1; mix-blend-mode: screen; }
-body[data-theme="dark"] .cursor-light {
-  background: radial-gradient(circle 28rem at var(--mouse-x) var(--mouse-y), rgba(255, 159, 110, .14), transparent 70%);
-}
 body[data-theme="dark"] .regional-context {
   opacity: .12;
   filter: saturate(.6) brightness(1.4);
