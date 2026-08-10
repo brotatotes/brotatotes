@@ -181,21 +181,9 @@ a { color: inherit; }
   transform: translate(-50%, -50%) scale(.35);
   animation: cursor-ripple 5s cubic-bezier(.12, .62, .16, 1) forwards;
 }
-.cursor-ripple::after {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  border: 1px solid color-mix(in srgb, var(--rust) 52%, transparent);
-  border-radius: inherit;
-  animation: cursor-ripple-secondary 4.8s .2s cubic-bezier(.12, .62, .16, 1) forwards;
-}
 @keyframes cursor-ripple {
   0% { opacity: .9; transform: translate(-50%, -50%) scale(.35); }
   100% { opacity: 0; transform: translate(-50%, -50%) scale(15); }
-}
-@keyframes cursor-ripple-secondary {
-  0% { opacity: .75; transform: scale(.35); }
-  100% { opacity: 0; transform: scale(10); }
 }
 .kicker, .chapter-number, .progress, .atlas-caption, .placeholder-note, .detail {
   font-family: "DM Mono", monospace;
