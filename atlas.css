@@ -6,6 +6,7 @@
   --sage: #d5d8ca;
   --sage-line: #98a28f;
   --rust: #3f6f61;
+  --cursor-accent: #9b712f;
   --rule: rgba(38, 50, 41, .2);
   --mouse-x: 72%;
   --mouse-y: 45%;
@@ -133,7 +134,7 @@ a { color: inherit; }
   position: absolute;
   z-index: -1;
   inset: 0;
-  background: radial-gradient(circle 13rem at var(--mouse-x) var(--mouse-y), color-mix(in srgb, var(--rust) 36%, transparent), transparent 72%);
+  background: radial-gradient(circle 13rem at var(--mouse-x) var(--mouse-y), color-mix(in srgb, var(--cursor-accent) 36%, transparent), transparent 72%);
   transition: opacity .3s ease;
 }
 .cursor-light::after {
@@ -141,8 +142,8 @@ a { color: inherit; }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(color-mix(in srgb, var(--rust) 30%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in srgb, var(--rust) 30%, transparent) 1px, transparent 1px);
+    linear-gradient(color-mix(in srgb, var(--cursor-accent) 30%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--cursor-accent) 30%, transparent) 1px, transparent 1px);
   background-size: 5.5vw 5.5vw;
   mask-image: radial-gradient(circle 10rem at var(--mouse-x) var(--mouse-y), black, transparent 76%);
 }
@@ -153,7 +154,7 @@ a { color: inherit; }
   top: var(--mouse-y);
   width: .95rem;
   height: .95rem;
-  border: 1px solid color-mix(in srgb, var(--rust) 94%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cursor-accent) 94%, transparent);
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
@@ -166,7 +167,7 @@ a { color: inherit; }
   height: 1px;
   right: -.32rem;
   bottom: -.16rem;
-  background: color-mix(in srgb, var(--rust) 94%, transparent);
+  background: color-mix(in srgb, var(--cursor-accent) 94%, transparent);
   transform: rotate(45deg);
   transform-origin: left center;
 }
@@ -175,7 +176,7 @@ a { color: inherit; }
   z-index: 2;
   width: .8rem;
   height: .8rem;
-  border: 1px solid color-mix(in srgb, var(--rust) 82%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cursor-accent) 82%, transparent);
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%) scale(.35);
@@ -873,6 +874,7 @@ body[data-theme="dark"] {
   --sage: #172a38;
   --sage-line: #355469;
   --rust: #f29a6f;
+  --cursor-accent: #f29a6f;
   --rule: rgba(214, 229, 242, .18);
 }
 body[data-theme="dark"] .grain { opacity: .1; mix-blend-mode: screen; }
