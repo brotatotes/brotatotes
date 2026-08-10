@@ -137,6 +137,9 @@ a { color: inherit; }
   background: radial-gradient(circle 13rem at var(--mouse-x) var(--mouse-y), color-mix(in srgb, var(--cursor-accent) 36%, transparent), transparent 72%);
   transition: opacity .3s ease;
 }
+body:not([data-theme="dark"]) .cursor-light {
+  background: radial-gradient(circle 13rem at var(--mouse-x) var(--mouse-y), color-mix(in srgb, var(--cursor-accent) 18%, transparent), transparent 72%);
+}
 .cursor-light::after {
   content: "";
   position: absolute;
