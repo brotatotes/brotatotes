@@ -343,6 +343,7 @@ body:not([data-theme="dark"]) .cursor-light {
 .place .dot { fill: var(--paper); stroke: var(--rust); stroke-width: 3; }
 .place .pulse { fill: none; stroke: var(--rust); stroke-width: 3; opacity: 0; transform: scale(.4); transition: .5s ease; }
 .place.active text { fill: var(--rust); opacity: 1; }
+body:not([data-theme="dark"]) .place.active text { fill: var(--ink); }
 .place.visited text { opacity: 1; }
 .place.active .dot { fill: var(--rust); stroke: var(--paper); stroke-width: 4; }
 .place.active .pulse,
