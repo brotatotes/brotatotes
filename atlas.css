@@ -588,14 +588,14 @@ a { color: inherit; }
   color: var(--rust);
   font-size: .8rem;
   line-height: 1;
-  opacity: 0;
-  transform: translate(-.15rem, .15rem);
+  opacity: .72;
+  transform: none;
   transition: opacity .2s ease, transform .2s ease;
 }
 .flat-highlight[href]:hover::after,
 .flat-highlight[href]:focus-visible::after {
   opacity: 1;
-  transform: none;
+  transform: translate(.1rem, -.1rem);
 }
 .flat-highlight[href]:focus-visible {
   z-index: 3;
