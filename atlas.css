@@ -157,7 +157,7 @@ a { color: inherit; }
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%) scale(.35);
-  animation: cursor-ripple .62s cubic-bezier(.2, .72, .2, 1) forwards;
+  animation: cursor-ripple 1.5s cubic-bezier(.16, .7, .18, 1) forwards;
 }
 .cursor-ripple::after {
   content: "";
@@ -165,7 +165,7 @@ a { color: inherit; }
   inset: -1px;
   border: 1px solid color-mix(in srgb, var(--rust) 52%, transparent);
   border-radius: inherit;
-  animation: cursor-ripple-secondary .62s .08s cubic-bezier(.2, .72, .2, 1) forwards;
+  animation: cursor-ripple-secondary 1.5s .18s cubic-bezier(.16, .7, .18, 1) forwards;
 }
 @keyframes cursor-ripple {
   0% { opacity: .9; transform: translate(-50%, -50%) scale(.35); }
