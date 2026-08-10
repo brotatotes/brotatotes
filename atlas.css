@@ -133,9 +133,7 @@ a { color: inherit; }
   position: absolute;
   z-index: -1;
   inset: 0;
-  background:
-    radial-gradient(circle .24rem at var(--mouse-x) var(--mouse-y), color-mix(in srgb, var(--rust) 92%, transparent) 0 72%, transparent 100%),
-    radial-gradient(circle 13rem at var(--mouse-x) var(--mouse-y), color-mix(in srgb, var(--rust) 36%, transparent), transparent 72%);
+  background: radial-gradient(circle 13rem at var(--mouse-x) var(--mouse-y), color-mix(in srgb, var(--rust) 36%, transparent), transparent 72%);
   transition: opacity .3s ease;
 }
 .cursor-light::after {
@@ -148,6 +146,29 @@ a { color: inherit; }
   background-size: 5.5vw 5.5vw;
   mask-image: radial-gradient(circle 10rem at var(--mouse-x) var(--mouse-y), black, transparent 76%);
 }
+.cursor-reticle {
+  position: absolute;
+  z-index: -1;
+  left: var(--mouse-x);
+  top: var(--mouse-y);
+  width: 1.35rem;
+  height: 1.35rem;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  background:
+    linear-gradient(var(--rust), var(--rust)) 50% 0 / 1px .32rem no-repeat,
+    linear-gradient(var(--rust), var(--rust)) 50% 100% / 1px .32rem no-repeat,
+    linear-gradient(90deg, var(--rust), var(--rust)) 0 50% / .32rem 1px no-repeat,
+    linear-gradient(90deg, var(--rust), var(--rust)) 100% 50% / .32rem 1px no-repeat;
+  opacity: .92;
+}
+.cursor-reticle::after {
+  content: "";
+  position: absolute;
+  inset: .43rem;
+  border: 1px solid color-mix(in srgb, var(--rust) 76%, transparent);
+  border-radius: 50%;
+}
 .cursor-ripple {
   position: absolute;
   z-index: 2;
@@ -157,7 +178,7 @@ a { color: inherit; }
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%) scale(.35);
-  animation: cursor-ripple 1.5s cubic-bezier(.16, .7, .18, 1) forwards;
+  animation: cursor-ripple 10s cubic-bezier(.12, .62, .16, 1) forwards;
 }
 .cursor-ripple::after {
   content: "";
@@ -165,7 +186,7 @@ a { color: inherit; }
   inset: -1px;
   border: 1px solid color-mix(in srgb, var(--rust) 52%, transparent);
   border-radius: inherit;
-  animation: cursor-ripple-secondary 1.5s .18s cubic-bezier(.16, .7, .18, 1) forwards;
+  animation: cursor-ripple-secondary 9.7s .3s cubic-bezier(.12, .62, .16, 1) forwards;
 }
 @keyframes cursor-ripple {
   0% { opacity: .9; transform: translate(-50%, -50%) scale(.35); }
@@ -1009,7 +1030,7 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
-  .cursor-light { display: none; }
+  .cursor-light, .cursor-reticle { display: none; }
   .route-progress { stroke-dashoffset: 0; }
   .traveler-halo { display: none; }
   .chapter { opacity: 1; transform: none; }
