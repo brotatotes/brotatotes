@@ -146,28 +146,29 @@ a { color: inherit; }
   background-size: 5.5vw 5.5vw;
   mask-image: radial-gradient(circle 10rem at var(--mouse-x) var(--mouse-y), black, transparent 76%);
 }
-.cursor-reticle {
+.cursor-lens {
   position: absolute;
   z-index: -1;
   left: var(--mouse-x);
   top: var(--mouse-y);
-  width: 1.35rem;
-  height: 1.35rem;
+  width: .95rem;
+  height: .95rem;
+  border: 1px solid color-mix(in srgb, var(--rust) 94%, transparent);
+  border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
-  background:
-    linear-gradient(var(--rust), var(--rust)) 50% 0 / 1px .32rem no-repeat,
-    linear-gradient(var(--rust), var(--rust)) 50% 100% / 1px .32rem no-repeat,
-    linear-gradient(90deg, var(--rust), var(--rust)) 0 50% / .32rem 1px no-repeat,
-    linear-gradient(90deg, var(--rust), var(--rust)) 100% 50% / .32rem 1px no-repeat;
   opacity: .92;
 }
-.cursor-reticle::after {
+.cursor-lens::after {
   content: "";
   position: absolute;
-  inset: .43rem;
-  border: 1px solid color-mix(in srgb, var(--rust) 76%, transparent);
-  border-radius: 50%;
+  width: .42rem;
+  height: 1px;
+  right: -.32rem;
+  bottom: -.16rem;
+  background: color-mix(in srgb, var(--rust) 94%, transparent);
+  transform: rotate(45deg);
+  transform-origin: left center;
 }
 .cursor-ripple {
   position: absolute;
@@ -178,7 +179,7 @@ a { color: inherit; }
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%) scale(.35);
-  animation: cursor-ripple 10s cubic-bezier(.12, .62, .16, 1) forwards;
+  animation: cursor-ripple 5s cubic-bezier(.12, .62, .16, 1) forwards;
 }
 .cursor-ripple::after {
   content: "";
@@ -186,7 +187,7 @@ a { color: inherit; }
   inset: -1px;
   border: 1px solid color-mix(in srgb, var(--rust) 52%, transparent);
   border-radius: inherit;
-  animation: cursor-ripple-secondary 9.7s .3s cubic-bezier(.12, .62, .16, 1) forwards;
+  animation: cursor-ripple-secondary 4.8s .2s cubic-bezier(.12, .62, .16, 1) forwards;
 }
 @keyframes cursor-ripple {
   0% { opacity: .9; transform: translate(-50%, -50%) scale(.35); }
@@ -1030,7 +1031,7 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
-  .cursor-light, .cursor-reticle { display: none; }
+  .cursor-light, .cursor-lens { display: none; }
   .route-progress { stroke-dashoffset: 0; }
   .traveler-halo { display: none; }
   .chapter { opacity: 1; transform: none; }
