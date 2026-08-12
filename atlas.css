@@ -236,6 +236,12 @@ body:not([data-theme="dark"]) .cursor-light {
   padding-bottom: .5rem;
 }
 .begin span { color: var(--rust); }
+.begin-secondary {
+  color: var(--muted);
+  border-bottom-color: transparent;
+  opacity: .62;
+}
+.begin-secondary span { color: currentColor; }
 .placeholder-note {
   position: absolute;
   right: clamp(1.25rem, 4vw, 4.5rem);
@@ -934,6 +940,13 @@ body[data-theme="dark"] .epilogue { background: linear-gradient(to bottom, #0a0f
     line-height: .9;
   }
   .intro, .begin { margin-left: 0; }
+  .hero-links { gap: 1rem; }
+  .hero-links .begin {
+    gap: .5rem;
+    font-size: .62rem;
+    letter-spacing: .08em;
+    white-space: nowrap;
+  }
   .placeholder-note { left: 1.25rem; right: auto; }
   .journey { display: block; }
   .atlas-stage {
