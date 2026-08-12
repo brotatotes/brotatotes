@@ -97,8 +97,8 @@
       <button class="theme-button" type="button" data-theme="dark" aria-pressed="false">Dark</button>
     </div>
     <nav aria-label="Primary navigation">
-      <a href="#journey">Places</a>
       <a href="#current-coordinates">Today</a>
+      <a href="#journey">Places</a>
     </nav>
   </header>
 
@@ -108,11 +108,85 @@
       <span class="cursor-lens" aria-hidden="true"></span>
       <h1 id="hero-title">Always<br>building</h1>
       <p class="intro">In five places</p>
-      <a class="begin" href="#journey">
-        Begin
+      <a class="begin" href="#current-coordinates">
+        See today
         <span aria-hidden="true">↓</span>
       </a>
       <p class="placeholder-note">Durham, North Carolina · 2026</p>
+    </section>
+
+    <section class="epilogue current-intro" id="current-coordinates" aria-labelledby="epilogue-title">
+      <div class="epilogue-inner">
+        <div class="closing-card current-card">
+          <p class="kicker">Current coordinates</p>
+          <div class="closing-marker" aria-hidden="true">
+            <span></span>
+          </div>
+          <h2 id="epilogue-title">Durham,<br>North Carolina</h2>
+          <p class="synthesis">Today, I work on Azure infrastructure and help build up the saints in the church in Raleigh-Durham.</p>
+          <a class="current-places-link" href="#journey">
+            Explore the places
+            <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+
+        <nav class="resource-directory" aria-label="Continue exploring">
+          <section class="resource-group" aria-labelledby="resource-work">
+            <header class="resource-group-head">
+              <span class="resource-glyph" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-briefcase"/></svg></span>
+              <span class="resource-title" id="resource-work">Work Experience</span>
+            </header>
+            <div class="resource-destinations">
+              <a href="https://www.linkedin.com/in/erichao2018/" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span><span aria-hidden="true">↗</span></a>
+              <a href="https://github.com/brotatotes" target="_blank" rel="noopener noreferrer"><span>GitHub</span><span aria-hidden="true">↗</span></a>
+              <a href="resources/resume.pdf" target="_blank" rel="noopener noreferrer"><span>Résumé 2024</span><span aria-hidden="true">↗</span></a>
+            </div>
+          </section>
+
+          <section class="resource-group resource-group--wide" aria-labelledby="resource-church">
+            <header class="resource-group-head">
+              <span class="resource-glyph" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-bible"/></svg></span>
+              <span class="resource-title" id="resource-church">Christian Church in Raleigh-Durham</span>
+            </header>
+            <div class="resource-destinations">
+              <a href="https://www.christianchurchinraleigh.org/" target="_blank" rel="noopener noreferrer"><span>Church Website</span><span aria-hidden="true">↗</span></a>
+            </div>
+          </section>
+
+          <section class="resource-group" aria-labelledby="resource-biblego">
+            <header class="resource-group-head">
+              <span class="resource-glyph" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-bible-search"/></svg></span>
+              <span class="resource-title" id="resource-biblego">BibleGo</span>
+            </header>
+            <div class="resource-destinations">
+              <a href="https://www.biblego.org/" target="_blank" rel="noopener noreferrer"><span>BibleGo.org</span><span aria-hidden="true">↗</span></a>
+              <a href="https://doi.org/10.5281/zenodo.21693756" target="_blank" rel="noopener noreferrer"><span>BibleGo Paper</span><span aria-hidden="true">↗</span></a>
+            </div>
+          </section>
+
+          <section class="resource-group" aria-labelledby="resource-songs">
+            <header class="resource-group-head">
+              <span class="resource-glyph" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-hymnal"/></svg></span>
+              <span class="resource-title" id="resource-songs">Songs App</span>
+            </header>
+            <div class="resource-destinations">
+              <a href="https://hymnsandspiritualsongs.com/" target="_blank" rel="noopener noreferrer"><span>Open Songs App</span><span aria-hidden="true">↗</span></a>
+            </div>
+          </section>
+
+          <section class="resource-group" aria-labelledby="resource-music">
+            <header class="resource-group-head">
+              <span class="resource-glyph" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-music"/></svg></span>
+              <span class="resource-title" id="resource-music">Music</span>
+            </header>
+            <div class="resource-destinations">
+              <a href="https://www.youtube.com/channel/UCf2b1PQXe81sbAj1CLSIKGg/videos" target="_blank" rel="noopener noreferrer"><span>YouTube</span><span aria-hidden="true">↗</span></a>
+              <a href="https://open.spotify.com/artist/3OKPfWSO9P15iCRTznKnZo" target="_blank" rel="noopener noreferrer"><span>Spotify</span><span aria-hidden="true">↗</span></a>
+              <a href="https://soundcloud.com/brotatotes" target="_blank" rel="noopener noreferrer"><span>SoundCloud</span><span aria-hidden="true">↗</span></a>
+            </div>
+          </section>
+        </nav>
+      </div>
     </section>
 
     <section class="journey" id="journey" aria-label="A life in five places">
@@ -822,75 +896,6 @@
       </div>
     </section>
 
-    <section class="epilogue" id="current-coordinates" aria-labelledby="epilogue-title">
-      <div class="epilogue-inner">
-        <div class="closing-card">
-          <p class="kicker">Current coordinates</p>
-          <div class="closing-marker" aria-hidden="true">
-            <span></span>
-          </div>
-          <h2 id="epilogue-title">Durham,<br>North Carolina</h2>
-          <p class="synthesis">Today, I work on Azure infrastructure and help build up the saints in the church in Raleigh-Durham.</p>
-        </div>
-
-        <nav class="resource-directory" aria-label="Continue exploring">
-          <section class="resource-group" aria-labelledby="resource-work">
-            <header class="resource-group-head">
-              <span class="resource-glyph" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-briefcase"/></svg></span>
-              <span class="resource-title" id="resource-work">Work Experience</span>
-            </header>
-            <div class="resource-destinations">
-              <a href="https://www.linkedin.com/in/erichao2018/" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span><span aria-hidden="true">↗</span></a>
-              <a href="https://github.com/brotatotes" target="_blank" rel="noopener noreferrer"><span>GitHub</span><span aria-hidden="true">↗</span></a>
-              <a href="resources/resume.pdf" target="_blank" rel="noopener noreferrer"><span>Résumé 2024</span><span aria-hidden="true">↗</span></a>
-            </div>
-          </section>
-
-          <section class="resource-group resource-group--wide" aria-labelledby="resource-church">
-            <header class="resource-group-head">
-              <span class="resource-glyph" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-bible"/></svg></span>
-              <span class="resource-title" id="resource-church">Christian Church in Raleigh-Durham</span>
-            </header>
-            <div class="resource-destinations">
-              <a href="https://www.christianchurchinraleigh.org/" target="_blank" rel="noopener noreferrer"><span>Church Website</span><span aria-hidden="true">↗</span></a>
-            </div>
-          </section>
-
-          <section class="resource-group" aria-labelledby="resource-biblego">
-            <header class="resource-group-head">
-              <span class="resource-glyph" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-bible-search"/></svg></span>
-              <span class="resource-title" id="resource-biblego">BibleGo</span>
-            </header>
-            <div class="resource-destinations">
-              <a href="https://www.biblego.org/" target="_blank" rel="noopener noreferrer"><span>BibleGo.org</span><span aria-hidden="true">↗</span></a>
-              <a href="https://doi.org/10.5281/zenodo.21693756" target="_blank" rel="noopener noreferrer"><span>BibleGo Paper</span><span aria-hidden="true">↗</span></a>
-            </div>
-          </section>
-
-          <section class="resource-group" aria-labelledby="resource-songs">
-            <header class="resource-group-head">
-              <span class="resource-glyph" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-hymnal"/></svg></span>
-              <span class="resource-title" id="resource-songs">Songs App</span>
-            </header>
-            <div class="resource-destinations">
-              <a href="https://hymnsandspiritualsongs.com/" target="_blank" rel="noopener noreferrer"><span>Open Songs App</span><span aria-hidden="true">↗</span></a>
-            </div>
-          </section>
-
-          <section class="resource-group" aria-labelledby="resource-music">
-            <header class="resource-group-head">
-              <span class="resource-glyph" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-music"/></svg></span>
-              <span class="resource-title" id="resource-music">Music</span>
-            </header>
-            <div class="resource-destinations">
-              <a href="https://www.youtube.com/channel/UCf2b1PQXe81sbAj1CLSIKGg/videos" target="_blank" rel="noopener noreferrer"><span>YouTube</span><span aria-hidden="true">↗</span></a>
-              <a href="https://open.spotify.com/artist/3OKPfWSO9P15iCRTznKnZo" target="_blank" rel="noopener noreferrer"><span>Spotify</span><span aria-hidden="true">↗</span></a>
-              <a href="https://soundcloud.com/brotatotes" target="_blank" rel="noopener noreferrer"><span>SoundCloud</span><span aria-hidden="true">↗</span></a>
-            </div>
-          </section>
-        </nav>
-      </div>
-    </section>
   </main>
 
   <footer>
