@@ -216,9 +216,8 @@ body:not([data-theme="dark"]) .cursor-light {
 }
 .hero-links {
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
-  gap: .75rem;
+  gap: 2rem;
   margin-top: 2.75rem;
 }
 .begin {
