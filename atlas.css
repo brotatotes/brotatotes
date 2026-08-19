@@ -133,22 +133,32 @@ a { color: inherit; }
 .cursor-light {
   position: absolute;
   z-index: -1;
-  inset: 0;
-  background: radial-gradient(circle 13rem at var(--mouse-x) var(--mouse-y), color-mix(in srgb, var(--cursor-accent) 36%, transparent), transparent 72%);
+  top: 0;
+  left: 0;
+  width: 26rem;
+  height: 26rem;
+  border-radius: 50%;
+  background: radial-gradient(circle 13rem at center, color-mix(in srgb, var(--cursor-accent) 36%, transparent), transparent 72%);
+  pointer-events: none;
+  transform: translate3d(var(--mouse-x), var(--mouse-y), 0) translate(-50%, -50%);
   transition: opacity .3s ease;
+  will-change: transform;
+  contain: paint;
 }
 body:not([data-theme="dark"]) .cursor-light {
-  background: radial-gradient(circle 13rem at var(--mouse-x) var(--mouse-y), color-mix(in srgb, var(--cursor-accent) 18%, transparent), transparent 72%);
+  background: radial-gradient(circle 13rem at center, color-mix(in srgb, var(--cursor-accent) 18%, transparent), transparent 72%);
 }
-.cursor-light::after {
+.hero::after {
   content: "";
   position: absolute;
+  z-index: -1;
   inset: 0;
   background:
     linear-gradient(color-mix(in srgb, var(--cursor-accent) 30%, transparent) 1px, transparent 1px),
     linear-gradient(90deg, color-mix(in srgb, var(--cursor-accent) 30%, transparent) 1px, transparent 1px);
   background-size: 5.5vw 5.5vw;
   mask-image: radial-gradient(circle 10rem at var(--mouse-x) var(--mouse-y), black, transparent 76%);
+  pointer-events: none;
 }
 .cursor-lens {
   position: absolute;
