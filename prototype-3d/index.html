@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#f2ecdf">
+  <link rel="icon" type="image/x-icon" href="../resources/favicon.ico">
+  <title>brotatotes — 3D prototype</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../atlas.css">
+  <link rel="stylesheet" href="world.css">
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.min.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"}}</script>
+  <script type="module" src="world.js"></script>
+</head>
+<body class="proto">
+  <div class="grain" aria-hidden="true"></div>
+  <svg class="symbol-sprite" aria-hidden="true" focusable="false" width="0" height="0">
+    <defs>
+      <symbol id="ico-music" viewBox="0 0 32 32"><circle cx="9" cy="24" r="3"/><circle cx="22" cy="21" r="3"/><path d="M12 24 V8 L25 5 V21 M12 12 L25 9"/></symbol>
+      <symbol id="ico-chess" viewBox="0 0 32 32"><circle cx="16" cy="8" r="3.3"/><path d="M12.5 12 H19.5 L18 18 H14 Z M10.5 27 C10.5 21 21.5 21 21.5 27 Z M13 18 H19"/></symbol>
+      <symbol id="ico-athletics" viewBox="0 0 32 32"><ellipse cx="12.5" cy="11" rx="7" ry="8"/><path d="M9 17 L22 30 M8 11 H18 M12.5 4 V18"/><circle cx="25" cy="9" r="2.5"/></symbol>
+      <symbol id="ico-math" viewBox="0 0 32 32"><path d="M7 10 H25 M11 10 V25 M22 10 V22 C22 24 23 25 25 25"/></symbol>
+      <symbol id="ico-chinese" viewBox="0 0 32 32"><rect x="10" y="8" width="12" height="16"/><path d="M16 4 V28 M10 16 H22"/></symbol>
+      <symbol id="ico-grad" viewBox="0 0 32 32"><path d="M16 7 L30 13 L16 19 L2 13 Z M8 15 V22 C8 25 24 25 24 22 V15 M28 14 V21"/></symbol>
+      <symbol id="ico-tutor" viewBox="0 0 32 32"><path d="M7 25 L9 19 L21 7 L25 11 L13 23 Z M9 19 L13 23 M20 8 L24 12 M7 25 L11 24"/></symbol>
+      <symbol id="ico-flag" viewBox="0 0 32 32"><path d="M8 3 V29 M8 5 C14 2 20 8 26 5 V16 C20 19 14 13 8 16"/></symbol>
+      <symbol id="ico-briefcase" viewBox="0 0 32 32"><rect x="4" y="11" width="24" height="15" rx="2"/><path d="M11 11 V8 C11 6 21 6 21 8 V11 M4 17.5 H28"/></symbol>
+      <symbol id="ico-code" viewBox="0 0 32 32"><path d="M11 9 L4 16 L11 23 M21 9 L28 16 L21 23 M18.5 7 L13.5 25"/></symbol>
+      <symbol id="ico-building" viewBox="0 0 32 32"><path d="M4 12 L16 5 L28 12 M6 12 V24 M12 12 V24 M20 12 V24 M26 12 V24 M3 27 H29 M14 27 V21 H18 V27"/></symbol>
+      <symbol id="ico-trophy" viewBox="0 0 32 32"><path d="M11 5 H21 V12 C21 17 11 17 11 12 Z M11 7 H6 C6 12 9 13 11 13 M21 7 H26 C26 12 23 13 21 13 M16 17 V22 M12 26 H20 M13.5 22 H18.5 V26 H13.5 Z"/></symbol>
+      <symbol id="ico-network" viewBox="0 0 32 32"><circle cx="8" cy="8" r="3"/><circle cx="24" cy="10" r="3"/><circle cx="16" cy="24" r="3"/><path d="M10 10 L15 22 M22 12 L17 22 M11 8.5 L21 9.5"/></symbol>
+      <symbol id="ico-project-grid" viewBox="0 0 32 32"><rect x="5" y="5" width="8" height="8" rx="1.5"/><rect x="19" y="5" width="8" height="8" rx="1.5"/><rect x="5" y="19" width="8" height="8" rx="1.5"/><rect x="19" y="19" width="8" height="8" rx="1.5"/></symbol>
+      <symbol id="ico-netlogo" viewBox="0 0 32 32"><path d="M8 5 H22 L18 15 L14 11 L11 16 Z M25 8 H30 L28 13 Z M3 17 H14 L10 28 Z M16 17 H29 L21 29 Z" fill="var(--rust)" stroke="none"/></symbol>
+      <symbol id="ico-wrench" viewBox="0 0 32 32"><path d="M20 5 A7 7 0 0 0 12 14 L5 21 A4 4 0 1 0 11 27 L18 20 A7 7 0 0 0 27 12 L22 17 L17 15 L15 10 Z"/><circle cx="8" cy="24" r="1.2"/></symbol>
+      <symbol id="ico-rocket" viewBox="0 0 32 32"><path d="M16 3 C21 8 22 16 20 22 H12 C10 16 11 8 16 3 Z M12 22 L8 27 L11 24 M20 22 L24 27 L21 24 M16 26 V29"/><circle cx="16" cy="13" r="2.4"/></symbol>
+      <symbol id="ico-car" viewBox="0 0 32 32"><path d="M4 22 L7 14 H23 L26 22 M3 22 H29 V26 H3 Z M11 14 L12 19 H20 L21 14"/><circle cx="10" cy="26" r="2"/><circle cx="22" cy="26" r="2"/></symbol>
+      <symbol id="ico-bolt" viewBox="0 0 32 32"><path d="M18 3 L7 18 H15 L13 29 L25 13 H17 Z"/></symbol>
+      <symbol id="ico-chip" viewBox="0 0 32 32"><rect x="9" y="9" width="14" height="14" rx="1.5"/><rect x="13.5" y="13.5" width="5" height="5"/><path d="M13 4 V9 M19 4 V9 M13 23 V28 M19 23 V28 M4 13 H9 M4 19 H9 M23 13 H28 M23 19 H28"/></symbol>
+      <symbol id="ico-chalkboard" viewBox="0 0 32 32"><rect x="4" y="5" width="24" height="17" rx="1"/><path d="M9 11 H23 M9 15 H18 M13 22 V26 M11 28 L13 26 H19 L21 28"/></symbol>
+      <symbol id="ico-flask" viewBox="0 0 32 32"><path d="M13 4 V13 L6 26 C5 28 7 29 9 29 H23 C25 29 27 28 26 26 L19 13 V4 M11 4 H21 M9.5 20 H22.5"/></symbol>
+      <symbol id="ico-cloud" viewBox="0 0 32 32"><path d="M9 22 C4 22 3 15 9 14 C9 8 18 7 19.5 13 C25 12 27 20.5 22 22 Z"/></symbol>
+      <symbol id="ico-patent" viewBox="0 0 32 32"><circle cx="16" cy="12" r="8"/><path d="M16 8 L17.5 11 L21 11.5 L18.5 14 L19 17.5 L16 15.8 L13 17.5 L13.5 14 L11 11.5 L14.5 11 Z" fill="none"/><path d="M12 19 L10 29 L16 26 L22 29 L20 19"/></symbol>
+      <symbol id="ico-cloudscale" viewBox="0 0 32 32"><path d="M8 13 C4.5 13 4.5 8 8 8 C8.5 4.5 15 4 16 8.5 C20.5 7.5 22.5 13 18 13 Z M6 19 H26 M9 23 H23 M12 27 H20"/></symbol>
+      <symbol id="ico-gauge" viewBox="0 0 32 32"><path d="M4 25 A12 12 0 0 1 28 25"/><path d="M16 25 L23 15"/><circle cx="16" cy="25" r="2"/><path d="M6.5 22 L8 22.7 M25.5 22 L24 22.7 M16 12.5 V14.5"/></symbol>
+      <symbol id="ico-shield" viewBox="0 0 32 32"><path d="M16 4 L27 8 V15 C27 23 21 27 16 29 C11 27 5 23 5 15 V8 Z M11 16 L15 20 L22 12"/></symbol>
+      <symbol id="ico-database" viewBox="0 0 32 32"><ellipse cx="16" cy="8" rx="10" ry="4"/><path d="M6 8 V24 C6 26.4 26 26.4 26 24 V8 M6 16 C6 18.4 26 18.4 26 16"/></symbol>
+      <symbol id="ico-mentor" viewBox="0 0 32 32"><circle cx="16" cy="8" r="3.4"/><circle cx="7" cy="12" r="3"/><circle cx="25" cy="12" r="3"/><path d="M10.5 27 C10.5 20.5 21.5 20.5 21.5 27 M2.5 26 C2.5 21 7 20 10 22 M29.5 26 C29.5 21 25 20 22 22"/></symbol>
+      <symbol id="ico-terminal" viewBox="0 0 32 32"><rect x="4" y="6" width="24" height="20" rx="2"/><path d="M4 11 H28 M8 17 L11 20 L8 23 M14 23 H20"/></symbol>
+      <symbol id="ico-hymnal" viewBox="0 0 32 32"><path d="M16 9 C12 6 7 6 4 7 V25 C7 24 12 24 16 27 C20 24 25 24 28 25 V7 C25 6 20 6 16 9 Z M16 9 V27"/><circle cx="19.5" cy="18" r="1.8"/><path d="M21.3 18 V12 L24 11"/></symbol>
+      <symbol id="ico-bible" viewBox="0 0 32 32"><path d="M6 5 H22 C24 5 25 6 25 8 V27 L15.5 23 L6 27 Z M15.5 9 V16 M12 12 H19"/></symbol>
+      <symbol id="ico-bible-search" viewBox="0 0 32 32"><path d="M15.5 9 C12 6.5 8 6 4.5 7.5 V23.5 C8 22.5 12 23.5 15.5 26 Z M15.5 9 C19 6.5 23 6 27 7.5 V15.5 M15.5 9 V26"/><circle cx="23" cy="21" r="4.5"/><path d="M26.2 24.2 L30 28"/></symbol>
+      <symbol id="ico-ai" viewBox="0 0 32 32"><rect x="9" y="9" width="14" height="14" rx="2"/><path d="M13 3 V9 M19 3 V9 M13 23 V29 M19 23 V29 M3 13 H9 M3 19 H9 M23 13 H29 M23 19 H29 M13 16 H15.5 M16 13.5 V18.5 M16.5 16 H19"/></symbol>
+      <symbol id="ico-compass" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M16 16 L21 10 L18 18 L11 22 Z"/><circle cx="16" cy="16" r="1.4"/></symbol>
+      <symbol id="ico-scroll" viewBox="0 0 32 32"><path d="M9 5 H23 C25 5 25 8 23 8 V24 C23 27 20 27 20 24 V8 H9 C7 8 7 5 9 5 Z M12 12 H20 M12 16 H20 M12 20 H17"/></symbol>
+      <symbol id="ico-stack" viewBox="0 0 32 32"><path d="M16 4 L28 11 L16 18 L4 11 Z M4 17 L16 24 L28 17 M4 23 L16 30 L28 23"/></symbol>
+      <symbol id="ico-community" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><circle cx="16" cy="9" r="2.4"/><circle cx="10" cy="19" r="2.4"/><circle cx="22" cy="19" r="2.4"/><path d="M16 11.4 V14.6 M13.2 17.4 L14.6 18.2 M18.8 17.4 L17.4 18.2"/></symbol>
+      <symbol id="ico-windows" viewBox="0 0 32 32"><rect x="5" y="5" width="9" height="9"/><rect x="18" y="5" width="9" height="9"/><rect x="5" y="18" width="9" height="9"/><rect x="18" y="18" width="9" height="9"/></symbol>
+      <symbol id="ico-allocator" viewBox="0 0 32 32"><path d="M9 15 C5 15 5 9 9 9 C10 5 17 5 18 10 C23 9 25 15 20 15 Z M6 20 H26 M6 25 H26 M12 20 V25 M20 20 V25"/></symbol>
+      <symbol id="ico-laptop" viewBox="0 0 32 32"><rect x="6" y="7" width="20" height="13" rx="1"/><path d="M3 24 L6 20 H26 L29 24 Z M12 11.5 A6 6 0 0 1 20 11.5 M14 14 A3 3 0 0 1 18 14"/><circle cx="16" cy="16.4" r="1"/></symbol>
+      <symbol id="ico-brain" viewBox="0 0 32 32"><path d="M12 7 C8 5 5 9 7 12 C3 14 5 20 9 20 C8 25 14 28 17 23 V9 C16 6 14 6 12 7 Z M20 7 C24 5 27 9 25 12 C29 14 27 20 23 20 C24 25 18 28 15 23 V9 C16 6 18 6 20 7 Z M10 14 H15 M17 18 H22 M11 22 H15 M17 11 H21"/></symbol>
+      <symbol id="ico-browser" viewBox="0 0 32 32"><rect x="4" y="5" width="24" height="22" rx="2"/><path d="M4 10 H28 M9 15 H16 M9 20 H18 M20 23 L23 17 L26 19"/></symbol>
+      <symbol id="ico-camera" viewBox="0 0 32 32"><rect x="4" y="9" width="24" height="18" rx="2"/><path d="M10 9 L12 5 H20 L22 9"/><circle cx="16" cy="18" r="5"/></symbol>
+      <symbol id="ico-chart" viewBox="0 0 32 32"><path d="M5 26 H28 M7 23 V17 H12 V23 M14 23 V12 H19 V23 M21 23 V6 H26 V23 M7 13 L14 8 L19 10 L26 4"/></symbol>
+      <symbol id="ico-fingerprint" viewBox="0 0 32 32"><path d="M7 25 C7 13 11 6 16 6 C21 6 25 13 25 25 M10 25 C10 16 12 10 16 10 C20 10 22 16 22 25 M13 25 C13 19 14 14 16 14 C18 14 19 19 19 25 M5 18 C7 9 11 4 16 4 C21 4 25 9 27 18"/></symbol>
+      <symbol id="ico-gamepad" viewBox="0 0 32 32"><path d="M8 11 H24 L28 21 C29 25 24 27 21 23 L19 20 H13 L11 23 C8 27 3 25 4 21 Z M9 16 H15 M12 13 V19"/><circle cx="22" cy="15" r="1"/><circle cx="25" cy="18" r="1"/></symbol>
+      <symbol id="ico-geometry" viewBox="0 0 32 32"><path d="M5 26 L16 5 L27 26 Z M11 16 H22 M16 5 V26"/><circle cx="16" cy="16" r="2"/></symbol>
+      <symbol id="ico-globe" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M4 16 H28 M16 4 C11 9 11 23 16 28 M16 4 C21 9 21 23 16 28 M7 10 H25 M7 22 H25"/></symbol>
+      <symbol id="ico-grid" viewBox="0 0 32 32"><rect x="5" y="5" width="22" height="22" rx="1"/><path d="M12 5 V27 M20 5 V27 M5 12 H27 M5 20 H27"/></symbol>
+      <symbol id="ico-guitar" viewBox="0 0 32 32"><path d="M11 20 C7 16 3 20 6 25 C9 30 15 27 15 23 L24 14 L20 10 Z M20 10 L25 5 L28 8 L23 13"/><circle cx="11" cy="23" r="2"/></symbol>
+      <symbol id="ico-medal" viewBox="0 0 32 32"><circle cx="16" cy="18" r="7"/><path d="M11 12 L8 4 H14 L16 10 L18 4 H24 L21 12 M13 18 L15 20 L19 16"/></symbol>
+      <symbol id="ico-mic" viewBox="0 0 32 32"><rect x="11" y="4" width="10" height="16" rx="5"/><path d="M7 15 C7 25 25 25 25 15 M16 25 V29 M11 29 H21"/></symbol>
+      <symbol id="ico-orbit" viewBox="0 0 32 32"><circle cx="16" cy="16" r="5"/><path d="M4 18 C9 9 22 6 27 11 C32 16 22 24 11 24 C2 24 1 20 4 18 Z M9 5 C16 6 23 12 24 20"/><circle cx="25" cy="9" r="2"/></symbol>
+      <symbol id="ico-paddle" viewBox="0 0 32 32"><ellipse cx="12" cy="10" rx="6" ry="7"/><path d="M15 16 L25 28 M21 24 L25 20"/><circle cx="25" cy="8" r="2"/></symbol>
+      <symbol id="ico-pencil" viewBox="0 0 32 32"><path d="M7 25 L9 19 L21 7 L25 11 L13 23 Z M9 19 L13 23 M20 8 L24 12 M7 25 L11 24"/></symbol>
+      <symbol id="ico-phone" viewBox="0 0 32 32"><rect x="9" y="3" width="14" height="26" rx="2"/><path d="M13 7 H19 M14 25 H18"/></symbol>
+      <symbol id="ico-piano" viewBox="0 0 32 32"><rect x="4" y="6" width="24" height="20" rx="2"/><path d="M10 6 V26 M16 6 V26 M22 6 V26 M8 6 V17 H12 V6 M14 6 V17 H18 V6 M20 6 V17 H24 V6"/></symbol>
+      <symbol id="ico-radar" viewBox="0 0 32 32"><path d="M4 26 A12 12 0 0 1 28 26 M8 26 A8 8 0 0 1 24 26 M12 26 A4 4 0 0 1 20 26 M16 26 L25 11"/><circle cx="16" cy="26" r="1.5"/></symbol>
+      <symbol id="ico-robot" viewBox="0 0 32 32"><rect x="6" y="10" width="20" height="16" rx="3"/><path d="M16 10 V5 M13 5 H19 M10 26 V29 M22 26 V29 M6 16 H3 M26 16 H29"/><circle cx="12" cy="17" r="2"/><circle cx="20" cy="17" r="2"/><path d="M12 22 H20"/></symbol>
+      <symbol id="ico-rover" viewBox="0 0 32 32"><rect x="5" y="16" width="22" height="8" rx="2"/><path d="M9 16 V11 H18 L22 16 M18 11 L22 7 M22 7 V12 M24 8 C26 9 27 10 28 12"/><circle cx="10" cy="26" r="2.5"/><circle cx="22" cy="26" r="2.5"/></symbol>
+      <symbol id="ico-swim" viewBox="0 0 32 32"><circle cx="10" cy="10" r="3"/><path d="M13 13 L20 16 L26 12 M4 19 C8 16 12 22 16 19 C20 16 24 22 28 19 M4 25 C8 22 12 28 16 25 C20 22 24 28 28 25"/></symbol>
+      <symbol id="ico-violin" viewBox="0 0 32 32"><path d="M14 5 C10 7 12 12 9 14 C5 17 7 25 13 25 C15 28 19 28 21 25 C27 25 29 17 25 14 C22 12 24 7 20 5 M17 4 V28 M13 11 H21 M12 21 H22"/></symbol>
+      <symbol id="ico-wave" viewBox="0 0 32 32"><path d="M4 18 H8 L10 11 L14 25 L18 7 L22 21 L24 14 H28"/></symbol>
+      <symbol id="ico-doc" viewBox="0 0 32 32"><path d="M8 4 H19 L25 10 V28 H8 Z M19 4 V10 H25 M12 15 H21 M12 19 H21 M12 23 H17"/></symbol>
+      <symbol id="ico-github" viewBox="0 0 32 32"><circle cx="9" cy="7" r="3"/><circle cx="9" cy="25" r="3"/><circle cx="23" cy="11" r="3"/><path d="M9 10 V22 M23 14 C23 19 9 17 9 20"/></symbol>
+      <symbol id="ico-linkedin" viewBox="0 0 32 32"><rect x="4" y="4" width="24" height="24" rx="3"/><path d="M10 13 V22 M10 8.5 V9 M16 22 V16.5 C16 13.5 22 13.5 22 16.5 V22"/></symbol>
+    </defs>
+  </svg>
+
+  <canvas id="world" aria-hidden="true"></canvas>
+  <div class="veil" aria-hidden="true"></div>
+  <div class="world-labels" aria-hidden="true"></div>
+
+  <header class="proto-header">
+    <a class="wordmark" href="https://brotatotes.com">brotatotes</a>
+    <span class="proto-badge">3D prototype · Fountain Hills → Evanston</span>
+    <a class="proto-link" href="https://brotatotes.com">Current site ↗</a>
+  </header>
+
+  <main class="proto-content" id="top">
+    <section class="proto-hero" data-key="hero">
+      <h1>Always<br>building</h1>
+      <p class="intro">In five places</p>
+      <p class="proto-hint">Scroll to travel · Select a pedestal</p>
+    </section>
+
+        <article class="chapter" data-index="1" data-region="Arizona" data-status="Foundations">
+          <header class="chapter-head">
+            <p class="chapter-number">01 · Arizona <span class="chapter-years">Through 2014</span></p>
+            <h2>Fountain Hills</h2>
+          </header>
+
+          <div class="constellation-block">
+            <div class="constellation" role="list" aria-label="Fountain Hills highlights">
+              <div role="listitem" class="star star--tall">
+                <span class="star-label">Mathematics</span>
+                <div class="math-highlights" aria-label="Mathematics highlights">
+                  <div class="math-highlight math-highlight--competitions">
+                    <span class="math-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-trophy"/></svg></span>
+                    <span class="math-highlight-copy">
+                      <span class="math-highlight-label">Competitions</span>
+                      <span class="math-highlight-fact">MathCounts · American Mathematics Competitions</span>
+                    </span>
+                  </div>
+                  <div class="math-highlight math-highlight--programs">
+                    <span class="math-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-grad"/></svg></span>
+                    <span class="math-highlight-copy">
+                      <span class="math-highlight-label">Summer Programs</span>
+                      <span class="math-highlight-fact">Michigan Math &amp; Science Scholars · Camp Euclid</span>
+                    </span>
+                  </div>
+                  <div class="math-highlight math-highlight--coursework">
+                    <span class="math-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-network"/></svg></span>
+                    <span class="math-highlight-copy">
+                      <span class="math-highlight-label">Advanced Coursework</span>
+                      <span class="math-subjects"><span>AP Calculus AB &amp; BC</span><span>Linear Algebra</span><span>Category Theory</span></span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div role="listitem" class="star star--sm">
+                <span class="star-label">Early Coding</span>
+                <div class="flat-highlights" aria-label="Early Coding highlights">
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-code"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Languages &amp; Coursework</span>
+                      <span class="flat-chips"><span>Java</span><span>Python</span><span>AP Computer Science</span></span>
+                    </span>
+                  </div>
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-math"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Project Euler</span>
+                      <span class="flat-highlight-fact">77 problems solved</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div role="listitem" class="star star--sm">
+                <span class="star-label">Teaching &amp; Tutoring</span>
+                <div class="flat-highlights" aria-label="Teaching &amp; Tutoring highlights">
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-tutor"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">BASIS Peer Tutoring</span>
+                      <span class="flat-highlight-fact">Math · Physics · Chemistry</span>
+                    </span>
+                  </div>
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-pencil"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Private Tutoring</span>
+                      <span class="flat-highlight-fact">Paid one-on-one tutoring</span>
+                    </span>
+                  </div>
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-globe"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">English in China</span>
+                      <span class="flat-highlight-fact">Paid English tutoring</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div role="listitem" class="star star--lg">
+                <span class="star-label">Early Internships</span>
+                <div class="flat-highlights" aria-label="Early Internships highlights">
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-flask"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">St. Joseph’s Hospital</span>
+                      <span class="flat-highlight-fact">Neuroscience research</span>
+                    </span>
+                  </div>
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-chart"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">iCrossing</span>
+                      <span class="flat-highlight-fact">SEO · Test-driven development · Open source</span>
+                    </span>
+                  </div>
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-doc"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Mayo Clinic</span>
+                      <span class="flat-highlight-fact">Interactive FileMaker e-book · Bug fixes · Server installation</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div role="listitem" class="star star--sm">
+                <span class="star-label">Music</span>
+                <div class="flat-highlights" aria-label="Music highlights">
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-piano"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Piano</span>
+                      <span class="flat-highlight-fact">Ages 4–11</span>
+                    </span>
+                  </div>
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-guitar"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Clay Church Music Team</span>
+                      <span class="flat-highlight-fact">Acoustic guitar · Lead guitar · Violin · Vocals</span>
+                    </span>
+                  </div>
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-violin"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">School Ensembles</span>
+                      <span class="flat-highlight-fact">Violin in orchestra · Bass in BASIS Jazz Band · School performances · National competitions</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div role="listitem" class="star star--sm">
+                <span class="star-label">Chess</span>
+                <div class="flat-highlights" aria-label="Chess highlights">
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-chess"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Rated Tournaments</span>
+                      <span class="flat-highlight-fact">101 tournaments nationwide · 50+ trophies and awards</span>
+                    </span>
+                  </div>
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-gauge"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Peak USCF Rating</span>
+                      <span class="flat-highlight-fact">1768</span>
+                    </span>
+                  </div>
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-trophy"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">North American Open</span>
+                      <span class="flat-highlight-fact">3rd place · Las Vegas · 2010</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div role="listitem" class="star star--sm">
+                <span class="star-label">Leadership</span>
+                <div class="flat-highlights" aria-label="Leadership highlights">
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-flag"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Leadership Council</span>
+                      <span class="flat-highlight-fact">Designed advertising and apparel · Organized school events</span>
+                    </span>
+                  </div>
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-flag"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">National Honor Society</span>
+                      <span class="flat-highlight-fact">Four years of community volunteering</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div role="listitem" class="star star--sm">
+                <span class="star-label">Athletics</span>
+                <div class="flat-highlights" aria-label="Athletics highlights">
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-swim"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Swimming</span>
+                      <span class="flat-highlight-fact">Local swim meets</span>
+                    </span>
+                  </div>
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-athletics"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Tennis</span>
+                      <span class="flat-highlight-fact">Local tournaments</span>
+                    </span>
+                  </div>
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-paddle"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Table Tennis</span>
+                      <span class="flat-highlight-fact">Weekly local club</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </article>
+
+    <section class="proto-travel" data-key="travel" aria-label="Fountain Hills to Evanston">
+      <span class="travel-marker travel-marker--start" data-key="travel-start"></span>
+      <span class="travel-marker travel-marker--end" data-key="travel-end"></span>
+      <div class="travel-card">
+        <p class="chapter-number">Arizona → Illinois <span class="chapter-years">2014</span></p>
+        <h2>Fountain Hills to Evanston</h2>
+      </div>
+    </section>
+
+        <article class="chapter" data-index="2" data-region="Illinois" data-status="Learning to Build">
+          <header class="chapter-head">
+            <p class="chapter-number">02 · Illinois <span class="chapter-years">2014–2018</span></p>
+            <h2>Evanston</h2>
+          </header>
+
+          <div class="constellation-block">
+            <div class="constellation" role="list" aria-label="Evanston highlights">
+              <div role="listitem" class="star star--row">
+                <span class="star-label">Northwestern Computer Science</span>
+                <span class="star-takeaway">BS + MS in four years · Magna cum laude</span>
+                <div class="flat-highlights flat-highlights--compact" aria-label="Northwestern CS highlights">
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-terminal"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Systems &amp; Theory</span>
+                      <span class="flat-highlight-fact">Computational Geometry · Algorithms · Programming Languages · Operating Systems · Digital Forensics</span>
+                    </span>
+                  </div>
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-brain"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">AI &amp; Modeling</span>
+                      <span class="flat-highlight-fact">Artificial Intelligence · Machine Learning · Deep Learning from Scratch · Multi-Agent Languages</span>
+                    </span>
+                  </div>
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-gamepad"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Games, Music &amp; Interaction</span>
+                      <span class="flat-highlight-fact">Game Development Studio · Human-Computer Interaction · Machine Perception of Music &amp; Audio</span>
+                    </span>
+                  </div>
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-robot"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Robotics &amp; Physical Systems</span>
+                      <span class="flat-highlight-fact">Robotics Laboratory · Cyber-Physical Systems</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <a role="listitem" class="star star--sm" href="https://www.netlogo.org/" target="_blank" rel="noopener noreferrer">
+                <span class="star-label">NetLogo Developer</span>
+                <span class="star-takeaway">Paid developer role under Professor Uri Wilensky</span>
+                <div class="flat-highlights" aria-label="NetLogo Developer highlights">
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-netlogo"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Core Engine</span>
+                      <span class="flat-chips"><span>Java</span><span>Scala</span><span>Lazy agent-sets</span></span>
+                    </span>
+                  </div>
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-gauge"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Performance</span>
+                      <span class="flat-highlight-fact">60% faster agent selection</span>
+                    </span>
+                  </div>
+                </div>
+              </a>
+              <div role="listitem" class="star star--sm">
+                <span class="star-label">Internships</span>
+                <div class="flat-highlights" aria-label="Internships highlights">
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-chart"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">AZPack</span>
+                      <span class="flat-highlight-fact">Built a Google Apps Script shift-reporting system · Hundreds of monthly uses</span>
+                    </span>
+                  </div>
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-orbit"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">NASA · Johnson Space Center</span>
+                      <span class="flat-highlight-fact">Migrated Space Radiation Analysis Group tools from ColdFusion to Drupal</span>
+                    </span>
+                  </div>
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-browser"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Ford Motor Company</span>
+                      <span class="flat-highlight-fact">Built an internal business application · JSF · PrimeFaces · Java · SQL Server</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div role="listitem" class="star star--row">
+                <span class="star-label">Selected Projects</span>
+                <div class="flat-highlights flat-highlights--compact" aria-label="Selected Projects highlights">
+                  <a class="flat-highlight" href="https://github.com/brotatotes/GameDevelopmentStudio" target="_blank" rel="noopener noreferrer">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-gamepad"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Asymmetric Platformer</span>
+                      <span class="flat-highlight-fact">Two-player Unity game · one of the studio’s most favorited games</span>
+                    </span>
+                  </a>
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-phone"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Mobile Apps</span>
+                      <span class="flat-highlight-fact">Selfie mood tracking · wardrobe-generated outfits</span>
+                    </span>
+                  </div>
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-wave"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Audio Cross-Synthesis</span>
+                      <span class="flat-highlight-fact">Fused music with voice</span>
+                    </span>
+                  </div>
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-rover"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Research Rover</span>
+                      <span class="flat-highlight-fact">Wi-Fi Raspberry Pi rover · Paid research project</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div role="listitem" class="star star--lg">
+                <span class="star-label">Robotics</span>
+                <span class="star-takeaway">First place in Northwestern’s 2015 and 2018 Design Competitions</span>
+                <div class="flat-highlights flat-highlights--adaptive" aria-label="Robotics highlights">
+                  <a class="flat-highlight" href="https://www.mccormick.northwestern.edu/news/articles/2015/05/student-designed-autonomous-robot-veggie-bot-wins-2015-design-competition.html" target="_blank" rel="noopener noreferrer">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-trophy"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">VeggieBot · 2015</span>
+                      <span class="flat-highlight-fact">$1,000 prize · Sorted cubes in live robot checkers</span>
+                    </span>
+                  </a>
+                  <a class="flat-highlight" href="https://www.mccormick.northwestern.edu/news/articles/2018/05/autonomous-robots-use-speed-gps-tracking-at-2018-design-competition.html" target="_blank" rel="noopener noreferrer">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-medal"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">VeggieButt · 2018</span>
+                      <span class="flat-highlight-fact">Autonomous block gathering</span>
+                    </span>
+                  </a>
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-radar"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Quadruped</span>
+                      <span class="flat-highlight-fact">Wall following · Mapping · Path planning · Machine-learning orientation · Feedback control</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div role="listitem" class="star star--sm">
+                <span class="star-label">Hackathons &amp; Tech Competitions</span>
+                <span class="star-takeaway">10+ events in six US cities</span>
+                <div class="flat-highlights flat-highlights--adaptive" aria-label="Hackathons &amp; Tech Competitions highlights">
+                  <a class="flat-highlight" href="https://github.com/dylanmor123/ColorImproviser" target="_blank" rel="noopener noreferrer">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-music"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Color Improviser</span>
+                      <span class="flat-highlight-fact">Taught blues through color and keyboard · 1st place at Music Hack 2016</span>
+                    </span>
+                  </a>
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-trophy"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Chicago Google Games</span>
+                      <span class="flat-highlight-fact">1st place · 2016</span>
+                    </span>
+                  </div>
+                  <a class="flat-highlight" href="https://devpost.com/software/reeti-recipe" target="_blank" rel="noopener noreferrer">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-wrench"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Recipe Vision</span>
+                      <span class="flat-highlight-fact">Texted ingredient photo → recipes by SMS · Top 10 at WildHacks 2016</span>
+                    </span>
+                  </a>
+                  <a class="flat-highlight" href="https://devpost.com/software/razy-rice" target="_blank" rel="noopener noreferrer">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-allocator"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Rice-Cooking Robot</span>
+                      <span class="flat-highlight-fact">App-controlled rice and water dispenser · WildHacks 2017</span>
+                    </span>
+                  </a>
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-medal"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">ITA Tech Challenge</span>
+                      <span class="flat-highlight-fact">Top 50 finalist · 2017</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div role="listitem" class="star star--row">
+                <span class="star-label">Teaching</span>
+                <div class="flat-highlights" aria-label="Teaching highlights">
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-code"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Teaching Assistant</span>
+                      <span class="flat-highlight-fact">Introductory Programming · Mathematical Foundations of Computer Science</span>
+                    </span>
+                  </div>
+                  <div class="flat-highlight">
+                    <span class="flat-highlight-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><use href="#ico-mentor"/></svg></span>
+                    <span class="flat-highlight-copy">
+                      <span class="flat-highlight-label">Gateway Science Workshop</span>
+                      <span class="flat-highlight-fact">Peer mentor</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+    <section class="proto-outro" data-key="outro">
+      <div class="outro-card">
+        <p class="chapter-number">Next on the route</p>
+        <h2>Seattle · Cleveland Heights · Durham</h2>
+        <p>This prototype covers the first two places. The full journey is on the <a href="https://brotatotes.com">current site</a>.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

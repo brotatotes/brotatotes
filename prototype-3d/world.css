@@ -1,0 +1,253 @@
+/* 3D prototype layer. Reuses atlas.css for all card typography and icons. */
+body.proto {
+  --rust: #8b6918;
+  --glass: color-mix(in srgb, var(--paper) 92%, transparent);
+  --glass-strong: color-mix(in srgb, var(--paper) 97%, transparent);
+  background: var(--paper);
+  overflow-x: hidden;
+}
+@media (prefers-color-scheme: dark) {
+  body.proto {
+    --paper: #0d1117;
+    --paper-deep: #121923;
+    --ink: #f3eee3;
+    --muted: #99a7b7;
+    --sage: #172a38;
+    --sage-line: #355469;
+    --rust: #f29a6f;
+    --cursor-accent: #f29a6f;
+    --rule: rgba(243, 238, 227, .16);
+    --glass: color-mix(in srgb, #0d1117 78%, transparent);
+    --glass-strong: color-mix(in srgb, #0d1117 90%, transparent);
+  }
+  body.proto .grain { opacity: .08; mix-blend-mode: screen; }
+}
+
+#world {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  cursor: grab;
+}
+#world.is-pointing { cursor: pointer; }
+
+/* Soft wash behind the reading column so text never fights the scene. */
+.veil {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg,
+    color-mix(in srgb, var(--paper) 62%, transparent) 0%,
+    color-mix(in srgb, var(--paper) 30%, transparent) 38%,
+    transparent 58%);
+}
+
+.world-labels {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+.world-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: .38rem .62rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--glass-strong);
+  color: var(--ink);
+  font: 400 .64rem/1 "DM Mono", monospace;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  pointer-events: auto;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity .35s ease, border-color .25s ease, color .25s ease, background .25s ease;
+  will-change: transform, opacity;
+}
+.world-label.is-current,
+.world-label.is-hover {
+  border-color: var(--rust);
+  background: var(--rust);
+  color: var(--paper);
+}
+
+.proto-header {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.1rem clamp(1.25rem, 4vw, 3rem);
+  border-bottom: 1px solid var(--rule);
+  background: color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  pointer-events: none;
+}
+.proto-header > * { pointer-events: auto; }
+.proto-header .wordmark { font-size: clamp(1.15rem, 1.8vw, 1.5rem); text-decoration: none; }
+.proto-badge,
+.proto-link {
+  font: 400 .62rem/1 "DM Mono", monospace;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.proto-badge {
+  padding: .45rem .7rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--glass);
+}
+.proto-link { margin-left: auto; text-decoration: none; }
+.proto-link:hover { color: var(--rust); }
+
+/* Reading column */
+.proto-content {
+  position: relative;
+  z-index: 3;
+  width: min(44rem, 50vw);
+  margin-left: clamp(1.25rem, 4vw, 4rem);
+  pointer-events: none;
+}
+.proto-content a,
+.proto-content .star,
+.proto-content .chapter-head,
+.proto-content .travel-card,
+.proto-content .outro-card,
+.proto-hero > * { pointer-events: auto; }
+
+.proto-hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 4rem;
+}
+.proto-hero h1 {
+  margin: 0;
+  font-size: clamp(4.2rem, 10vw, 9.5rem);
+  font-weight: 300;
+  line-height: .84;
+  letter-spacing: -.055em;
+}
+.proto-hint {
+  margin-top: 2.5rem;
+  color: var(--muted);
+  font: 400 .68rem/1.4 "DM Mono", monospace;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.proto .chapter {
+  padding: 30vh 0 20vh;
+  opacity: 1;
+  transform: none;
+}
+.proto .chapter-head,
+.travel-card,
+.outro-card {
+  padding: clamp(1.2rem, 2vw, 1.8rem);
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  background: var(--glass-strong);
+  backdrop-filter: blur(14px) saturate(1.05);
+  -webkit-backdrop-filter: blur(14px) saturate(1.05);
+}
+.proto .chapter-head { max-width: none; }
+.proto .constellation-block {
+  margin-top: 26vh;
+  padding-top: 0;
+  border-top: 0;
+}
+.proto .constellation {
+  grid-template-columns: 1fr;
+  gap: 34vh;
+}
+.proto .chapter .star {
+  grid-column: 1 / -1;
+  background: var(--glass-strong);
+  backdrop-filter: blur(14px) saturate(1.05);
+  -webkit-backdrop-filter: blur(14px) saturate(1.05);
+  box-shadow: 0 18px 50px -30px rgba(38, 50, 41, .45);
+  transition: border-color .35s ease, box-shadow .35s ease, transform .5s ease, opacity .5s ease;
+  opacity: .72;
+  transform: translateX(-6px);
+}
+.proto .chapter .star.is-current {
+  opacity: 1;
+  transform: none;
+  border-color: color-mix(in srgb, var(--rust) 70%, var(--rule));
+}
+.proto .chapter .star.is-flash { box-shadow: 0 0 0 3px var(--rust), 0 18px 50px -30px rgba(38, 50, 41, .45); }
+
+.proto-travel {
+  position: relative;
+  height: 190vh;
+}
+.travel-marker { position: absolute; left: 0; width: 1px; height: 1px; }
+.travel-marker--start { top: 0; }
+.travel-marker--end { bottom: 0; }
+.travel-card {
+  position: sticky;
+  top: 42vh;
+  width: fit-content;
+}
+.travel-card h2,
+.outro-card h2 {
+  margin: .7rem 0 0;
+  font-size: clamp(2rem, 3.6vw, 3.4rem);
+  font-weight: 300;
+  line-height: .95;
+  letter-spacing: -.045em;
+}
+
+.proto-outro {
+  min-height: 110vh;
+  display: flex;
+  align-items: center;
+}
+.outro-card p:last-child {
+  margin: 1rem 0 0;
+  color: var(--muted);
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+.outro-card a { color: var(--rust); }
+
+/* If WebGL is unavailable the page simply becomes the readable text column. */
+body.no-webgl #world,
+body.no-webgl .veil,
+body.no-webgl .world-labels { display: none; }
+body.no-webgl .proto-content { width: min(52rem, calc(100vw - 2.5rem)); }
+body.no-webgl .proto .constellation { gap: 1rem; }
+body.no-webgl .proto .chapter .star { opacity: 1; transform: none; }
+
+@media (max-width: 900px) {
+  .veil {
+    background: linear-gradient(180deg, transparent 0%, color-mix(in srgb, var(--paper) 38%, transparent) 70%);
+  }
+  .proto-content {
+    width: auto;
+    margin: 0 1rem;
+  }
+  .proto-badge { display: none; }
+  .proto .constellation { gap: 48vh; }
+  .proto .chapter .star { background: var(--glass-strong); }
+  .world-label { font-size: .58rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .proto .chapter .star { transition: none; transform: none; }
+}
